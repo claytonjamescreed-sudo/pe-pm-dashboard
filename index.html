@@ -564,65 +564,12 @@
 
     <script>
     /* ==================================================================
-       PROJECT DATA — Edit this section to update the dashboard
+       DATA — loaded from data.json
+       All project updates go in data.json, not here.
        ================================================================== */
-    const PROJECTS = [
-        {
-            id: 'job-costing',
-            name: 'Job Costing Dashboard',
-            description: 'Labour & materials tracking with SAGE 50 integration. Compares budgeted vs actual costs, tracks GP margins, and monitors budget consumption across all active jobs.',
-            status: 'active',
-            version: 'v1.0',
-            progress: 85,
-            tech: ['Python', 'Flask', 'SQLite', 'Chart.js'],
-            deployment: 'Heroku',
-            repo: 'PE - Dashboard',
-            milestones: [
-                { text: 'SAGE 50 CSV parser', done: true, date: 'Feb 2026' },
-                { text: 'Budget template upload', done: true, date: 'Feb 2026' },
-                { text: 'Dashboard UI with charts', done: true, date: 'Feb 2026' },
-                { text: 'Heroku deployment', done: true, date: 'Feb 2026' },
-                { text: 'Portfolio overview & summary cards', done: true, date: 'Feb 2026' },
-                { text: 'Multi-user access & auth', done: false, current: true, date: 'Upcoming' },
-                { text: 'PDF export / reporting', done: false, date: 'Planned' },
-                { text: 'Historical trend tracking', done: false, date: 'Planned' },
-            ]
-        },
-        {
-            id: 'estimator',
-            name: 'Estimator App',
-            description: 'Quoting and estimation tool for Pacific Enclosures projects. Streamlines the bidding process with standardized pricing, material calculations, and quote generation.',
-            status: 'planning',
-            version: 'v0.1',
-            progress: 15,
-            tech: ['TBD'],
-            deployment: 'TBD',
-            repo: 'Pacific Enclosures',
-            milestones: [
-                { text: 'Requirements gathering', done: true, date: 'Feb 2026' },
-                { text: 'Define estimation workflow', done: false, current: true, date: 'In Progress' },
-                { text: 'Build pricing model', done: false, date: 'Planned' },
-                { text: 'Quote generation UI', done: false, date: 'Planned' },
-                { text: 'PDF quote export', done: false, date: 'Planned' },
-            ]
-        }
-    ];
-
-    const TIMELINE = [
-        { date: 'Feb 12, 2026', title: 'PM Dashboard Created', desc: 'Standalone project management dashboard for tracking all PE development work.', project: 'pm', color: 'purple' },
-        { date: 'Feb 11, 2026', title: 'Job Costing v1.0 Deployed', desc: 'Full dashboard with SAGE parsing, budget uploads, variance analysis, and portfolio overview live on Heroku.', project: 'job-costing', color: 'green' },
-        { date: 'Feb 11, 2026', title: 'Heroku Runtime Fix', desc: 'Fixed Python runtime version to 3.11.11 for stable deployment.', project: 'job-costing', color: 'blue' },
-        { date: 'Feb 2026', title: 'Estimator Requirements Started', desc: 'Initial scoping and requirements gathering for the estimation tool.', project: 'estimator', color: 'amber' },
-    ];
-
-    const ACTIVITY = [
-        { icon: '🚀', text: '<strong>PM Dashboard</strong> created for tracking all PE development projects', time: 'Just now', color: 'var(--purple-bg)' },
-        { icon: '🔧', text: '<strong>Job Costing</strong> — Fixed runtime.txt to Python 3.11.11', time: '1 day ago', color: 'var(--blue-glow)' },
-        { icon: '✅', text: '<strong>Job Costing v1.0</strong> — Full dashboard deployed to Heroku', time: '1 day ago', color: 'var(--green-bg)' },
-        { icon: '📊', text: '<strong>Job Costing</strong> — Portfolio overview with summary cards shipped', time: '2 days ago', color: 'var(--green-bg)' },
-        { icon: '📁', text: '<strong>Job Costing</strong> — Budget template upload and SAGE parser built', time: '3 days ago', color: 'var(--green-bg)' },
-        { icon: '📝', text: '<strong>Estimator</strong> — Requirements gathering kicked off', time: '1 week ago', color: 'var(--amber-bg)' },
-    ];
+    let PROJECTS = [];
+    let TIMELINE = [];
+    let ACTIVITY = [];
 
     /* ==================================================================
        RENDER FUNCTIONS
@@ -752,12 +699,24 @@
         `).join('');
     }
 
-    /* ===== Init ===== */
-    renderDate();
-    renderStats();
-    renderProjects();
-    renderTimeline();
-    renderActivity();
+    /* ===== Init — fetch data.json then render ===== */
+    async function init() {
+        renderDate();
+        try {
+            const resp = await fetch('data.json');
+            const data = await resp.json();
+            PROJECTS = data.projects || [];
+            TIMELINE = data.timeline || [];
+            ACTIVITY = data.activity || [];
+        } catch (e) {
+            console.error('Failed to load data.json:', e);
+        }
+        renderStats();
+        renderProjects();
+        renderTimeline();
+        renderActivity();
+    }
+    init();
     </script>
 </body>
 </html>
