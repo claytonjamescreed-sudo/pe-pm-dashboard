@@ -587,7 +587,11 @@
         const completedTasks = PROJECTS.reduce((sum, p) => sum + p.milestones.filter(m => m.done).length, 0);
         const inProgressTasks = PROJECTS.reduce((sum, p) => sum + p.milestones.filter(m => m.current).length, 0);
         const totalTasks = PROJECTS.reduce((sum, p) => sum + p.milestones.length, 0);
-        const avgProgress = Math.round(PROJECTS.reduce((sum, p) => sum + p.progress, 0) / PROJECTS.length);
+        const avgProgress = PROJECTS.length > 0 ? Math.round(PROJECTS.reduce((sum, p) => {
+            const t = p.milestones.length;
+            const d = p.milestones.filter(m => m.done).length;
+            return sum + (t > 0 ? (d / t) * 100 : 0);
+        }, 0) / PROJECTS.length) : 0;
 
         const stats = [
             { value: totalProjects, label: 'Active Projects', icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>`, bg: '#eff6ff', color: '#3b82f6' },
@@ -614,6 +618,11 @@
                 review: 'badge-review', paused: 'badge-paused'
             }[p.status] || 'badge-active';
 
+            // Auto-calculate progress from milestones
+            const totalMs = p.milestones.length;
+            const doneMs = p.milestones.filter(m => m.done).length;
+            const progress = totalMs > 0 ? Math.round((doneMs / totalMs) * 100) : 0;
+
             const milestonesHTML = p.milestones.map(m => `
                 <div class="milestone-item">
                     <div class="milestone-check ${m.done ? 'done' : ''} ${m.current ? 'current' : ''}">
@@ -638,10 +647,10 @@
                     <div class="project-progress">
                         <div class="progress-header">
                             <span class="progress-label">Progress</span>
-                            <span class="progress-percent">${p.progress}%</span>
+                            <span class="progress-percent">${progress}%</span>
                         </div>
                         <div class="progress-track">
-                            <div class="progress-fill" style="width: ${p.progress}%;"></div>
+                            <div class="progress-fill" style="width: ${progress}%;"></div>
                         </div>
                     </div>
                     <div class="project-meta">
