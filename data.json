@@ -16,7 +16,8 @@
         { "text": "Dashboard UI with charts", "done": true, "date": "Feb 2026" },
         { "text": "Heroku deployment", "done": true, "date": "Feb 2026" },
         { "text": "Portfolio overview & summary cards", "done": true, "date": "Feb 2026" },
-        { "text": "Multi-user access & auth", "done": false, "current": true, "date": "Upcoming" },
+        { "text": "Box integration — automated SAGE CSV sync", "done": false, "current": true, "date": "Upcoming" },
+        { "text": "Multi-user access & auth", "done": false, "date": "Planned" },
         { "text": "PDF export / reporting", "done": false, "date": "Planned" },
         { "text": "Historical trend tracking", "done": false, "date": "Planned" }
       ]
@@ -42,6 +43,7 @@
   ],
   "timeline": [
     { "date": "Feb 12, 2026", "title": "PM Dashboard Created", "desc": "Standalone project management dashboard for tracking all PE development work.", "project": "pm", "color": "purple" },
+    { "date": "Feb 12, 2026", "title": "Box Integration Planned", "desc": "Automated SAGE 50 CSV sync via Box API — eliminate manual uploads by watching for new SAGE exports in Box.", "project": "job-costing", "color": "blue" },
     { "date": "Feb 11, 2026", "title": "Job Costing v1.0 Deployed", "desc": "Full dashboard with SAGE parsing, budget uploads, variance analysis, and portfolio overview live on Heroku.", "project": "job-costing", "color": "green" },
     { "date": "Feb 11, 2026", "title": "Heroku Runtime Fix", "desc": "Fixed Python runtime version to 3.11.11 for stable deployment.", "project": "job-costing", "color": "blue" },
     { "date": "Feb 2026", "title": "Estimator Requirements Started", "desc": "Initial scoping and requirements gathering for the estimation tool.", "project": "estimator", "color": "amber" }
