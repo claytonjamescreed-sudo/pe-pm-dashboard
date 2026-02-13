@@ -15,7 +15,8 @@
         { "text": "Dashboard UI with charts", "done": true, "date": "Feb 2026" },
         { "text": "Heroku deployment", "done": true, "date": "Feb 2026" },
         { "text": "Portfolio overview & summary cards", "done": true, "date": "Feb 2026" },
-        { "text": "Box integration — automated SAGE CSV sync", "done": false, "current": true, "date": "Upcoming" },
+        { "text": "Upload current project data", "done": false, "current": true, "date": "Upcoming" },
+        { "text": "Box integration — automated SAGE CSV sync", "done": false, "date": "Upcoming" },
         { "text": "Multi-user access & auth", "done": false, "date": "Planned" },
         { "text": "PDF export / reporting", "done": false, "date": "Planned" },
         { "text": "Historical trend tracking", "done": false, "date": "Planned" }
