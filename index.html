@@ -291,64 +291,88 @@
             padding: 0 24px 20px;
         }
 
-        .milestones-toggle {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            cursor: pointer;
-            padding: 8px 0;
-            user-select: none;
-        }
-
-        .milestones-toggle:hover .milestones-title {
-            color: var(--text-muted);
-        }
-
-        .milestones-toggle:hover .milestones-arrow {
-            color: var(--text-muted);
-        }
-
-        .milestones-title {
+        .milestones-header {
             font-size: 12px;
             font-weight: 700;
             color: var(--text-dim);
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            margin-bottom: 0;
+            margin-bottom: 12px;
             display: flex;
             align-items: center;
             gap: 8px;
-            transition: color 0.15s;
         }
 
-        .milestones-count {
+        .milestones-done-badge {
             font-size: 11px;
-            font-weight: 600;
-            color: var(--text-dim);
-            background: var(--bg);
-            padding: 1px 7px;
+            font-weight: 700;
+            color: var(--green);
+            background: var(--green-bg);
+            padding: 2px 8px;
             border-radius: 10px;
-            border: 1px solid var(--border);
+            border: 1px solid rgba(34,197,94,0.2);
         }
 
-        .milestones-arrow {
+        .milestones-summary {
+            margin-bottom: 12px;
+        }
+
+        .milestone-section-label {
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 6px;
+            margin-top: 10px;
+        }
+
+        .milestone-section-label.current-label {
+            color: var(--blue);
+        }
+
+        .milestone-section-label.upcoming-label {
             color: var(--text-dim);
-            transition: transform 0.2s, color 0.15s;
-            flex-shrink: 0;
         }
 
-        .milestones-arrow.expanded {
+        .milestones-expand {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--blue);
+            cursor: pointer;
+            padding: 6px 0;
+            user-select: none;
+            transition: color 0.15s;
+            background: none;
+            border: none;
+        }
+
+        .milestones-expand:hover {
+            color: #60a5fa;
+        }
+
+        .milestones-expand svg {
+            transition: transform 0.2s;
+        }
+
+        .milestones-expand.expanded svg {
             transform: rotate(180deg);
         }
 
-        .milestones-list {
+        .milestones-full {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.3s ease;
+            transition: max-height 0.35s ease;
+            border-top: 1px solid transparent;
         }
 
-        .milestones-list.expanded {
-            max-height: 2000px;
+        .milestones-full.expanded {
+            max-height: 3000px;
+            border-top-color: var(--border);
+            padding-top: 10px;
+            margin-top: 6px;
         }
 
         .milestone-item {
@@ -676,15 +700,30 @@
             const doneMs = p.milestones.filter(m => m.done).length;
             const progress = totalMs > 0 ? Math.round((doneMs / totalMs) * 100) : 0;
 
-            const milestonesHTML = p.milestones.map(m => `
-                <div class="milestone-item">
+            function renderMilestoneItem(m) {
+                return `<div class="milestone-item">
                     <div class="milestone-check ${m.done ? 'done' : ''} ${m.current ? 'current' : ''}">
                         <svg viewBox="0 0 10 10" fill="none" stroke="white" stroke-width="2"><polyline points="2,5 4,7 8,3"/></svg>
                     </div>
                     <span class="milestone-text ${m.done ? 'done' : ''} ${m.current ? 'current' : ''}">${m.text}</span>
                     <span class="milestone-date">${m.date}</span>
-                </div>
-            `).join('');
+                </div>`;
+            }
+
+            const currentMs = p.milestones.filter(m => m.current);
+            const upcomingMs = p.milestones.filter(m => !m.done && !m.current).slice(0, 2);
+            const allMilestonesHTML = p.milestones.map(renderMilestoneItem).join('');
+
+            // Build summary section (always visible)
+            let summaryHTML = '';
+            if (currentMs.length > 0) {
+                summaryHTML += `<div class="milestone-section-label current-label">Current</div>`;
+                summaryHTML += currentMs.map(renderMilestoneItem).join('');
+            }
+            if (upcomingMs.length > 0) {
+                summaryHTML += `<div class="milestone-section-label upcoming-label">Up Next</div>`;
+                summaryHTML += upcomingMs.map(renderMilestoneItem).join('');
+            }
 
             const techTags = p.tech.map(t => `<span class="meta-tag tech">${t}</span>`).join('');
 
@@ -712,12 +751,19 @@
                         <span class="meta-tag deploy">${p.deployment}</span>
                     </div>
                     <div class="project-milestones">
-                        <div class="milestones-toggle" onclick="toggleMilestones(this)">
-                            <span class="milestones-title">Milestones <span class="milestones-count">${doneMs}/${totalMs}</span></span>
-                            <svg class="milestones-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                        <div class="milestones-header">
+                            Milestones
+                            <span class="milestones-done-badge">${doneMs} completed</span>
                         </div>
-                        <div class="milestones-list">
-                            ${milestonesHTML}
+                        <div class="milestones-summary">
+                            ${summaryHTML}
+                        </div>
+                        <button class="milestones-expand" onclick="toggleMilestones(this)">
+                            <span>Show all ${totalMs} milestones</span>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="milestones-full">
+                            ${allMilestonesHTML}
                         </div>
                     </div>
                 </div>
@@ -767,11 +813,12 @@
     }
 
     /* ===== Toggle milestones ===== */
-    function toggleMilestones(el) {
-        const list = el.nextElementSibling;
-        const arrow = el.querySelector('.milestones-arrow');
-        list.classList.toggle('expanded');
-        arrow.classList.toggle('expanded');
+    function toggleMilestones(btn) {
+        const fullList = btn.nextElementSibling;
+        const isExpanded = fullList.classList.toggle('expanded');
+        btn.classList.toggle('expanded');
+        const totalCount = fullList.querySelectorAll('.milestone-item').length;
+        btn.querySelector('span').textContent = isExpanded ? 'Hide milestones' : `Show all ${totalCount} milestones`;
     }
 
     /* ===== Init — fetch data.json then render ===== */
