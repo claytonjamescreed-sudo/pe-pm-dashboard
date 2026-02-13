@@ -207,6 +207,7 @@
         .badge-planning { background: var(--amber-bg); color: var(--amber); border: 1px solid rgba(245,158,11,0.2); }
         .badge-review { background: var(--purple-bg); color: var(--purple); border: 1px solid rgba(167,139,250,0.2); }
         .badge-paused { background: var(--red-bg); color: var(--red); border: 1px solid rgba(239,68,68,0.2); }
+        .badge-pipeline { background: rgba(100,116,139,0.1); color: #94a3b8; border: 1px solid rgba(100,116,139,0.2); }
 
         /* Progress bar */
         .project-progress {
@@ -615,7 +616,8 @@
         document.getElementById('projectsGrid').innerHTML = PROJECTS.map(p => {
             const statusClass = {
                 active: 'badge-active', planning: 'badge-planning',
-                review: 'badge-review', paused: 'badge-paused'
+                review: 'badge-review', paused: 'badge-paused',
+                pipeline: 'badge-pipeline'
             }[p.status] || 'badge-active';
 
             // Auto-calculate progress from milestones

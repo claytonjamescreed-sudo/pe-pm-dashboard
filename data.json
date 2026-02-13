@@ -61,6 +61,38 @@
         { "text": "Training & documentation for users", "done": false, "date": "Planned" },
         { "text": "Post-launch monitoring & fixes", "done": false, "date": "Planned" }
       ]
+    },
+    {
+      "id": "project-management",
+      "name": "Project Management App",
+      "description": "Internal project management tool for Pacific Enclosures. Scope and requirements to be defined.",
+      "status": "pipeline",
+      "version": "—",
+      "tech": ["TBD"],
+      "deployment": "TBD",
+      "repo": "TBD",
+      "milestones": [
+        { "text": "Define scope & requirements", "done": false, "date": "TBD" },
+        { "text": "Design & architecture", "done": false, "date": "TBD" },
+        { "text": "Development", "done": false, "date": "TBD" },
+        { "text": "Testing & deployment", "done": false, "date": "TBD" }
+      ]
+    },
+    {
+      "id": "purchasing",
+      "name": "Purchasing App",
+      "description": "Purchasing and procurement tool for Pacific Enclosures. Scope and requirements to be defined.",
+      "status": "pipeline",
+      "version": "—",
+      "tech": ["TBD"],
+      "deployment": "TBD",
+      "repo": "TBD",
+      "milestones": [
+        { "text": "Define scope & requirements", "done": false, "date": "TBD" },
+        { "text": "Design & architecture", "done": false, "date": "TBD" },
+        { "text": "Development", "done": false, "date": "TBD" },
+        { "text": "Testing & deployment", "done": false, "date": "TBD" }
+      ]
     }
   ],
   "timeline": [
