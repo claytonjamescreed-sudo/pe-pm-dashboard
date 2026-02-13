@@ -291,13 +291,64 @@
             padding: 0 24px 20px;
         }
 
+        .milestones-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            padding: 8px 0;
+            user-select: none;
+        }
+
+        .milestones-toggle:hover .milestones-title {
+            color: var(--text-muted);
+        }
+
+        .milestones-toggle:hover .milestones-arrow {
+            color: var(--text-muted);
+        }
+
         .milestones-title {
             font-size: 12px;
             font-weight: 700;
             color: var(--text-dim);
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            margin-bottom: 10px;
+            margin-bottom: 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.15s;
+        }
+
+        .milestones-count {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-dim);
+            background: var(--bg);
+            padding: 1px 7px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+        }
+
+        .milestones-arrow {
+            color: var(--text-dim);
+            transition: transform 0.2s, color 0.15s;
+            flex-shrink: 0;
+        }
+
+        .milestones-arrow.expanded {
+            transform: rotate(180deg);
+        }
+
+        .milestones-list {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .milestones-list.expanded {
+            max-height: 2000px;
         }
 
         .milestone-item {
@@ -661,8 +712,13 @@
                         <span class="meta-tag deploy">${p.deployment}</span>
                     </div>
                     <div class="project-milestones">
-                        <div class="milestones-title">Milestones</div>
-                        ${milestonesHTML}
+                        <div class="milestones-toggle" onclick="toggleMilestones(this)">
+                            <span class="milestones-title">Milestones <span class="milestones-count">${doneMs}/${totalMs}</span></span>
+                            <svg class="milestones-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                        </div>
+                        <div class="milestones-list">
+                            ${milestonesHTML}
+                        </div>
                     </div>
                 </div>
             `;
@@ -708,6 +764,14 @@
                 <span class="activity-time">${a.time}</span>
             </div>
         `).join('');
+    }
+
+    /* ===== Toggle milestones ===== */
+    function toggleMilestones(el) {
+        const list = el.nextElementSibling;
+        const arrow = el.querySelector('.milestones-arrow');
+        list.classList.toggle('expanded');
+        arrow.classList.toggle('expanded');
     }
 
     /* ===== Init — fetch data.json then render ===== */
