@@ -55,6 +55,9 @@
         { "text": "Data migration & initial setup", "done": false, "date": "Planned" },
         { "text": "PDF quote export & reporting", "done": false, "date": "Planned" },
         { "text": "Multi-quote comparison", "done": false, "date": "Planned" },
+        { "text": "Detailed project archive database — historical quotes & completed jobs", "done": false, "date": "Planned" },
+        { "text": "AI integration — match current RFQs against historical projects for quick estimating", "done": false, "date": "Planned" },
+        { "text": "Estimating knowledge base — guided workflow for non-technical users", "done": false, "date": "Planned" },
         { "text": "Training & documentation for users", "done": false, "date": "Planned" },
         { "text": "Post-launch monitoring & fixes", "done": false, "date": "Planned" }
       ]
