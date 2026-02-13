@@ -37,14 +37,26 @@
         { "text": "Validate estimation engine against real quotes", "done": false, "current": true, "date": "In Progress" },
         { "text": "Fix calculation accuracy & edge cases", "done": false, "date": "Upcoming" },
         { "text": "Genset database verification & cleanup", "done": false, "date": "Upcoming" },
-        { "text": "Labour & material cost calibration", "done": false, "date": "Upcoming" },
+        { "text": "Labour hour calibration across all enclosure types", "done": false, "date": "Upcoming" },
+        { "text": "Material cost calibration & markup validation", "done": false, "date": "Upcoming" },
+        { "text": "Rate escalation logic testing", "done": false, "date": "Upcoming" },
+        { "text": "Sound level & clearance calculations validation", "done": false, "date": "Upcoming" },
+        { "text": "Tank configuration testing (UL/ULC/2085)", "done": false, "date": "Upcoming" },
         { "text": "RFP parsing reliability", "done": false, "date": "Planned" },
+        { "text": "Spec sheet parsing accuracy", "done": false, "date": "Planned" },
         { "text": "UI refinement & usability testing", "done": false, "date": "Planned" },
+        { "text": "Quote output formatting & review", "done": false, "date": "Planned" },
+        { "text": "CAD/USD conversion & exchange rate handling", "done": false, "date": "Planned" },
+        { "text": "Warranty & special project type logic", "done": false, "date": "Planned" },
         { "text": "End-to-end testing with Darren", "done": false, "date": "Planned" },
+        { "text": "Bug fixes from Darren testing", "done": false, "date": "Planned" },
         { "text": "User auth & access control", "done": false, "date": "Planned" },
         { "text": "Production deployment", "done": false, "date": "Planned" },
+        { "text": "Data migration & initial setup", "done": false, "date": "Planned" },
         { "text": "PDF quote export & reporting", "done": false, "date": "Planned" },
-        { "text": "Multi-quote comparison", "done": false, "date": "Planned" }
+        { "text": "Multi-quote comparison", "done": false, "date": "Planned" },
+        { "text": "Training & documentation for users", "done": false, "date": "Planned" },
+        { "text": "Post-launch monitoring & fixes", "done": false, "date": "Planned" }
       ]
     }
   ],
