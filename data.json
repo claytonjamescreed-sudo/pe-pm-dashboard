@@ -25,9 +25,9 @@
     {
       "id": "estimator",
       "name": "Estimator App",
-      "description": "Generator enclosure quoting tool — reimplements PE's master Excel estimating logic into a web app. 500kW DFEK Seattle benchmark fully calibrated: design specs exact match, finishing materials -0.00%, labour hours exact across all categories. Genset installation +3.35% on materials. 3 reference benchmarks structured, automated test suite in place.",
+      "description": "Generator enclosure quoting tool — reimplements PE's master Excel estimating logic into a web app. Still in early prototyping and testing — not producing accurate estimates yet. Foundational data architecture and tooling in place, but calculation accuracy needs significant work across all enclosure types and kW ratings.",
       "status": "active",
-      "version": "v0.3-dev",
+      "version": "v0.1-dev",
       "tech": ["Python", "Flask", "SQLite", "pdfplumber", "pandas"],
       "deployment": "Not deployed",
       "repo": "Pacific Enclosures",
