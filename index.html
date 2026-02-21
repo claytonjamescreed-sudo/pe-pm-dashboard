@@ -98,6 +98,26 @@
             color: var(--text-dim);
         }
 
+        .btn-download {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text);
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 7px 14px;
+            cursor: pointer;
+            transition: border-color 0.2s, background 0.2s;
+        }
+
+        .btn-download:hover {
+            border-color: var(--blue);
+            background: var(--blue-glow);
+        }
+
         /* ===== Main ===== */
         .main {
             max-width: 1400px;
@@ -616,6 +636,10 @@
             <div class="header-divider"></div>
             <span class="header-subtitle">Development Project Management</span>
             <div class="header-right">
+                <button class="btn-download" onclick="downloadWeeklySummary()">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    Weekly Summary
+                </button>
                 <span class="header-date" id="headerDate"></span>
             </div>
         </div>
@@ -819,6 +843,112 @@
         btn.classList.toggle('expanded');
         const totalCount = fullList.querySelectorAll('.milestone-item').length;
         btn.querySelector('span').textContent = isExpanded ? 'Hide milestones' : `Show all ${totalCount} milestones`;
+    }
+
+    /* ===== Weekly Summary Download ===== */
+    function downloadWeeklySummary() {
+        const now = new Date();
+        const weekAgo = new Date(now);
+        weekAgo.setDate(weekAgo.getDate() - 7);
+
+        const fmtDate = d => d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+        const weekStart = fmtDate(weekAgo);
+        const weekEnd = fmtDate(now);
+
+        // Parse timeline dates and filter to past 7 days
+        function isWithinWeek(dateStr) {
+            const parsed = new Date(dateStr);
+            if (!isNaN(parsed)) return parsed >= weekAgo && parsed <= now;
+            return false;
+        }
+
+        const recentTimeline = TIMELINE.filter(t => isWithinWeek(t.date));
+
+        // Strip HTML tags from activity text
+        const stripHTML = s => s.replace(/<[^>]*>/g, '');
+
+        // Build markdown
+        let md = `# Pacific Enclosures \u2014 Weekly Summary\n`;
+        md += `**Week of ${weekStart} \u2013 ${weekEnd}**\n\n`;
+
+        // Progress snapshot
+        md += `## Progress Snapshot\n`;
+        md += `| Project | Progress | Status |\n`;
+        md += `|---------|----------|--------|\n`;
+        for (const p of PROJECTS) {
+            const total = p.milestones.length;
+            const done = p.milestones.filter(m => m.done).length;
+            const pct = total > 0 ? Math.round((done / total) * 100) : 0;
+            md += `| ${p.name} | ${pct}% (${done}/${total}) | ${p.status} |\n`;
+        }
+        md += `\n`;
+
+        // In progress
+        const inProgress = [];
+        for (const p of PROJECTS) {
+            for (const m of p.milestones) {
+                if (m.current) inProgress.push({ project: p.name, text: m.text });
+            }
+        }
+        if (inProgress.length > 0) {
+            md += `## In Progress\n`;
+            for (const item of inProgress) {
+                md += `- **${item.project}** \u2014 ${item.text}\n`;
+            }
+            md += `\n`;
+        }
+
+        // Timeline events this week
+        if (recentTimeline.length > 0) {
+            md += `## Timeline Events This Week\n`;
+            const projectNames = { 'job-costing': 'Job Costing', 'estimator': 'Estimator', 'pm': 'PM Dashboard' };
+            for (const t of recentTimeline) {
+                const pName = projectNames[t.project] || t.project;
+                md += `- **${t.date}** \u2014 ${pName}: ${t.title}\n`;
+                md += `  ${t.desc}\n`;
+            }
+            md += `\n`;
+        }
+
+        // Recent activity
+        if (ACTIVITY.length > 0) {
+            md += `## Recent Activity\n`;
+            for (const a of ACTIVITY) {
+                md += `- ${stripHTML(a.text)} _(${a.time})_\n`;
+            }
+            md += `\n`;
+        }
+
+        // Upcoming milestones
+        const upcoming = [];
+        for (const p of PROJECTS) {
+            for (const m of p.milestones) {
+                if (!m.done && !m.current) upcoming.push({ project: p.name, text: m.text, date: m.date });
+            }
+        }
+        if (upcoming.length > 0) {
+            md += `## Upcoming Milestones\n`;
+            for (const item of upcoming.slice(0, 10)) {
+                md += `- **${item.project}** \u2014 ${item.text} _(${item.date})_\n`;
+            }
+            if (upcoming.length > 10) {
+                md += `- _...and ${upcoming.length - 10} more_\n`;
+            }
+            md += `\n`;
+        }
+
+        md += `---\n`;
+        md += `_Generated from PE PM Dashboard \u2014 ${fmtDate(now)}_\n`;
+
+        // Download
+        const dateSlug = now.toISOString().slice(0, 10);
+        const blob = new Blob([md], { type: 'text/markdown' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `PE-Weekly-Summary-${dateSlug}.md`;
+        a.click();
+        URL.revokeObjectURL(url);
     }
 
     /* ===== Init — fetch data.json then render ===== */
