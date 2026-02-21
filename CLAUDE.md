@@ -94,6 +94,31 @@ The HTML file contains only layout, styling, and render functions. It fetches `d
 
 GitHub Pages via `.github/workflows`. Push to main branch to deploy.
 
+## Weekly Archive
+
+The dashboard has a "Weekly Summary" button that generates a markdown snapshot and saves it to the archive.
+
+**How it works:**
+- On click, generates a `.md` summary and downloads it
+- Also auto-saves to `localStorage` (tagged as "Local")
+- The "Weekly Archive" section on the dashboard shows all past summaries
+- To make a summary permanent, add it to `data.json` under `weeklySummaries` (tagged as "Committed")
+
+### weeklySummaries[] schema
+
+```json
+{
+  "dateSlug": "2026-02-20",
+  "weekStart": "Feb 13, 2026",
+  "weekEnd": "Feb 20, 2026",
+  "generatedAt": "2026-02-20T16:30:00.000Z",
+  "markdown": "# Pacific Enclosures — Weekly Summary\n..."
+}
+```
+
+- `dateSlug` is the unique key (one summary per date)
+- Entries in `data.json` take priority over localStorage entries with the same `dateSlug`
+
 ## Common Tasks
 
 - **Add a milestone**: Add entry to the project's `milestones` array in `data.json`
@@ -102,3 +127,4 @@ GitHub Pages via `.github/workflows`. Push to main branch to deploy.
 - **Add activity**: Add entry to top of `activity` array in `data.json`
 - **Add a new project**: Add full project object to `projects` array in `data.json`
 - **Update progress**: Just update milestones — progress bar calculates automatically
+- **Commit a weekly summary**: Copy a localStorage summary into `data.json`'s `weeklySummaries` array to make it permanent

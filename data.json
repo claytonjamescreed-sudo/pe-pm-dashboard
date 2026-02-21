@@ -122,5 +122,6 @@
     { "icon": "📁", "text": "<strong>Job Costing</strong> — Budget template upload and SAGE parser built", "time": "Feb 9", "color": "var(--green-bg)" },
     { "icon": "🔨", "text": "<strong>Estimator</strong> — Initial demo sandbox built, not yet functional", "time": "Feb 2026", "color": "var(--amber-bg)" },
     { "icon": "📐", "text": "<strong>Estimator</strong> — 3,842 Excel formulas analyzed and documented", "time": "Feb 2026", "color": "var(--blue-glow)" }
-  ]
+  ],
+  "weeklySummaries": []
 }

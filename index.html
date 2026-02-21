@@ -615,6 +615,172 @@
             white-space: nowrap;
         }
 
+        /* ===== Archive ===== */
+        .archive-list {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            margin-bottom: 32px;
+        }
+
+        .archive-empty {
+            padding: 32px 20px;
+            text-align: center;
+            color: var(--text-dim);
+            font-size: 14px;
+        }
+
+        .archive-item {
+            padding: 14px 20px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            border-bottom: 1px solid var(--border);
+            transition: background 0.15s;
+        }
+
+        .archive-item:last-child {
+            border-bottom: none;
+        }
+
+        .archive-item:hover {
+            background: var(--bg-card-hover);
+        }
+
+        .archive-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: var(--radius-sm);
+            background: var(--blue-glow);
+            color: var(--blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .archive-info {
+            flex: 1;
+        }
+
+        .archive-week {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .archive-generated {
+            font-size: 12px;
+            color: var(--text-dim);
+        }
+
+        .archive-source {
+            font-size: 10px;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .archive-source.saved {
+            color: var(--green);
+            background: var(--green-bg);
+            border: 1px solid rgba(34,197,94,0.2);
+        }
+
+        .archive-source.local {
+            color: var(--amber);
+            background: var(--amber-bg);
+            border: 1px solid rgba(245,158,11,0.2);
+        }
+
+        .archive-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .archive-btn {
+            font-size: 12px;
+            font-weight: 600;
+            padding: 5px 12px;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+            background: var(--bg);
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        .archive-btn:hover {
+            border-color: var(--blue);
+            color: var(--text);
+        }
+
+        /* Archive preview modal */
+        .archive-modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            z-index: 200;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .archive-modal-overlay.visible {
+            display: flex;
+        }
+
+        .archive-modal {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            width: 90%;
+            max-width: 700px;
+            max-height: 80vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .archive-modal-header {
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .archive-modal-title {
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .archive-modal-close {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 20px;
+            line-height: 1;
+            padding: 4px;
+        }
+
+        .archive-modal-close:hover {
+            color: var(--text);
+        }
+
+        .archive-modal-body {
+            padding: 20px;
+            overflow-y: auto;
+            font-size: 13px;
+            line-height: 1.7;
+            color: var(--text-muted);
+            white-space: pre-wrap;
+            font-family: 'SF Mono', 'Fira Code', monospace;
+        }
+
         /* ===== Responsive ===== */
         @media (max-width: 1100px) {
             .stats-row { grid-template-columns: repeat(2, 1fr); }
@@ -660,7 +826,22 @@
         <!-- Activity Feed -->
         <div class="section-title">Recent Activity</div>
         <div class="activity-feed" id="activityFeed"></div>
+
+        <!-- Weekly Archive -->
+        <div class="section-title">Weekly Archive</div>
+        <div class="archive-list" id="archiveList"></div>
     </main>
+
+    <!-- Archive Preview Modal -->
+    <div class="archive-modal-overlay" id="archiveModal" onclick="closeArchiveModal(event)">
+        <div class="archive-modal">
+            <div class="archive-modal-header">
+                <span class="archive-modal-title" id="archiveModalTitle">Weekly Summary</span>
+                <button class="archive-modal-close" onclick="closeArchiveModal()">&times;</button>
+            </div>
+            <div class="archive-modal-body" id="archiveModalBody"></div>
+        </div>
+    </div>
 
     <script>
     /* ==================================================================
@@ -670,6 +851,7 @@
     let PROJECTS = [];
     let TIMELINE = [];
     let ACTIVITY = [];
+    let WEEKLY_SUMMARIES = [];
 
     /* ==================================================================
        RENDER FUNCTIONS
@@ -845,8 +1027,8 @@
         btn.querySelector('span').textContent = isExpanded ? 'Hide milestones' : `Show all ${totalCount} milestones`;
     }
 
-    /* ===== Weekly Summary Download ===== */
-    function downloadWeeklySummary() {
+    /* ===== Weekly Summary Generation ===== */
+    function generateWeeklyMarkdown() {
         const now = new Date();
         const weekAgo = new Date(now);
         weekAgo.setDate(weekAgo.getDate() - 7);
@@ -855,7 +1037,6 @@
         const weekStart = fmtDate(weekAgo);
         const weekEnd = fmtDate(now);
 
-        // Parse timeline dates and filter to past 7 days
         function isWithinWeek(dateStr) {
             const parsed = new Date(dateStr);
             if (!isNaN(parsed)) return parsed >= weekAgo && parsed <= now;
@@ -863,15 +1044,11 @@
         }
 
         const recentTimeline = TIMELINE.filter(t => isWithinWeek(t.date));
-
-        // Strip HTML tags from activity text
         const stripHTML = s => s.replace(/<[^>]*>/g, '');
 
-        // Build markdown
         let md = `# Pacific Enclosures \u2014 Weekly Summary\n`;
         md += `**Week of ${weekStart} \u2013 ${weekEnd}**\n\n`;
 
-        // Progress snapshot
         md += `## Progress Snapshot\n`;
         md += `| Project | Progress | Status |\n`;
         md += `|---------|----------|--------|\n`;
@@ -883,7 +1060,6 @@
         }
         md += `\n`;
 
-        // In progress
         const inProgress = [];
         for (const p of PROJECTS) {
             for (const m of p.milestones) {
@@ -898,7 +1074,6 @@
             md += `\n`;
         }
 
-        // Timeline events this week
         if (recentTimeline.length > 0) {
             md += `## Timeline Events This Week\n`;
             const projectNames = { 'job-costing': 'Job Costing', 'estimator': 'Estimator', 'pm': 'PM Dashboard' };
@@ -910,7 +1085,6 @@
             md += `\n`;
         }
 
-        // Recent activity
         if (ACTIVITY.length > 0) {
             md += `## Recent Activity\n`;
             for (const a of ACTIVITY) {
@@ -919,7 +1093,6 @@
             md += `\n`;
         }
 
-        // Upcoming milestones
         const upcoming = [];
         for (const p of PROJECTS) {
             for (const m of p.milestones) {
@@ -940,13 +1113,113 @@
         md += `---\n`;
         md += `_Generated from PE PM Dashboard \u2014 ${fmtDate(now)}_\n`;
 
-        // Download
-        const dateSlug = now.toISOString().slice(0, 10);
+        return { md, weekStart, weekEnd, generatedAt: now.toISOString() };
+    }
+
+    function downloadWeeklySummary() {
+        const { md, weekStart, weekEnd, generatedAt } = generateWeeklyMarkdown();
+
+        // Save to archive
+        saveToArchive(weekStart, weekEnd, generatedAt, md);
+        renderArchive();
+
+        // Download file
+        const dateSlug = generatedAt.slice(0, 10);
         const blob = new Blob([md], { type: 'text/markdown' });
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
         a.download = `PE-Weekly-Summary-${dateSlug}.md`;
+        a.click();
+        URL.revokeObjectURL(url);
+    }
+
+    /* ===== Archive Storage ===== */
+    const ARCHIVE_KEY = 'pe-weekly-archive';
+
+    function getLocalArchive() {
+        try {
+            return JSON.parse(localStorage.getItem(ARCHIVE_KEY) || '[]');
+        } catch { return []; }
+    }
+
+    function saveToArchive(weekStart, weekEnd, generatedAt, markdown) {
+        const archive = getLocalArchive();
+        const dateSlug = generatedAt.slice(0, 10);
+        // Avoid duplicates for same date
+        const existing = archive.findIndex(a => a.dateSlug === dateSlug);
+        const entry = { dateSlug, weekStart, weekEnd, generatedAt, markdown };
+        if (existing >= 0) {
+            archive[existing] = entry;
+        } else {
+            archive.unshift(entry);
+        }
+        localStorage.setItem(ARCHIVE_KEY, JSON.stringify(archive));
+    }
+
+    function getMergedArchive() {
+        const local = getLocalArchive();
+        const saved = WEEKLY_SUMMARIES || [];
+        // Merge: data.json entries take priority (they're the permanent ones)
+        const map = new Map();
+        for (const entry of local) {
+            map.set(entry.dateSlug, { ...entry, source: 'local' });
+        }
+        for (const entry of saved) {
+            map.set(entry.dateSlug, { ...entry, source: 'saved' });
+        }
+        // Sort newest first
+        return Array.from(map.values()).sort((a, b) => b.dateSlug.localeCompare(a.dateSlug));
+    }
+
+    function renderArchive() {
+        const archive = getMergedArchive();
+        const container = document.getElementById('archiveList');
+        if (archive.length === 0) {
+            container.innerHTML = `<div class="archive-empty">No weekly summaries yet. Click "Weekly Summary" to generate your first one.</div>`;
+            return;
+        }
+        container.innerHTML = archive.map((entry, i) => `
+            <div class="archive-item">
+                <div class="archive-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                </div>
+                <div class="archive-info">
+                    <div class="archive-week">${entry.weekStart} \u2013 ${entry.weekEnd}</div>
+                    <div class="archive-generated">Generated ${new Date(entry.generatedAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', hour: 'numeric', minute: '2-digit' })}</div>
+                </div>
+                <span class="archive-source ${entry.source}">${entry.source === 'saved' ? 'Committed' : 'Local'}</span>
+                <div class="archive-actions">
+                    <button class="archive-btn" onclick="viewArchiveSummary(${i})">View</button>
+                    <button class="archive-btn" onclick="downloadArchiveSummary(${i})">Download</button>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    function viewArchiveSummary(index) {
+        const archive = getMergedArchive();
+        const entry = archive[index];
+        if (!entry) return;
+        document.getElementById('archiveModalTitle').textContent = `${entry.weekStart} \u2013 ${entry.weekEnd}`;
+        document.getElementById('archiveModalBody').textContent = entry.markdown;
+        document.getElementById('archiveModal').classList.add('visible');
+    }
+
+    function closeArchiveModal(event) {
+        if (event && event.target !== event.currentTarget) return;
+        document.getElementById('archiveModal').classList.remove('visible');
+    }
+
+    function downloadArchiveSummary(index) {
+        const archive = getMergedArchive();
+        const entry = archive[index];
+        if (!entry) return;
+        const blob = new Blob([entry.markdown], { type: 'text/markdown' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `PE-Weekly-Summary-${entry.dateSlug}.md`;
         a.click();
         URL.revokeObjectURL(url);
     }
@@ -960,6 +1233,7 @@
             PROJECTS = data.projects || [];
             TIMELINE = data.timeline || [];
             ACTIVITY = data.activity || [];
+            WEEKLY_SUMMARIES = data.weeklySummaries || [];
         } catch (e) {
             console.error('Failed to load data.json:', e);
         }
@@ -967,6 +1241,7 @@
         renderProjects();
         renderTimeline();
         renderActivity();
+        renderArchive();
     }
     init();
     </script>
