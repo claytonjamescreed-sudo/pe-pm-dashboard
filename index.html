@@ -1393,9 +1393,15 @@
     function getMergedArchive() {
         const local = getLocalArchive();
         const saved = WEEKLY_SUMMARIES || [];
+        // Clean up: remove local entries that now have a committed version
+        const savedSlugs = new Set(saved.map(s => s.dateSlug));
+        const cleanedLocal = local.filter(l => !savedSlugs.has(l.dateSlug));
+        if (cleanedLocal.length !== local.length) {
+            localStorage.setItem(ARCHIVE_KEY, JSON.stringify(cleanedLocal));
+        }
         // Merge: data.json entries take priority (they're the permanent ones)
         const map = new Map();
-        for (const entry of local) {
+        for (const entry of cleanedLocal) {
             map.set(entry.dateSlug, { ...entry, source: 'local' });
         }
         for (const entry of saved) {
@@ -1568,6 +1574,25 @@
         } catch (e) {
             console.error('Failed to load data.json:', e);
         }
+        // Clean stale milestone overrides that match original data
+        const overrides = getMilestoneOverrides();
+        let overridesChanged = false;
+        for (const [pid, po] of Object.entries(overrides)) {
+            const orig = ORIGINAL_PROJECTS.find(p => p.id === pid);
+            if (!orig) continue;
+            if (po.toggles) {
+                for (const [idx, done] of Object.entries(po.toggles)) {
+                    if (orig.milestones[idx] && orig.milestones[idx].done === done) {
+                        delete po.toggles[idx];
+                        overridesChanged = true;
+                    }
+                }
+                if (Object.keys(po.toggles).length === 0) { delete po.toggles; overridesChanged = true; }
+            }
+            if (!po.toggles && !po.added) { delete overrides[pid]; overridesChanged = true; }
+        }
+        if (overridesChanged) saveMilestoneOverrides(overrides);
+
         applyMilestoneOverrides();
         renderStats();
         renderProjects();
