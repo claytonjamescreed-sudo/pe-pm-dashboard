@@ -3,7 +3,8 @@ name: Auto-Update Activity from Commits
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 9 * * 1'  # Weekly on Monday at 9am UTC
+    - cron: '0 9 * * 1'  # Monday at 9am UTC
+    - cron: '0 23 * * 5'  # Friday at 3pm PST (11pm UTC)
 
 jobs:
   update-activity:
