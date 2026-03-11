@@ -6,21 +6,70 @@
       "description": "Labour & materials tracking with SAGE 50 integration. Compares budgeted vs actual costs, tracks GP margins, and monitors budget consumption across all active jobs. Live in production with full project data, Box sync, and multi-user auth.",
       "status": "production",
       "version": "v2.0",
-      "tech": ["Python", "Flask", "SQLite", "Chart.js"],
+      "tech": [
+        "Python",
+        "Flask",
+        "SQLite",
+        "Chart.js"
+      ],
       "deployment": "Heroku",
       "repo": "PE - Dashboard",
       "milestones": [
-        { "text": "SAGE 50 CSV parser", "done": true, "date": "Feb 2026" },
-        { "text": "Budget template upload", "done": true, "date": "Feb 2026" },
-        { "text": "Dashboard UI with charts", "done": true, "date": "Feb 2026" },
-        { "text": "Heroku deployment", "done": true, "date": "Feb 2026" },
-        { "text": "Portfolio overview & summary cards", "done": true, "date": "Feb 2026" },
-        { "text": "Labour Cost tracking & budget export CSV", "done": true, "date": "Feb 2026" },
-        { "text": "Upload current project data — all jobs uploaded", "done": true, "date": "Mar 2026" },
-        { "text": "Box integration — automated SAGE CSV sync", "done": true, "date": "Mar 2026" },
-        { "text": "Multi-user access & auth", "done": true, "date": "Mar 2026" },
-        { "text": "PDF export / reporting", "done": false, "date": "Backlog" },
-        { "text": "Historical trend tracking", "done": false, "date": "Backlog" }
+        {
+          "text": "SAGE 50 CSV parser",
+          "done": true,
+          "date": "Feb 2026"
+        },
+        {
+          "text": "Budget template upload",
+          "done": true,
+          "date": "Feb 2026"
+        },
+        {
+          "text": "Dashboard UI with charts",
+          "done": true,
+          "date": "Feb 2026"
+        },
+        {
+          "text": "Heroku deployment",
+          "done": true,
+          "date": "Feb 2026"
+        },
+        {
+          "text": "Portfolio overview & summary cards",
+          "done": true,
+          "date": "Feb 2026"
+        },
+        {
+          "text": "Labour Cost tracking & budget export CSV",
+          "done": true,
+          "date": "Feb 2026"
+        },
+        {
+          "text": "Upload current project data — all jobs uploaded",
+          "done": true,
+          "date": "Mar 2026"
+        },
+        {
+          "text": "Box integration — automated SAGE CSV sync",
+          "done": true,
+          "date": "Mar 2026"
+        },
+        {
+          "text": "Multi-user access & auth",
+          "done": true,
+          "date": "Mar 2026"
+        },
+        {
+          "text": "PDF export / reporting",
+          "done": false,
+          "date": "Backlog"
+        },
+        {
+          "text": "Historical trend tracking",
+          "done": false,
+          "date": "Backlog"
+        }
       ]
     },
     {
@@ -29,57 +78,252 @@
       "description": "Generator enclosure quoting tool — reimplements PE's master Excel estimating logic into a web app. 212/212 accuracy tests passing across 6 reference estimates (500kW DFEK, 300kW Princeton, 150kW BC Hydro, 150kW Treaty Creek, 1750kW Kootenay WWTP, 550kW Palmer HQ MEA). Steel fabrication calibrated across 4 projects. RFP parser with UI form pre-fill. Security hardened, deployment-ready.",
       "status": "beta",
       "version": "v0.6-dev",
-      "tech": ["Python", "Flask", "SQLite", "pdfplumber", "pandas"],
+      "tech": [
+        "Python",
+        "Flask",
+        "SQLite",
+        "pdfplumber",
+        "pandas"
+      ],
       "deployment": "Heroku-ready",
       "repo": "Pacific Enclosures",
       "milestones": [
-        { "text": "Excel formula analysis & documentation", "done": true, "date": "Feb 2026" },
-        { "text": "Initial demo sandbox built", "done": true, "date": "Feb 2026" },
-        { "text": "Security hardening, input validation & structured logging", "done": true, "date": "Feb 2026" },
-        { "text": "Deployment config — Procfile, runtime.txt, requirements.txt, /health endpoint", "done": true, "date": "Feb 2026" },
-        { "text": "Quote totals accuracy fix — detailed line-item calculations replacing simplified formula", "done": true, "date": "Feb 2026" },
-        { "text": "RFP sound parsing — meters-to-feet conversion", "done": true, "date": "Feb 2026" },
-        { "text": "Project infrastructure — reference estimates (BC Hydro 150kW, Treaty Creek 150kW), data configs, test suite, docs", "done": true, "date": "Feb 2026" },
-        { "text": "UI readability — label contrast, Advanced Overrides toggle fix, Project Options styling", "done": true, "date": "Feb 2026" },
-        { "text": "Validate estimation engine against real quotes — 118/118 tests passing across 4 references", "done": true, "date": "Feb 2026" },
-        { "text": "Expected values corrected from actual Excel extraction (BC Hydro & Treaty Creek)", "done": true, "date": "Feb 2026" },
-        { "text": "Finishing hours calibrated — 10 toggle implementations matched to Excel rows", "done": true, "date": "Feb 2026" },
-        { "text": "Finishing material costs fixed — all 4 references within 1% tolerance", "done": true, "date": "Feb 2026" },
-        { "text": "Steel fabrication module — panels, fitments, weights, selling cost (Excel rows 376-493)", "done": true, "date": "Mar 2026" },
-        { "text": "5th reference estimate — 1750kW Kootenay WWTP (skintight, ULC tank) — 30/30 passing", "done": true, "date": "Mar 2026" },
-        { "text": "DFEK fabrication checks — 8 new checks, 37/37 total (exact match)", "done": true, "date": "Mar 2026" },
-        { "text": "Item override system — per-item test corrections for large project calibration", "done": true, "date": "Mar 2026" },
-        { "text": "156/160 accuracy checks across 5 reference projects", "done": true, "date": "Mar 2026" },
-        { "text": "BC Hydro & Treaty Creek fabrication calibrated — 0 failures remaining", "done": true, "date": "Mar 2026" },
-        { "text": "6th reference estimate — 550kW Palmer HQ MEA (MTU, walk-in, no tank, 12ga) — 40/40 passing", "done": true, "date": "Mar 2026" },
-        { "text": "Steel fabrication calibrated across 4 projects (DFEK, BC Hydro, Treaty Creek, Palmer)", "done": true, "date": "Mar 2026" },
-        { "text": "212/212 accuracy checks across 6 reference projects — 0 failures", "done": true, "date": "Mar 2026" },
-        { "text": "RFP parser UI — expanded fields for parsed data + form pre-fill wired up", "done": true, "date": "Mar 2026" },
-        { "text": "RFP UI testing — paste text + PDF upload validation", "done": false, "current": true, "date": "In Progress" },
-        { "text": "Genset database verification & cleanup", "done": false, "date": "Upcoming" },
-        { "text": "Labour hour calibration across all enclosure types", "done": false, "date": "Upcoming" },
-        { "text": "Material cost calibration & markup validation", "done": false, "date": "Upcoming" },
-        { "text": "Rate escalation logic testing", "done": false, "date": "Upcoming" },
-        { "text": "Sound level & clearance calculations validation", "done": false, "date": "Upcoming" },
-        { "text": "Tank configuration testing (UL/ULC/2085)", "done": false, "date": "Upcoming" },
-        { "text": "RFP parsing reliability", "done": false, "date": "Planned" },
-        { "text": "Spec sheet parsing accuracy", "done": false, "date": "Planned" },
-        { "text": "UI refinement & usability testing", "done": false, "date": "Planned" },
-        { "text": "Quote output formatting & review", "done": false, "date": "Planned" },
-        { "text": "CAD/USD conversion & exchange rate handling", "done": false, "date": "Planned" },
-        { "text": "Warranty & special project type logic", "done": false, "date": "Planned" },
-        { "text": "End-to-end testing with Darren", "done": false, "date": "Planned" },
-        { "text": "Bug fixes from Darren testing", "done": false, "date": "Planned" },
-        { "text": "User auth & access control", "done": false, "date": "Planned" },
-        { "text": "Production deployment", "done": false, "date": "Planned" },
-        { "text": "Data migration & initial setup", "done": false, "date": "Planned" },
-        { "text": "PDF quote export & reporting", "done": false, "date": "Planned" },
-        { "text": "Multi-quote comparison", "done": false, "date": "Planned" },
-        { "text": "Detailed project archive database — historical quotes & completed jobs", "done": false, "date": "Planned" },
-        { "text": "AI integration — match current RFQs against historical projects for quick estimating", "done": false, "date": "Planned" },
-        { "text": "Estimating knowledge base — guided workflow for non-technical users", "done": false, "date": "Planned" },
-        { "text": "Training & documentation for users", "done": false, "date": "Planned" },
-        { "text": "Post-launch monitoring & fixes", "done": false, "date": "Planned" }
+        {
+          "text": "Excel formula analysis & documentation",
+          "done": true,
+          "date": "Feb 2026"
+        },
+        {
+          "text": "Initial demo sandbox built",
+          "done": true,
+          "date": "Feb 2026"
+        },
+        {
+          "text": "Security hardening, input validation & structured logging",
+          "done": true,
+          "date": "Feb 2026"
+        },
+        {
+          "text": "Deployment config — Procfile, runtime.txt, requirements.txt, /health endpoint",
+          "done": true,
+          "date": "Feb 2026"
+        },
+        {
+          "text": "Quote totals accuracy fix — detailed line-item calculations replacing simplified formula",
+          "done": true,
+          "date": "Feb 2026"
+        },
+        {
+          "text": "RFP sound parsing — meters-to-feet conversion",
+          "done": true,
+          "date": "Feb 2026"
+        },
+        {
+          "text": "Project infrastructure — reference estimates (BC Hydro 150kW, Treaty Creek 150kW), data configs, test suite, docs",
+          "done": true,
+          "date": "Feb 2026"
+        },
+        {
+          "text": "UI readability — label contrast, Advanced Overrides toggle fix, Project Options styling",
+          "done": true,
+          "date": "Feb 2026"
+        },
+        {
+          "text": "Validate estimation engine against real quotes — 118/118 tests passing across 4 references",
+          "done": true,
+          "date": "Feb 2026"
+        },
+        {
+          "text": "Expected values corrected from actual Excel extraction (BC Hydro & Treaty Creek)",
+          "done": true,
+          "date": "Feb 2026"
+        },
+        {
+          "text": "Finishing hours calibrated — 10 toggle implementations matched to Excel rows",
+          "done": true,
+          "date": "Feb 2026"
+        },
+        {
+          "text": "Finishing material costs fixed — all 4 references within 1% tolerance",
+          "done": true,
+          "date": "Feb 2026"
+        },
+        {
+          "text": "Steel fabrication module — panels, fitments, weights, selling cost (Excel rows 376-493)",
+          "done": true,
+          "date": "Mar 2026"
+        },
+        {
+          "text": "5th reference estimate — 1750kW Kootenay WWTP (skintight, ULC tank) — 30/30 passing",
+          "done": true,
+          "date": "Mar 2026"
+        },
+        {
+          "text": "DFEK fabrication checks — 8 new checks, 37/37 total (exact match)",
+          "done": true,
+          "date": "Mar 2026"
+        },
+        {
+          "text": "Item override system — per-item test corrections for large project calibration",
+          "done": true,
+          "date": "Mar 2026"
+        },
+        {
+          "text": "156/160 accuracy checks across 5 reference projects",
+          "done": true,
+          "date": "Mar 2026"
+        },
+        {
+          "text": "BC Hydro & Treaty Creek fabrication calibrated — 0 failures remaining",
+          "done": true,
+          "date": "Mar 2026"
+        },
+        {
+          "text": "6th reference estimate — 550kW Palmer HQ MEA (MTU, walk-in, no tank, 12ga) — 40/40 passing",
+          "done": true,
+          "date": "Mar 2026"
+        },
+        {
+          "text": "Steel fabrication calibrated across 4 projects (DFEK, BC Hydro, Treaty Creek, Palmer)",
+          "done": true,
+          "date": "Mar 2026"
+        },
+        {
+          "text": "212/212 accuracy checks across 6 reference projects — 0 failures",
+          "done": true,
+          "date": "Mar 2026"
+        },
+        {
+          "text": "RFP parser UI — expanded fields for parsed data + form pre-fill wired up",
+          "done": true,
+          "date": "Mar 2026"
+        },
+        {
+          "text": "RFP UI testing — paste text + PDF upload validation",
+          "done": false,
+          "current": true,
+          "date": "In Progress"
+        },
+        {
+          "text": "Genset database verification & cleanup",
+          "done": false,
+          "date": "Upcoming"
+        },
+        {
+          "text": "Labour hour calibration across all enclosure types",
+          "done": false,
+          "date": "Upcoming"
+        },
+        {
+          "text": "Material cost calibration & markup validation",
+          "done": false,
+          "date": "Upcoming"
+        },
+        {
+          "text": "Rate escalation logic testing",
+          "done": false,
+          "date": "Upcoming"
+        },
+        {
+          "text": "Sound level & clearance calculations validation",
+          "done": false,
+          "date": "Upcoming"
+        },
+        {
+          "text": "Tank configuration testing (UL/ULC/2085)",
+          "done": false,
+          "date": "Upcoming"
+        },
+        {
+          "text": "RFP parsing reliability",
+          "done": false,
+          "date": "Planned"
+        },
+        {
+          "text": "Spec sheet parsing accuracy",
+          "done": false,
+          "date": "Planned"
+        },
+        {
+          "text": "UI refinement & usability testing",
+          "done": false,
+          "date": "Planned"
+        },
+        {
+          "text": "Quote output formatting & review",
+          "done": false,
+          "date": "Planned"
+        },
+        {
+          "text": "CAD/USD conversion & exchange rate handling",
+          "done": false,
+          "date": "Planned"
+        },
+        {
+          "text": "Warranty & special project type logic",
+          "done": false,
+          "date": "Planned"
+        },
+        {
+          "text": "End-to-end testing with Darren",
+          "done": false,
+          "date": "Planned"
+        },
+        {
+          "text": "Bug fixes from Darren testing",
+          "done": false,
+          "date": "Planned"
+        },
+        {
+          "text": "User auth & access control",
+          "done": false,
+          "date": "Planned"
+        },
+        {
+          "text": "Production deployment",
+          "done": false,
+          "date": "Planned"
+        },
+        {
+          "text": "Data migration & initial setup",
+          "done": false,
+          "date": "Planned"
+        },
+        {
+          "text": "PDF quote export & reporting",
+          "done": false,
+          "date": "Planned"
+        },
+        {
+          "text": "Multi-quote comparison",
+          "done": false,
+          "date": "Planned"
+        },
+        {
+          "text": "Detailed project archive database — historical quotes & completed jobs",
+          "done": false,
+          "date": "Planned"
+        },
+        {
+          "text": "AI integration — match current RFQs against historical projects for quick estimating",
+          "done": false,
+          "date": "Planned"
+        },
+        {
+          "text": "Estimating knowledge base — guided workflow for non-technical users",
+          "done": false,
+          "date": "Planned"
+        },
+        {
+          "text": "Training & documentation for users",
+          "done": false,
+          "date": "Planned"
+        },
+        {
+          "text": "Post-launch monitoring & fixes",
+          "done": false,
+          "date": "Planned"
+        }
       ]
     },
     {
@@ -88,14 +332,32 @@
       "description": "Internal project management tool for Pacific Enclosures. Scope and requirements to be defined.",
       "status": "pipeline",
       "version": "—",
-      "tech": ["TBD"],
+      "tech": [
+        "TBD"
+      ],
       "deployment": "TBD",
       "repo": "TBD",
       "milestones": [
-        { "text": "Define scope & requirements", "done": false, "date": "TBD" },
-        { "text": "Design & architecture", "done": false, "date": "TBD" },
-        { "text": "Development", "done": false, "date": "TBD" },
-        { "text": "Testing & deployment", "done": false, "date": "TBD" }
+        {
+          "text": "Define scope & requirements",
+          "done": false,
+          "date": "TBD"
+        },
+        {
+          "text": "Design & architecture",
+          "done": false,
+          "date": "TBD"
+        },
+        {
+          "text": "Development",
+          "done": false,
+          "date": "TBD"
+        },
+        {
+          "text": "Testing & deployment",
+          "done": false,
+          "date": "TBD"
+        }
       ]
     },
     {
@@ -104,86 +366,525 @@
       "description": "Purchasing and procurement tool for Pacific Enclosures. Scope and requirements to be defined.",
       "status": "pipeline",
       "version": "—",
-      "tech": ["TBD"],
+      "tech": [
+        "TBD"
+      ],
       "deployment": "TBD",
       "repo": "TBD",
       "milestones": [
-        { "text": "Define scope & requirements", "done": false, "date": "TBD" },
-        { "text": "Design & architecture", "done": false, "date": "TBD" },
-        { "text": "Development", "done": false, "date": "TBD" },
-        { "text": "Testing & deployment", "done": false, "date": "TBD" }
+        {
+          "text": "Define scope & requirements",
+          "done": false,
+          "date": "TBD"
+        },
+        {
+          "text": "Design & architecture",
+          "done": false,
+          "date": "TBD"
+        },
+        {
+          "text": "Development",
+          "done": false,
+          "date": "TBD"
+        },
+        {
+          "text": "Testing & deployment",
+          "done": false,
+          "date": "TBD"
+        }
       ]
     }
   ],
   "timeline": [
-    { "date": "Mar 10, 2026", "title": "Job Costing v2.0 — Complete & Live", "desc": "All core features shipped: Box integration for automated SAGE CSV sync, all current project data uploaded, multi-user access with auth. App is fully operational in production. PDF export and historical trends moved to backlog as future improvements.", "project": "job-costing", "color": "green" },
-    { "date": "Mar 10, 2026", "title": "Estimator — 212/212 Tests, Zero Failures", "desc": "All accuracy checks passing across 6 reference estimates with 0 failures. BC Hydro (40/40) and Treaty Creek (33/33) fabrication fully calibrated. Fabrication selling cost within 0.25% and fab hours within 0.36%.", "project": "estimator", "color": "green" },
-    { "date": "Mar 10, 2026", "title": "Estimator — 6th Reference: Palmer HQ MEA", "desc": "550kW Palmer HQ MEA added (MTU genset, walk-in, no tank, 12ga, USA commercial). 40/40 checks passing. Required 38 finishing item overrides + adjustments due to non-standard items (pancake muffler, day tank, load bank, 480V panel, HPS lights, acoustic drywall).", "project": "estimator", "color": "green" },
-    { "date": "Mar 10, 2026", "title": "Estimator — Steel Fabrication Fully Calibrated", "desc": "Fabrication module calibrated across 4 projects. Added fabrication_config for project-specific structural items, roof overhang logic, fitment factor caps, hood depth overrides, and material rate overrides.", "project": "estimator", "color": "green" },
-    { "date": "Mar 10, 2026", "title": "Estimator — RFP Parser UI Expanded", "desc": "UI fields expanded for parsed RFP data with form pre-fill wired up. Paste text and PDF upload flows built, pending testing.", "project": "estimator", "color": "blue" },
-    { "date": "Mar 4, 2026", "title": "Estimator — Steel Fabrication Module Built", "desc": "New steel_fabrication.py implements Excel rows 376-493: panel weights (baseframe, cab, enclosure), fitment factors, shear/form costs, selling cost. Backed by fabrication_tables.json with steel/sheet weights and rate data.", "project": "estimator", "color": "green" },
-    { "date": "Mar 4, 2026", "title": "Estimator — 5th Reference Estimate Added", "desc": "1750kW Kootenay WWTP (skintight on subbase tank, ULC, 75dBA) added as 5th reference project. 30/30 checks passing. First skintight reference — previously only walkin combos were tested.", "project": "estimator", "color": "green" },
-    { "date": "Mar 4, 2026", "title": "Estimator — 156/160 Tests Across 5 Projects", "desc": "DFEK Seattle expanded from 29→37 checks (8 new fabrication: weights, selling cost, material cost, fab hours). Total suite now 156/160 across 5 projects. 4 remaining failures are BC Hydro/Treaty Creek fabrication (uncalibrated).", "project": "estimator", "color": "green" },
-    { "date": "Mar 4, 2026", "title": "Estimator — Item Override System", "desc": "Test infrastructure for per-item overrides: apply_item_overrides() lets reference estimates specify exact values for individual line items, enabling accurate testing of large/complex projects like Kootenay WWTP without distorting totals.", "project": "estimator", "color": "blue" },
-    { "date": "Feb 25, 2026", "title": "Estimator — 118/118 Tests Passing", "desc": "Fixed finishing material cost gaps (checkplate for no-tank walkin builds, enhanced PM toggle missing items). BC Hydro 1.90% → 0.88%, Treaty Creek 1.37% → 0.24%. All 118 accuracy tests now pass across 4 reference estimates.", "project": "estimator", "color": "green" },
-    { "date": "Feb 25, 2026", "title": "Estimator — Finishing Hours Calibrated", "desc": "Recalibrated 10 finishing toggle implementations against actual Excel rows: fire_suppression, fire_dampers, veeder_root, monorail, enhanced_doors, custom_labelling, eye_wash, vapour_barrier, extended_electrical, enhanced_pm. BC Hydro 305→358 hrs (exact), Treaty Creek 553→577 hrs (exact).", "project": "estimator", "color": "green" },
-    { "date": "Feb 25, 2026", "title": "Estimator — Expected Values Corrected", "desc": "BC Hydro and Treaty Creek expected_values.json extracted from actual Excel spreadsheets using openpyxl. Previous values were generated from app output, not ground truth. Fixed test subtotal formula that was double-counting fab material.", "project": "estimator", "color": "blue" },
-    { "date": "Feb 24, 2026", "title": "Job Costing — Labour Cost Tracking & Budget Export", "desc": "Added Labour Cost column across full stack (template, parser, DB, API, dashboard, charts). New /download/budget-export endpoint for exporting budgets as editable CSV.", "project": "job-costing", "color": "green" },
-    { "date": "Feb 24, 2026", "title": "Estimator — Quote Totals Accuracy Fix", "desc": "Major fix: UI was showing $83K-$153K instead of $401K for Treaty Creek 150kW. Replaced simplified surface_area formula with detailed finishing/GI line-item totals. Added 30+ estimator params, 7 missing toggle checkboxes, and collapsible Advanced Overrides.", "project": "estimator", "color": "green" },
-    { "date": "Feb 24, 2026", "title": "Estimator — RFP Parsing & Infrastructure", "desc": "Fixed RFP sound parsing to convert meters to feet. Added project infrastructure: data configs, reference estimates (BC Hydro 150kW, Treaty Creek 150kW), test suite, docs, and RFP parser.", "project": "estimator", "color": "blue" },
-    { "date": "Feb 24, 2026", "title": "Estimator — UI Readability Improvements", "desc": "Fixed label contrast, Advanced Overrides toggle, Project Options styling. Quote totals now consistent across exchange rate, escalation, and quote saving UI components.", "project": "estimator", "color": "blue" },
-    { "date": "Feb 22, 2026", "title": "Estimator Security Hardening", "desc": "Closed SQL injection vulnerabilities, sanitized 23 error responses, added security headers (X-Frame-Options, CSP), SECRET_KEY, and Flask error handlers. Database hardened with foreign keys, transaction rollback, and query limits.", "project": "estimator", "color": "green" },
-    { "date": "Feb 22, 2026", "title": "Estimator Deployment Readiness", "desc": "Added Procfile, runtime.txt, requirements.txt, /health endpoint, /robots.txt, and environment-based config. Estimator instance cached as singleton. Ready for Heroku deployment.", "project": "estimator", "color": "blue" },
-    { "date": "Feb 22, 2026", "title": "Structured Logging & Input Validation", "desc": "Replaced all print/traceback calls with structured logging. Added request/response logging hooks. Input validation for kW (1-5000), enclosure type, construction material, and tank type.", "project": "estimator", "color": "blue" },
-    { "date": "Feb 22, 2026", "title": "Test Baseline — 300kW Princeton RCMP", "desc": "Created 300kW Princeton RCMP expected_values.json baseline. Fixed 500kW DFEK Seattle zero totals in test suite.", "project": "estimator", "color": "blue" },
-    { "date": "Feb 19, 2026", "title": "Job Costing — 30% of Jobs Uploaded", "desc": "Uploaded 30% of current project data to the Job Costing Dashboard.", "project": "job-costing", "color": "green" },
-    { "date": "Feb 19, 2026", "title": "Estimator Calibration Milestone", "desc": "500kW DFEK Seattle benchmark fully calibrated — design specs exact, finishing materials -0.00%, labour hours exact match across all categories. Genset install materials +3.35%.", "project": "estimator", "color": "green" },
-    { "date": "Feb 19, 2026", "title": "Estimator Data Architecture Built", "desc": "13 JSON lookup tables created (clearances, door rules, enclosure sizing, labor rates, materials, pricing, shipping, silencer sizing, sound levels). Full data-driven configuration.", "project": "estimator", "color": "blue" },
-    { "date": "Feb 19, 2026", "title": "Test Suite & Reference Benchmarks", "desc": "Automated accuracy test suite built. 3 reference estimate benchmarks structured: 150kW BC Hydro, 300kW Princeton RCMP, 500kW DFEK Seattle.", "project": "estimator", "color": "blue" },
-    { "date": "Feb 19, 2026", "title": "RFP Parser & Repo Restructure", "desc": "RFP parser with batch processing built. Full repo restructured with clean organization, CLAUDE.md documentation, and archived old analysis files.", "project": "estimator", "color": "blue" },
-    { "date": "Feb 12, 2026", "title": "PM Dashboard Created", "desc": "Standalone project management dashboard for tracking all PE development work.", "project": "pm", "color": "purple" },
-    { "date": "Feb 12, 2026", "title": "Box Integration Planned", "desc": "Automated SAGE 50 CSV sync via Box API — eliminate manual uploads by watching for new SAGE exports in Box.", "project": "job-costing", "color": "blue" },
-    { "date": "Feb 11, 2026", "title": "Job Costing v1.0 Deployed", "desc": "Full dashboard with SAGE parsing, budget uploads, variance analysis, and portfolio overview live on Heroku.", "project": "job-costing", "color": "green" },
-    { "date": "Feb 11, 2026", "title": "Heroku Runtime Fix", "desc": "Fixed Python runtime version to 3.11.11 for stable deployment.", "project": "job-costing", "color": "blue" },
-    { "date": "Feb 2026", "title": "Estimator Demo Sandbox Built", "desc": "Initial demo sandbox created — not yet functional. Estimation engine, genset DB, and UI scaffolded but requires extensive testing and validation.", "project": "estimator", "color": "amber" },
-    { "date": "Feb 2026", "title": "Estimator Excel Logic Documented", "desc": "Analyzed 3,842 Excel formulas from master estimating spreadsheet and documented complete logic.", "project": "estimator", "color": "blue" }
+    {
+      "date": "Mar 10, 2026",
+      "title": "Job Costing v2.0 — Complete & Live",
+      "desc": "All core features shipped: Box integration for automated SAGE CSV sync, all current project data uploaded, multi-user access with auth. App is fully operational in production. PDF export and historical trends moved to backlog as future improvements.",
+      "project": "job-costing",
+      "color": "green"
+    },
+    {
+      "date": "Mar 10, 2026",
+      "title": "Estimator — 212/212 Tests, Zero Failures",
+      "desc": "All accuracy checks passing across 6 reference estimates with 0 failures. BC Hydro (40/40) and Treaty Creek (33/33) fabrication fully calibrated. Fabrication selling cost within 0.25% and fab hours within 0.36%.",
+      "project": "estimator",
+      "color": "green"
+    },
+    {
+      "date": "Mar 10, 2026",
+      "title": "Estimator — 6th Reference: Palmer HQ MEA",
+      "desc": "550kW Palmer HQ MEA added (MTU genset, walk-in, no tank, 12ga, USA commercial). 40/40 checks passing. Required 38 finishing item overrides + adjustments due to non-standard items (pancake muffler, day tank, load bank, 480V panel, HPS lights, acoustic drywall).",
+      "project": "estimator",
+      "color": "green"
+    },
+    {
+      "date": "Mar 10, 2026",
+      "title": "Estimator — Steel Fabrication Fully Calibrated",
+      "desc": "Fabrication module calibrated across 4 projects. Added fabrication_config for project-specific structural items, roof overhang logic, fitment factor caps, hood depth overrides, and material rate overrides.",
+      "project": "estimator",
+      "color": "green"
+    },
+    {
+      "date": "Mar 10, 2026",
+      "title": "Estimator — RFP Parser UI Expanded",
+      "desc": "UI fields expanded for parsed RFP data with form pre-fill wired up. Paste text and PDF upload flows built, pending testing.",
+      "project": "estimator",
+      "color": "blue"
+    },
+    {
+      "date": "Mar 4, 2026",
+      "title": "Estimator — Steel Fabrication Module Built",
+      "desc": "New steel_fabrication.py implements Excel rows 376-493: panel weights (baseframe, cab, enclosure), fitment factors, shear/form costs, selling cost. Backed by fabrication_tables.json with steel/sheet weights and rate data.",
+      "project": "estimator",
+      "color": "green"
+    },
+    {
+      "date": "Mar 4, 2026",
+      "title": "Estimator — 5th Reference Estimate Added",
+      "desc": "1750kW Kootenay WWTP (skintight on subbase tank, ULC, 75dBA) added as 5th reference project. 30/30 checks passing. First skintight reference — previously only walkin combos were tested.",
+      "project": "estimator",
+      "color": "green"
+    },
+    {
+      "date": "Mar 4, 2026",
+      "title": "Estimator — 156/160 Tests Across 5 Projects",
+      "desc": "DFEK Seattle expanded from 29→37 checks (8 new fabrication: weights, selling cost, material cost, fab hours). Total suite now 156/160 across 5 projects. 4 remaining failures are BC Hydro/Treaty Creek fabrication (uncalibrated).",
+      "project": "estimator",
+      "color": "green"
+    },
+    {
+      "date": "Mar 4, 2026",
+      "title": "Estimator — Item Override System",
+      "desc": "Test infrastructure for per-item overrides: apply_item_overrides() lets reference estimates specify exact values for individual line items, enabling accurate testing of large/complex projects like Kootenay WWTP without distorting totals.",
+      "project": "estimator",
+      "color": "blue"
+    },
+    {
+      "date": "Feb 25, 2026",
+      "title": "Estimator — 118/118 Tests Passing",
+      "desc": "Fixed finishing material cost gaps (checkplate for no-tank walkin builds, enhanced PM toggle missing items). BC Hydro 1.90% → 0.88%, Treaty Creek 1.37% → 0.24%. All 118 accuracy tests now pass across 4 reference estimates.",
+      "project": "estimator",
+      "color": "green"
+    },
+    {
+      "date": "Feb 25, 2026",
+      "title": "Estimator — Finishing Hours Calibrated",
+      "desc": "Recalibrated 10 finishing toggle implementations against actual Excel rows: fire_suppression, fire_dampers, veeder_root, monorail, enhanced_doors, custom_labelling, eye_wash, vapour_barrier, extended_electrical, enhanced_pm. BC Hydro 305→358 hrs (exact), Treaty Creek 553→577 hrs (exact).",
+      "project": "estimator",
+      "color": "green"
+    },
+    {
+      "date": "Feb 25, 2026",
+      "title": "Estimator — Expected Values Corrected",
+      "desc": "BC Hydro and Treaty Creek expected_values.json extracted from actual Excel spreadsheets using openpyxl. Previous values were generated from app output, not ground truth. Fixed test subtotal formula that was double-counting fab material.",
+      "project": "estimator",
+      "color": "blue"
+    },
+    {
+      "date": "Feb 24, 2026",
+      "title": "Job Costing — Labour Cost Tracking & Budget Export",
+      "desc": "Added Labour Cost column across full stack (template, parser, DB, API, dashboard, charts). New /download/budget-export endpoint for exporting budgets as editable CSV.",
+      "project": "job-costing",
+      "color": "green"
+    },
+    {
+      "date": "Feb 24, 2026",
+      "title": "Estimator — Quote Totals Accuracy Fix",
+      "desc": "Major fix: UI was showing $83K-$153K instead of $401K for Treaty Creek 150kW. Replaced simplified surface_area formula with detailed finishing/GI line-item totals. Added 30+ estimator params, 7 missing toggle checkboxes, and collapsible Advanced Overrides.",
+      "project": "estimator",
+      "color": "green"
+    },
+    {
+      "date": "Feb 24, 2026",
+      "title": "Estimator — RFP Parsing & Infrastructure",
+      "desc": "Fixed RFP sound parsing to convert meters to feet. Added project infrastructure: data configs, reference estimates (BC Hydro 150kW, Treaty Creek 150kW), test suite, docs, and RFP parser.",
+      "project": "estimator",
+      "color": "blue"
+    },
+    {
+      "date": "Feb 24, 2026",
+      "title": "Estimator — UI Readability Improvements",
+      "desc": "Fixed label contrast, Advanced Overrides toggle, Project Options styling. Quote totals now consistent across exchange rate, escalation, and quote saving UI components.",
+      "project": "estimator",
+      "color": "blue"
+    },
+    {
+      "date": "Feb 22, 2026",
+      "title": "Estimator Security Hardening",
+      "desc": "Closed SQL injection vulnerabilities, sanitized 23 error responses, added security headers (X-Frame-Options, CSP), SECRET_KEY, and Flask error handlers. Database hardened with foreign keys, transaction rollback, and query limits.",
+      "project": "estimator",
+      "color": "green"
+    },
+    {
+      "date": "Feb 22, 2026",
+      "title": "Estimator Deployment Readiness",
+      "desc": "Added Procfile, runtime.txt, requirements.txt, /health endpoint, /robots.txt, and environment-based config. Estimator instance cached as singleton. Ready for Heroku deployment.",
+      "project": "estimator",
+      "color": "blue"
+    },
+    {
+      "date": "Feb 22, 2026",
+      "title": "Structured Logging & Input Validation",
+      "desc": "Replaced all print/traceback calls with structured logging. Added request/response logging hooks. Input validation for kW (1-5000), enclosure type, construction material, and tank type.",
+      "project": "estimator",
+      "color": "blue"
+    },
+    {
+      "date": "Feb 22, 2026",
+      "title": "Test Baseline — 300kW Princeton RCMP",
+      "desc": "Created 300kW Princeton RCMP expected_values.json baseline. Fixed 500kW DFEK Seattle zero totals in test suite.",
+      "project": "estimator",
+      "color": "blue"
+    },
+    {
+      "date": "Feb 19, 2026",
+      "title": "Job Costing — 30% of Jobs Uploaded",
+      "desc": "Uploaded 30% of current project data to the Job Costing Dashboard.",
+      "project": "job-costing",
+      "color": "green"
+    },
+    {
+      "date": "Feb 19, 2026",
+      "title": "Estimator Calibration Milestone",
+      "desc": "500kW DFEK Seattle benchmark fully calibrated — design specs exact, finishing materials -0.00%, labour hours exact match across all categories. Genset install materials +3.35%.",
+      "project": "estimator",
+      "color": "green"
+    },
+    {
+      "date": "Feb 19, 2026",
+      "title": "Estimator Data Architecture Built",
+      "desc": "13 JSON lookup tables created (clearances, door rules, enclosure sizing, labor rates, materials, pricing, shipping, silencer sizing, sound levels). Full data-driven configuration.",
+      "project": "estimator",
+      "color": "blue"
+    },
+    {
+      "date": "Feb 19, 2026",
+      "title": "Test Suite & Reference Benchmarks",
+      "desc": "Automated accuracy test suite built. 3 reference estimate benchmarks structured: 150kW BC Hydro, 300kW Princeton RCMP, 500kW DFEK Seattle.",
+      "project": "estimator",
+      "color": "blue"
+    },
+    {
+      "date": "Feb 19, 2026",
+      "title": "RFP Parser & Repo Restructure",
+      "desc": "RFP parser with batch processing built. Full repo restructured with clean organization, CLAUDE.md documentation, and archived old analysis files.",
+      "project": "estimator",
+      "color": "blue"
+    },
+    {
+      "date": "Feb 12, 2026",
+      "title": "PM Dashboard Created",
+      "desc": "Standalone project management dashboard for tracking all PE development work.",
+      "project": "pm",
+      "color": "purple"
+    },
+    {
+      "date": "Feb 12, 2026",
+      "title": "Box Integration Planned",
+      "desc": "Automated SAGE 50 CSV sync via Box API — eliminate manual uploads by watching for new SAGE exports in Box.",
+      "project": "job-costing",
+      "color": "blue"
+    },
+    {
+      "date": "Feb 11, 2026",
+      "title": "Job Costing v1.0 Deployed",
+      "desc": "Full dashboard with SAGE parsing, budget uploads, variance analysis, and portfolio overview live on Heroku.",
+      "project": "job-costing",
+      "color": "green"
+    },
+    {
+      "date": "Feb 11, 2026",
+      "title": "Heroku Runtime Fix",
+      "desc": "Fixed Python runtime version to 3.11.11 for stable deployment.",
+      "project": "job-costing",
+      "color": "blue"
+    },
+    {
+      "date": "Feb 2026",
+      "title": "Estimator Demo Sandbox Built",
+      "desc": "Initial demo sandbox created — not yet functional. Estimation engine, genset DB, and UI scaffolded but requires extensive testing and validation.",
+      "project": "estimator",
+      "color": "amber"
+    },
+    {
+      "date": "Feb 2026",
+      "title": "Estimator Excel Logic Documented",
+      "desc": "Analyzed 3,842 Excel formulas from master estimating spreadsheet and documented complete logic.",
+      "project": "estimator",
+      "color": "blue"
+    }
   ],
   "activity": [
-    { "icon": "🚀", "text": "<strong>Job Costing v2.0</strong> — Complete: Box integration, all project data uploaded, multi-user auth live", "time": "Today", "color": "var(--green-bg)" },
-    { "icon": "🏆", "text": "<strong>Estimator</strong> — 212/212 accuracy tests across 6 projects, zero failures", "time": "Today", "color": "var(--green-bg)" },
-    { "icon": "🏗️", "text": "<strong>Estimator</strong> — 6th reference: 550kW Palmer HQ MEA (MTU, walk-in, no tank, 12ga) — 40/40 passing", "time": "Today", "color": "var(--green-bg)" },
-    { "icon": "🔩", "text": "<strong>Estimator</strong> — Steel fabrication calibrated across 4 projects (DFEK, BC Hydro, Treaty Creek, Palmer)", "time": "Today", "color": "var(--green-bg)" },
-    { "icon": "📄", "text": "<strong>Estimator</strong> — RFP parser UI expanded with form pre-fill, pending testing", "time": "Today", "color": "var(--blue-glow)" },
-    { "icon": "🔩", "text": "<strong>Estimator</strong> — Steel fabrication module built: panels, fitments, weights, selling cost (Excel rows 376-493)", "time": "Mar 4", "color": "var(--green-bg)" },
-    { "icon": "🏗️", "text": "<strong>Estimator</strong> — 5th reference added: 1750kW Kootenay WWTP (skintight, ULC) — 30/30 checks passing", "time": "Mar 4", "color": "var(--green-bg)" },
-    { "icon": "🏆", "text": "<strong>Estimator</strong> — 156/160 accuracy tests across 5 projects; DFEK 37/37 with 8 new fabrication checks", "time": "Mar 4", "color": "var(--green-bg)" },
-    { "icon": "🔧", "text": "<strong>Estimator</strong> — Item override system for per-item test corrections on large projects", "time": "Mar 4", "color": "var(--blue-glow)" },
-    { "icon": "🏆", "text": "<strong>Estimator</strong> — 118/118 accuracy tests passing across all 4 reference estimates (0 failures)", "time": "Feb 25", "color": "var(--green-bg)" },
-    { "icon": "⚙️", "text": "<strong>Estimator</strong> — 10 finishing toggle hours recalibrated against Excel rows (BC Hydro 305→358, Treaty Creek 553→577)", "time": "Feb 25", "color": "var(--green-bg)" },
-    { "icon": "💲", "text": "<strong>Estimator</strong> — Finishing material costs fixed: checkplate for no-tank walkin, enhanced PM items (all refs within 1%)", "time": "Feb 25", "color": "var(--green-bg)" },
-    { "icon": "📋", "text": "<strong>Estimator</strong> — Expected values corrected from actual Excel extraction (BC Hydro & Treaty Creek were using app output)", "time": "Feb 25", "color": "var(--blue-glow)" },
-    { "icon": "💰", "text": "<strong>Job Costing v1.1</strong> — Labour Cost tracking added across full stack + budget export CSV endpoint", "time": "Feb 24", "color": "var(--green-bg)" },
-    { "icon": "✅", "text": "<strong>Estimator</strong> — Major quote totals fix: detailed line-item calculations replacing simplified formula ($83K → $401K)", "time": "Feb 24", "color": "var(--green-bg)" },
-    { "icon": "🔧", "text": "<strong>Estimator</strong> — RFP sound parsing fixed (meters-to-feet conversion), 7 missing toggle checkboxes added", "time": "Feb 24", "color": "var(--blue-glow)" },
-    { "icon": "📦", "text": "<strong>Estimator</strong> — Project infrastructure: reference estimates (BC Hydro 150kW, Treaty Creek 150kW), data configs, tests, docs", "time": "Feb 24", "color": "var(--blue-glow)" },
-    { "icon": "🎨", "text": "<strong>Estimator</strong> — UI readability: label contrast, Advanced Overrides toggle fix, Project Options styling", "time": "Feb 24", "color": "var(--blue-glow)" },
-    { "icon": "🔒", "text": "<strong>Estimator</strong> — Security hardened: SQL injection fixes, error sanitization, security headers, database hardening", "time": "Feb 22", "color": "var(--green-bg)" },
-    { "icon": "🚀", "text": "<strong>Estimator</strong> — Deployment-ready: Procfile, runtime.txt, requirements.txt, /health endpoint, singleton caching", "time": "Feb 22", "color": "var(--blue-glow)" },
-    { "icon": "📋", "text": "<strong>Estimator</strong> — Structured logging + input validation (kW, enclosure type, construction, tank)", "time": "Feb 22", "color": "var(--blue-glow)" },
-    { "icon": "🧪", "text": "<strong>Estimator</strong> — 300kW Princeton RCMP test baseline created, 500kW DFEK Seattle fixes", "time": "Feb 22", "color": "var(--blue-glow)" },
-    { "icon": "📊", "text": "<strong>Job Costing</strong> — 30% of current project data uploaded", "time": "Feb 19", "color": "var(--green-bg)" },
-    { "icon": "✅", "text": "<strong>Estimator</strong> — 500kW DFEK Seattle calibrated: design specs exact, finishing materials -0.00%, labour hours exact match", "time": "Feb 19", "color": "var(--green-bg)" },
-    { "icon": "🗄️", "text": "<strong>Estimator</strong> — 13 JSON data lookup tables built (clearances, labor rates, materials, sizing, sound levels, etc.)", "time": "Feb 19", "color": "var(--blue-glow)" },
-    { "icon": "🧪", "text": "<strong>Estimator</strong> — Automated accuracy test suite + 3 reference benchmarks (150kW, 300kW, 500kW)", "time": "Feb 19", "color": "var(--blue-glow)" },
-    { "icon": "📄", "text": "<strong>Estimator</strong> — RFP parser with batch processing built", "time": "Feb 19", "color": "var(--blue-glow)" },
-    { "icon": "📦", "text": "<strong>Estimator</strong> — Repo restructured, CLAUDE.md docs, old analysis files archived", "time": "Feb 19", "color": "var(--blue-glow)" },
-    { "icon": "🚀", "text": "<strong>PM Dashboard</strong> created for tracking all PE development projects", "time": "Feb 12", "color": "var(--purple-bg)" },
-    { "icon": "🔧", "text": "<strong>Job Costing</strong> — Fixed runtime.txt to Python 3.11.11", "time": "Feb 11", "color": "var(--blue-glow)" },
-    { "icon": "✅", "text": "<strong>Job Costing v1.0</strong> — Full dashboard deployed to Heroku", "time": "Feb 11", "color": "var(--green-bg)" },
-    { "icon": "📊", "text": "<strong>Job Costing</strong> — Portfolio overview with summary cards shipped", "time": "Feb 10", "color": "var(--green-bg)" },
-    { "icon": "📁", "text": "<strong>Job Costing</strong> — Budget template upload and SAGE parser built", "time": "Feb 9", "color": "var(--green-bg)" },
-    { "icon": "🔨", "text": "<strong>Estimator</strong> — Initial demo sandbox built, not yet functional", "time": "Feb 2026", "color": "var(--amber-bg)" },
-    { "icon": "📐", "text": "<strong>Estimator</strong> — 3,842 Excel formulas analyzed and documented", "time": "Feb 2026", "color": "var(--blue-glow)" }
+    {
+      "icon": "💬",
+      "text": "<strong>Job Costing</strong> — Make dashboard mobile-responsive",
+      "time": "Mar 05",
+      "color": "var(--blue-glow)"
+    },
+    {
+      "icon": "✨",
+      "text": "<strong>Job Costing</strong> — Add --password flag to manage.py for non-interactive use",
+      "time": "Mar 04",
+      "color": "var(--green-bg)"
+    },
+    {
+      "icon": "✨",
+      "text": "<strong>Job Costing</strong> — Add user authentication with Flask-Login",
+      "time": "Mar 04",
+      "color": "var(--green-bg)"
+    },
+    {
+      "icon": "💬",
+      "text": "<strong>Job Costing</strong> — Simplify upload page to sync-only with budget export link",
+      "time": "Mar 04",
+      "color": "var(--blue-glow)"
+    },
+    {
+      "icon": "✨",
+      "text": "<strong>Job Costing</strong> — Add budget sync from Box + split into Sage/Budgets subfolders",
+      "time": "Mar 04",
+      "color": "var(--green-bg)"
+    },
+    {
+      "icon": "✨",
+      "text": "<strong>Job Costing</strong> — Add Sync from Box button to upload page",
+      "time": "Mar 04",
+      "color": "var(--green-bg)"
+    },
+    {
+      "icon": "✨",
+      "text": "<strong>PM Dashboard</strong> — Add collapsible sections, inline milestone management, and auto-update workflow",
+      "time": "Mar 11",
+      "color": "var(--green-bg)"
+    },
+    {
+      "icon": "📦",
+      "text": "<strong>PM Dashboard</strong> — Update Job Costing to v2.0 — all milestones complete, production status",
+      "time": "Mar 11",
+      "color": "var(--blue-glow)"
+    },
+    {
+      "icon": "🧪",
+      "text": "<strong>PM Dashboard</strong> — Update dashboard — Mar 10 estimator progress, 212/212 tests passing",
+      "time": "Mar 10",
+      "color": "var(--blue-glow)"
+    },
+    {
+      "icon": "📦",
+      "text": "<strong>PM Dashboard</strong> — Update dashboard — Mar 4 estimator progress, production/beta badges",
+      "time": "Mar 04",
+      "color": "var(--blue-glow)"
+    },
+    {
+      "icon": "🚀",
+      "text": "<strong>Job Costing v2.0</strong> — Complete: Box integration, all project data uploaded, multi-user auth live",
+      "time": "Today",
+      "color": "var(--green-bg)"
+    },
+    {
+      "icon": "🏆",
+      "text": "<strong>Estimator</strong> — 212/212 accuracy tests across 6 projects, zero failures",
+      "time": "Today",
+      "color": "var(--green-bg)"
+    },
+    {
+      "icon": "🏗️",
+      "text": "<strong>Estimator</strong> — 6th reference: 550kW Palmer HQ MEA (MTU, walk-in, no tank, 12ga) — 40/40 passing",
+      "time": "Today",
+      "color": "var(--green-bg)"
+    },
+    {
+      "icon": "🔩",
+      "text": "<strong>Estimator</strong> — Steel fabrication calibrated across 4 projects (DFEK, BC Hydro, Treaty Creek, Palmer)",
+      "time": "Today",
+      "color": "var(--green-bg)"
+    },
+    {
+      "icon": "📄",
+      "text": "<strong>Estimator</strong> — RFP parser UI expanded with form pre-fill, pending testing",
+      "time": "Today",
+      "color": "var(--blue-glow)"
+    },
+    {
+      "icon": "🔩",
+      "text": "<strong>Estimator</strong> — Steel fabrication module built: panels, fitments, weights, selling cost (Excel rows 376-493)",
+      "time": "Mar 4",
+      "color": "var(--green-bg)"
+    },
+    {
+      "icon": "🏗️",
+      "text": "<strong>Estimator</strong> — 5th reference added: 1750kW Kootenay WWTP (skintight, ULC) — 30/30 checks passing",
+      "time": "Mar 4",
+      "color": "var(--green-bg)"
+    },
+    {
+      "icon": "🏆",
+      "text": "<strong>Estimator</strong> — 156/160 accuracy tests across 5 projects; DFEK 37/37 with 8 new fabrication checks",
+      "time": "Mar 4",
+      "color": "var(--green-bg)"
+    },
+    {
+      "icon": "🔧",
+      "text": "<strong>Estimator</strong> — Item override system for per-item test corrections on large projects",
+      "time": "Mar 4",
+      "color": "var(--blue-glow)"
+    },
+    {
+      "icon": "🏆",
+      "text": "<strong>Estimator</strong> — 118/118 accuracy tests passing across all 4 reference estimates (0 failures)",
+      "time": "Feb 25",
+      "color": "var(--green-bg)"
+    },
+    {
+      "icon": "⚙️",
+      "text": "<strong>Estimator</strong> — 10 finishing toggle hours recalibrated against Excel rows (BC Hydro 305→358, Treaty Creek 553→577)",
+      "time": "Feb 25",
+      "color": "var(--green-bg)"
+    },
+    {
+      "icon": "💲",
+      "text": "<strong>Estimator</strong> — Finishing material costs fixed: checkplate for no-tank walkin, enhanced PM items (all refs within 1%)",
+      "time": "Feb 25",
+      "color": "var(--green-bg)"
+    },
+    {
+      "icon": "📋",
+      "text": "<strong>Estimator</strong> — Expected values corrected from actual Excel extraction (BC Hydro & Treaty Creek were using app output)",
+      "time": "Feb 25",
+      "color": "var(--blue-glow)"
+    },
+    {
+      "icon": "💰",
+      "text": "<strong>Job Costing v1.1</strong> — Labour Cost tracking added across full stack + budget export CSV endpoint",
+      "time": "Feb 24",
+      "color": "var(--green-bg)"
+    },
+    {
+      "icon": "✅",
+      "text": "<strong>Estimator</strong> — Major quote totals fix: detailed line-item calculations replacing simplified formula ($83K → $401K)",
+      "time": "Feb 24",
+      "color": "var(--green-bg)"
+    },
+    {
+      "icon": "🔧",
+      "text": "<strong>Estimator</strong> — RFP sound parsing fixed (meters-to-feet conversion), 7 missing toggle checkboxes added",
+      "time": "Feb 24",
+      "color": "var(--blue-glow)"
+    },
+    {
+      "icon": "📦",
+      "text": "<strong>Estimator</strong> — Project infrastructure: reference estimates (BC Hydro 150kW, Treaty Creek 150kW), data configs, tests, docs",
+      "time": "Feb 24",
+      "color": "var(--blue-glow)"
+    },
+    {
+      "icon": "🎨",
+      "text": "<strong>Estimator</strong> — UI readability: label contrast, Advanced Overrides toggle fix, Project Options styling",
+      "time": "Feb 24",
+      "color": "var(--blue-glow)"
+    },
+    {
+      "icon": "🔒",
+      "text": "<strong>Estimator</strong> — Security hardened: SQL injection fixes, error sanitization, security headers, database hardening",
+      "time": "Feb 22",
+      "color": "var(--green-bg)"
+    },
+    {
+      "icon": "🚀",
+      "text": "<strong>Estimator</strong> — Deployment-ready: Procfile, runtime.txt, requirements.txt, /health endpoint, singleton caching",
+      "time": "Feb 22",
+      "color": "var(--blue-glow)"
+    },
+    {
+      "icon": "📋",
+      "text": "<strong>Estimator</strong> — Structured logging + input validation (kW, enclosure type, construction, tank)",
+      "time": "Feb 22",
+      "color": "var(--blue-glow)"
+    },
+    {
+      "icon": "🧪",
+      "text": "<strong>Estimator</strong> — 300kW Princeton RCMP test baseline created, 500kW DFEK Seattle fixes",
+      "time": "Feb 22",
+      "color": "var(--blue-glow)"
+    },
+    {
+      "icon": "📊",
+      "text": "<strong>Job Costing</strong> — 30% of current project data uploaded",
+      "time": "Feb 19",
+      "color": "var(--green-bg)"
+    },
+    {
+      "icon": "✅",
+      "text": "<strong>Estimator</strong> — 500kW DFEK Seattle calibrated: design specs exact, finishing materials -0.00%, labour hours exact match",
+      "time": "Feb 19",
+      "color": "var(--green-bg)"
+    },
+    {
+      "icon": "🗄️",
+      "text": "<strong>Estimator</strong> — 13 JSON data lookup tables built (clearances, labor rates, materials, sizing, sound levels, etc.)",
+      "time": "Feb 19",
+      "color": "var(--blue-glow)"
+    },
+    {
+      "icon": "🧪",
+      "text": "<strong>Estimator</strong> — Automated accuracy test suite + 3 reference benchmarks (150kW, 300kW, 500kW)",
+      "time": "Feb 19",
+      "color": "var(--blue-glow)"
+    },
+    {
+      "icon": "📄",
+      "text": "<strong>Estimator</strong> — RFP parser with batch processing built",
+      "time": "Feb 19",
+      "color": "var(--blue-glow)"
+    },
+    {
+      "icon": "📦",
+      "text": "<strong>Estimator</strong> — Repo restructured, CLAUDE.md docs, old analysis files archived",
+      "time": "Feb 19",
+      "color": "var(--blue-glow)"
+    },
+    {
+      "icon": "🚀",
+      "text": "<strong>PM Dashboard</strong> created for tracking all PE development projects",
+      "time": "Feb 12",
+      "color": "var(--purple-bg)"
+    },
+    {
+      "icon": "🔧",
+      "text": "<strong>Job Costing</strong> — Fixed runtime.txt to Python 3.11.11",
+      "time": "Feb 11",
+      "color": "var(--blue-glow)"
+    },
+    {
+      "icon": "✅",
+      "text": "<strong>Job Costing v1.0</strong> — Full dashboard deployed to Heroku",
+      "time": "Feb 11",
+      "color": "var(--green-bg)"
+    },
+    {
+      "icon": "📊",
+      "text": "<strong>Job Costing</strong> — Portfolio overview with summary cards shipped",
+      "time": "Feb 10",
+      "color": "var(--green-bg)"
+    },
+    {
+      "icon": "📁",
+      "text": "<strong>Job Costing</strong> — Budget template upload and SAGE parser built",
+      "time": "Feb 9",
+      "color": "var(--green-bg)"
+    },
+    {
+      "icon": "🔨",
+      "text": "<strong>Estimator</strong> — Initial demo sandbox built, not yet functional",
+      "time": "Feb 2026",
+      "color": "var(--amber-bg)"
+    },
+    {
+      "icon": "📐",
+      "text": "<strong>Estimator</strong> — 3,842 Excel formulas analyzed and documented",
+      "time": "Feb 2026",
+      "color": "var(--blue-glow)"
+    }
   ],
   "weeklySummaries": []
 }
