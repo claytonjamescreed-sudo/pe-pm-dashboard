@@ -886,5 +886,13 @@
       "color": "var(--blue-glow)"
     }
   ],
-  "weeklySummaries": []
+  "weeklySummaries": [
+    {
+      "dateSlug": "2026-03-03",
+      "weekStart": "Feb 20, 2026",
+      "weekEnd": "Mar 3, 2026",
+      "generatedAt": "2026-03-03T17:00:00.000Z",
+      "markdown": "# Pacific Enclosures — Weekly Report\n**Feb 20, 2026 – Mar 3, 2026**\n\n## Progress\n| Project | Progress | Status |\n|---------|----------|--------|\n| Job Costing Dashboard | 82% (9/11) | production |\n| Estimator App | 47% (22/47) | beta |\n| Project Management App | 0% (0/4) | pipeline |\n| Purchasing App | 0% (0/4) | pipeline |\n\n## In Progress\n- **Estimator App** — RFP UI testing — paste text + PDF upload validation\n\n## Activity (Feb 20 – Mar 3)\n- Estimator — 118/118 accuracy tests passing across all 4 reference estimates (0 failures) _(Feb 25)_\n- Estimator — 10 finishing toggle hours recalibrated against Excel rows (BC Hydro 305→358, Treaty Creek 553→577) _(Feb 25)_\n- Estimator — Finishing material costs fixed: checkplate for no-tank walkin, enhanced PM items (all refs within 1%) _(Feb 25)_\n- Estimator — Expected values corrected from actual Excel extraction (BC Hydro & Treaty Creek were using app output) _(Feb 25)_\n- Job Costing v1.1 — Labour Cost tracking added across full stack + budget export CSV endpoint _(Feb 24)_\n- Estimator — Major quote totals fix: detailed line-item calculations replacing simplified formula ($83K → $401K) _(Feb 24)_\n- Estimator — RFP sound parsing fixed (meters-to-feet conversion), 7 missing toggle checkboxes added _(Feb 24)_\n- Estimator — Project infrastructure: reference estimates (BC Hydro 150kW, Treaty Creek 150kW), data configs, tests, docs _(Feb 24)_\n- Estimator — UI readability: label contrast, Advanced Overrides toggle fix, Project Options styling _(Feb 24)_\n- Estimator — Security hardened: SQL injection fixes, error sanitization, security headers, database hardening _(Feb 22)_\n- Estimator — Deployment-ready: Procfile, runtime.txt, requirements.txt, /health endpoint, singleton caching _(Feb 22)_\n- Estimator — Structured logging + input validation (kW, enclosure type, construction, tank) _(Feb 22)_\n- Estimator — 300kW Princeton RCMP test baseline created, 500kW DFEK Seattle fixes _(Feb 22)_\n\n---\n_Generated from PE PM Dashboard — Mar 3, 2026_\n"
+    }
+  ]
 }
