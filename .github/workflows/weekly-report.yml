@@ -1,0 +1,24 @@
+name: Weekly PM Report
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '30 23 * * 5'  # Friday at 3:30pm PST (11:30pm UTC)
+
+jobs:
+  send-report:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main  # Ensure we get latest (after auto-update commit)
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Generate and email weekly report
+        env:
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          REPORT_EMAIL: claytonjamescreed@gmail.com
+        run: python scripts/generate_weekly_report.py
