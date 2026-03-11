@@ -783,6 +783,103 @@
             font-family: 'SF Mono', 'Fira Code', monospace;
         }
 
+        /* ===== Milestone management ===== */
+        .milestone-local-badge {
+            font-size: 10px;
+            font-weight: 700;
+            padding: 1px 6px;
+            border-radius: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            color: var(--amber);
+            background: var(--amber-bg);
+            border: 1px solid rgba(245,158,11,0.2);
+            flex-shrink: 0;
+        }
+
+        .milestone-add-row {
+            display: flex;
+            gap: 8px;
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px solid var(--border);
+        }
+
+        .milestone-add-input {
+            flex: 1;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 6px 10px;
+            color: var(--text);
+            font-size: 13px;
+            font-family: inherit;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .milestone-add-input:focus {
+            border-color: var(--blue);
+        }
+
+        .milestone-add-input::placeholder {
+            color: var(--text-dim);
+        }
+
+        .milestone-add-btn {
+            padding: 6px 14px;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+            background: var(--bg-surface);
+            color: var(--text-muted);
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .milestone-add-btn:hover {
+            border-color: var(--blue);
+            color: var(--text);
+        }
+
+        /* ===== Collapsible sections ===== */
+        .collapsible-hidden {
+            display: none;
+        }
+
+        .section-expanded .collapsible-hidden {
+            display: flex;
+        }
+
+        .section-expand-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            width: 100%;
+            padding: 12px;
+            margin-top: 4px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            background: var(--bg-surface);
+            color: var(--text-muted);
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .section-expand-btn:hover {
+            border-color: var(--blue);
+            color: var(--text);
+        }
+
+        .section-expand-btn.expanded svg {
+            transform: rotate(180deg);
+        }
+
         /* ===== Responsive ===== */
         @media (max-width: 1100px) {
             .stats-row { grid-template-columns: repeat(2, 1fr); }
@@ -804,6 +901,10 @@
             <div class="header-divider"></div>
             <span class="header-subtitle">Development Project Management</span>
             <div class="header-right">
+                <button class="btn-download" onclick="exportDataJson()">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    Export Data
+                </button>
                 <button class="btn-download" onclick="downloadWeeklySummary()">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
                     Weekly Summary
@@ -851,9 +952,11 @@
        All project updates go in data.json, not here.
        ================================================================== */
     let PROJECTS = [];
+    let ORIGINAL_PROJECTS = [];
     let TIMELINE = [];
     let ACTIVITY = [];
     let WEEKLY_SUMMARIES = [];
+    const MILESTONE_KEY = 'pe-milestone-overrides';
 
     /* ==================================================================
        RENDER FUNCTIONS
@@ -909,32 +1012,40 @@
             const doneMs = p.milestones.filter(m => m.done).length;
             const progress = totalMs > 0 ? Math.round((doneMs / totalMs) * 100) : 0;
 
-            function renderMilestoneItem(m) {
+            function renderMilestoneItem(m, idx) {
+                const localBadge = m._local ? '<span class="milestone-local-badge">Local</span>' : '';
                 return `<div class="milestone-item">
-                    <div class="milestone-check ${m.done ? 'done' : ''} ${m.current ? 'current' : ''}">
+                    <div class="milestone-check ${m.done ? 'done' : ''} ${m.current ? 'current' : ''}" onclick="toggleMilestoneCheck('${p.id}', ${idx})" style="cursor:pointer;">
                         <svg viewBox="0 0 10 10" fill="none" stroke="white" stroke-width="2"><polyline points="2,5 4,7 8,3"/></svg>
                     </div>
                     <span class="milestone-text ${m.done ? 'done' : ''} ${m.current ? 'current' : ''}">${m.text}</span>
+                    ${localBadge}
                     <span class="milestone-date">${m.date}</span>
                 </div>`;
             }
 
-            const currentMs = p.milestones.filter(m => m.current);
-            const upcomingMs = p.milestones.filter(m => !m.done && !m.current).slice(0, 2);
-            const allMilestonesHTML = p.milestones.map(renderMilestoneItem).join('');
+            const currentMs = p.milestones.map((m, i) => ({ m, i })).filter(x => x.m.current);
+            const upcomingMs = p.milestones.map((m, i) => ({ m, i })).filter(x => !x.m.done && !x.m.current).slice(0, 2);
+            const allMilestonesHTML = p.milestones.map((m, i) => renderMilestoneItem(m, i)).join('');
 
             // Build summary section (always visible)
             let summaryHTML = '';
             if (currentMs.length > 0) {
                 summaryHTML += `<div class="milestone-section-label current-label">Current</div>`;
-                summaryHTML += currentMs.map(renderMilestoneItem).join('');
+                summaryHTML += currentMs.map(x => renderMilestoneItem(x.m, x.i)).join('');
             }
             if (upcomingMs.length > 0) {
                 summaryHTML += `<div class="milestone-section-label upcoming-label">Up Next</div>`;
-                summaryHTML += upcomingMs.map(renderMilestoneItem).join('');
+                summaryHTML += upcomingMs.map(x => renderMilestoneItem(x.m, x.i)).join('');
             }
 
             const techTags = p.tech.map(t => `<span class="meta-tag tech">${t}</span>`).join('');
+
+            const addInput = `
+                <div class="milestone-add-row">
+                    <input type="text" id="add-milestone-${p.id}" class="milestone-add-input" placeholder="Add milestone..." onkeydown="if(event.key==='Enter')addMilestone('${p.id}')">
+                    <button class="milestone-add-btn" onclick="addMilestone('${p.id}')">+ Add</button>
+                </div>`;
 
             return `
                 <div class="project-card">
@@ -973,6 +1084,7 @@
                         </button>
                         <div class="milestones-full">
                             ${allMilestonesHTML}
+                            ${addInput}
                         </div>
                     </div>
                 </div>
@@ -981,7 +1093,9 @@
     }
 
     function renderTimeline() {
-        document.getElementById('timeline').innerHTML = TIMELINE.map((item, i) => {
+        const TIMELINE_LIMIT = 5;
+        const container = document.getElementById('timeline');
+        const items = TIMELINE.map((item, i) => {
             const projectColors = {
                 'job-costing': { bg: 'var(--green-bg)', color: 'var(--green)' },
                 'estimator': { bg: 'var(--amber-bg)', color: 'var(--amber)' },
@@ -995,7 +1109,7 @@
             }[item.project] || item.project;
 
             return `
-                <div class="timeline-item">
+                <div class="timeline-item ${i >= TIMELINE_LIMIT ? 'collapsible-hidden' : ''}">
                     <div class="timeline-line">
                         <div class="timeline-dot ${item.color}"></div>
                         ${i < TIMELINE.length - 1 ? '<div class="timeline-connector"></div>' : ''}
@@ -1009,16 +1123,44 @@
                 </div>
             `;
         }).join('');
+
+        const expandBtn = TIMELINE.length > TIMELINE_LIMIT ? `
+            <button class="section-expand-btn" onclick="toggleSection(this, 'timeline')">
+                <span>Show all ${TIMELINE.length} entries</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>` : '';
+
+        container.innerHTML = items + expandBtn;
     }
 
     function renderActivity() {
-        document.getElementById('activityFeed').innerHTML = ACTIVITY.map(a => `
-            <div class="activity-item">
+        const ACTIVITY_LIMIT = 8;
+        const container = document.getElementById('activityFeed');
+        const items = ACTIVITY.map((a, i) => `
+            <div class="activity-item ${i >= ACTIVITY_LIMIT ? 'collapsible-hidden' : ''}">
                 <div class="activity-icon" style="background: ${a.color};">${a.icon}</div>
                 <div class="activity-text">${a.text}</div>
                 <span class="activity-time">${a.time}</span>
             </div>
         `).join('');
+
+        const expandBtn = ACTIVITY.length > ACTIVITY_LIMIT ? `
+            <button class="section-expand-btn" onclick="toggleSection(this, 'activity')">
+                <span>Show all ${ACTIVITY.length} entries</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>` : '';
+
+        container.innerHTML = items + expandBtn;
+    }
+
+    /* ===== Toggle collapsible sections ===== */
+    function toggleSection(btn, sectionId) {
+        const container = btn.parentElement;
+        const isExpanded = container.classList.toggle('section-expanded');
+        btn.classList.toggle('expanded');
+        const totalCount = container.querySelectorAll('.collapsible-hidden').length +
+                           container.querySelectorAll(':scope > :not(.collapsible-hidden):not(.section-expand-btn)').length;
+        btn.querySelector('span').textContent = isExpanded ? 'Show less' : `Show all ${totalCount} entries`;
     }
 
     /* ===== Toggle milestones ===== */
@@ -1227,19 +1369,118 @@
         URL.revokeObjectURL(url);
     }
 
+    /* ===== Milestone Management ===== */
+    function getMilestoneOverrides() {
+        try { return JSON.parse(localStorage.getItem(MILESTONE_KEY) || '{}'); }
+        catch { return {}; }
+    }
+
+    function saveMilestoneOverrides(overrides) {
+        localStorage.setItem(MILESTONE_KEY, JSON.stringify(overrides));
+    }
+
+    function applyMilestoneOverrides() {
+        const overrides = getMilestoneOverrides();
+        // Deep clone original projects
+        PROJECTS = JSON.parse(JSON.stringify(ORIGINAL_PROJECTS));
+        for (const p of PROJECTS) {
+            const po = overrides[p.id];
+            if (!po) continue;
+            // Apply toggles
+            if (po.toggles) {
+                for (const [idx, done] of Object.entries(po.toggles)) {
+                    const i = parseInt(idx);
+                    if (p.milestones[i]) {
+                        p.milestones[i].done = done;
+                        p.milestones[i]._local = true;
+                    }
+                }
+            }
+            // Append added milestones
+            if (po.added) {
+                for (const m of po.added) {
+                    p.milestones.push({ text: m.text, done: m.done || false, date: m.date || 'Local', _local: true, _added: true });
+                }
+            }
+        }
+    }
+
+    function toggleMilestoneCheck(projectId, milestoneIdx) {
+        const overrides = getMilestoneOverrides();
+        if (!overrides[projectId]) overrides[projectId] = {};
+        if (!overrides[projectId].toggles) overrides[projectId].toggles = {};
+        // Find current state
+        const project = PROJECTS.find(p => p.id === projectId);
+        if (!project || !project.milestones[milestoneIdx]) return;
+        const newDone = !project.milestones[milestoneIdx].done;
+        // Check if this matches original — if so, remove the override
+        const orig = ORIGINAL_PROJECTS.find(p => p.id === projectId);
+        if (orig && orig.milestones[milestoneIdx] && orig.milestones[milestoneIdx].done === newDone) {
+            delete overrides[projectId].toggles[milestoneIdx];
+            if (Object.keys(overrides[projectId].toggles).length === 0) delete overrides[projectId].toggles;
+            if (Object.keys(overrides[projectId]).length === 0) delete overrides[projectId];
+        } else {
+            overrides[projectId].toggles[milestoneIdx] = newDone;
+        }
+        saveMilestoneOverrides(overrides);
+        applyMilestoneOverrides();
+        renderStats();
+        renderProjects();
+    }
+
+    function addMilestone(projectId) {
+        const input = document.getElementById(`add-milestone-${projectId}`);
+        const text = input.value.trim();
+        if (!text) return;
+        const overrides = getMilestoneOverrides();
+        if (!overrides[projectId]) overrides[projectId] = {};
+        if (!overrides[projectId].added) overrides[projectId].added = [];
+        overrides[projectId].added.push({ text, done: false, date: 'Local' });
+        saveMilestoneOverrides(overrides);
+        input.value = '';
+        applyMilestoneOverrides();
+        renderStats();
+        renderProjects();
+    }
+
+    function exportDataJson() {
+        // Build data.json with local overrides baked in
+        const data = {
+            projects: PROJECTS.map(p => ({
+                ...p,
+                milestones: p.milestones.map(m => {
+                    const clean = { text: m.text, done: m.done, date: m.date };
+                    if (m.current) clean.current = true;
+                    return clean;
+                })
+            })),
+            timeline: TIMELINE,
+            activity: ACTIVITY,
+            weeklySummaries: WEEKLY_SUMMARIES
+        };
+        const blob = new Blob([JSON.stringify(data, null, 2) + '\n'], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'data.json';
+        a.click();
+        URL.revokeObjectURL(url);
+    }
+
     /* ===== Init — fetch data.json then render ===== */
     async function init() {
         renderDate();
         try {
             const resp = await fetch('data.json');
             const data = await resp.json();
-            PROJECTS = data.projects || [];
+            ORIGINAL_PROJECTS = data.projects || [];
             TIMELINE = data.timeline || [];
             ACTIVITY = data.activity || [];
             WEEKLY_SUMMARIES = data.weeklySummaries || [];
         } catch (e) {
             console.error('Failed to load data.json:', e);
         }
+        applyMilestoneOverrides();
         renderStats();
         renderProjects();
         renderTimeline();
