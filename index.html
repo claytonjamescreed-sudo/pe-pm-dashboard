@@ -1393,13 +1393,17 @@
     function getMergedArchive() {
         const local = getLocalArchive();
         const saved = WEEKLY_SUMMARIES || [];
-        // Clean up: remove local entries that now have a committed version
+        // Clean up: remove local entries that have a committed version covering the same week
+        const savedRanges = new Set(saved.map(s => `${s.weekStart}|${s.weekEnd}`));
         const savedSlugs = new Set(saved.map(s => s.dateSlug));
-        const cleanedLocal = local.filter(l => !savedSlugs.has(l.dateSlug));
+        const cleanedLocal = local.filter(l => {
+            const rangeKey = `${l.weekStart}|${l.weekEnd}`;
+            return !savedSlugs.has(l.dateSlug) && !savedRanges.has(rangeKey);
+        });
         if (cleanedLocal.length !== local.length) {
             localStorage.setItem(ARCHIVE_KEY, JSON.stringify(cleanedLocal));
         }
-        // Merge: data.json entries take priority (they're the permanent ones)
+        // Only show committed entries + any remaining local ones
         const map = new Map();
         for (const entry of cleanedLocal) {
             map.set(entry.dateSlug, { ...entry, source: 'local' });
