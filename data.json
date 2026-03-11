@@ -3,9 +3,9 @@
     {
       "id": "job-costing",
       "name": "Job Costing Dashboard",
-      "description": "Labour & materials tracking with SAGE 50 integration. Compares budgeted vs actual costs, tracks GP margins, and monitors budget consumption across all active jobs.",
+      "description": "Labour & materials tracking with SAGE 50 integration. Compares budgeted vs actual costs, tracks GP margins, and monitors budget consumption across all active jobs. Live in production with full project data, Box sync, and multi-user auth.",
       "status": "production",
-      "version": "v1.1",
+      "version": "v2.0",
       "tech": ["Python", "Flask", "SQLite", "Chart.js"],
       "deployment": "Heroku",
       "repo": "PE - Dashboard",
@@ -16,11 +16,11 @@
         { "text": "Heroku deployment", "done": true, "date": "Feb 2026" },
         { "text": "Portfolio overview & summary cards", "done": true, "date": "Feb 2026" },
         { "text": "Labour Cost tracking & budget export CSV", "done": true, "date": "Feb 2026" },
-        { "text": "Upload current project data — 30% of jobs uploaded", "done": false, "current": true, "date": "In Progress" },
-        { "text": "Box integration — automated SAGE CSV sync", "done": false, "date": "Upcoming" },
-        { "text": "Multi-user access & auth", "done": false, "date": "Planned" },
-        { "text": "PDF export / reporting", "done": false, "date": "Planned" },
-        { "text": "Historical trend tracking", "done": false, "date": "Planned" }
+        { "text": "Upload current project data — all jobs uploaded", "done": true, "date": "Mar 2026" },
+        { "text": "Box integration — automated SAGE CSV sync", "done": true, "date": "Mar 2026" },
+        { "text": "Multi-user access & auth", "done": true, "date": "Mar 2026" },
+        { "text": "PDF export / reporting", "done": false, "date": "Backlog" },
+        { "text": "Historical trend tracking", "done": false, "date": "Backlog" }
       ]
     },
     {
@@ -116,6 +116,7 @@
     }
   ],
   "timeline": [
+    { "date": "Mar 10, 2026", "title": "Job Costing v2.0 — Complete & Live", "desc": "All core features shipped: Box integration for automated SAGE CSV sync, all current project data uploaded, multi-user access with auth. App is fully operational in production. PDF export and historical trends moved to backlog as future improvements.", "project": "job-costing", "color": "green" },
     { "date": "Mar 10, 2026", "title": "Estimator — 212/212 Tests, Zero Failures", "desc": "All accuracy checks passing across 6 reference estimates with 0 failures. BC Hydro (40/40) and Treaty Creek (33/33) fabrication fully calibrated. Fabrication selling cost within 0.25% and fab hours within 0.36%.", "project": "estimator", "color": "green" },
     { "date": "Mar 10, 2026", "title": "Estimator — 6th Reference: Palmer HQ MEA", "desc": "550kW Palmer HQ MEA added (MTU genset, walk-in, no tank, 12ga, USA commercial). 40/40 checks passing. Required 38 finishing item overrides + adjustments due to non-standard items (pancake muffler, day tank, load bank, 480V panel, HPS lights, acoustic drywall).", "project": "estimator", "color": "green" },
     { "date": "Mar 10, 2026", "title": "Estimator — Steel Fabrication Fully Calibrated", "desc": "Fabrication module calibrated across 4 projects. Added fabrication_config for project-specific structural items, roof overhang logic, fitment factor caps, hood depth overrides, and material rate overrides.", "project": "estimator", "color": "green" },
@@ -148,6 +149,7 @@
     { "date": "Feb 2026", "title": "Estimator Excel Logic Documented", "desc": "Analyzed 3,842 Excel formulas from master estimating spreadsheet and documented complete logic.", "project": "estimator", "color": "blue" }
   ],
   "activity": [
+    { "icon": "🚀", "text": "<strong>Job Costing v2.0</strong> — Complete: Box integration, all project data uploaded, multi-user auth live", "time": "Today", "color": "var(--green-bg)" },
     { "icon": "🏆", "text": "<strong>Estimator</strong> — 212/212 accuracy tests across 6 projects, zero failures", "time": "Today", "color": "var(--green-bg)" },
     { "icon": "🏗️", "text": "<strong>Estimator</strong> — 6th reference: 550kW Palmer HQ MEA (MTU, walk-in, no tank, 12ga) — 40/40 passing", "time": "Today", "color": "var(--green-bg)" },
     { "icon": "🔩", "text": "<strong>Estimator</strong> — Steel fabrication calibrated across 4 projects (DFEK, BC Hydro, Treaty Creek, Palmer)", "time": "Today", "color": "var(--green-bg)" },
