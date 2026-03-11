@@ -905,9 +905,9 @@
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
                     Export Data
                 </button>
-                <button class="btn-download" onclick="downloadWeeklySummary()">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                    Weekly Summary
+                <button class="btn-download" onclick="downloadWeeklyReport()">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                    Weekly Report
                 </button>
                 <span class="header-date" id="headerDate"></span>
             </div>
@@ -1172,8 +1172,8 @@
         btn.querySelector('span').textContent = isExpanded ? 'Hide milestones' : `Show all ${totalCount} milestones`;
     }
 
-    /* ===== Weekly Summary Generation ===== */
-    function generateWeeklyMarkdown() {
+    /* ===== Weekly Report Generation ===== */
+    function generateWeeklyReportHTML() {
         const now = new Date();
         const weekAgo = new Date(now);
         weekAgo.setDate(weekAgo.getDate() - 7);
@@ -1181,6 +1181,7 @@
         const fmtDate = d => d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
         const weekStart = fmtDate(weekAgo);
         const weekEnd = fmtDate(now);
+        const dateStr = now.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
 
         function isWithinWeek(dateStr) {
             const parsed = new Date(dateStr);
@@ -1189,92 +1190,179 @@
         }
 
         const recentTimeline = TIMELINE.filter(t => isWithinWeek(t.date));
-        const stripHTML = s => s.replace(/<[^>]*>/g, '');
+        const recentActivity = ACTIVITY.slice(0, 10);
 
-        let md = `# Pacific Enclosures \u2014 Weekly Summary\n`;
-        md += `**Week of ${weekStart} \u2013 ${weekEnd}**\n\n`;
+        // Stats
+        const totalMilestones = PROJECTS.reduce((s, p) => s + p.milestones.length, 0);
+        const doneMilestones = PROJECTS.reduce((s, p) => s + p.milestones.filter(m => m.done).length, 0);
+        const remaining = totalMilestones - doneMilestones;
+        const overallPct = totalMilestones > 0 ? Math.round((doneMilestones / totalMilestones) * 100) : 0;
+        const donutColor = overallPct >= 60 ? '#22c55e' : overallPct >= 30 ? '#3b82f6' : '#f59e0b';
 
-        md += `## Progress Snapshot\n`;
-        md += `| Project | Progress | Status |\n`;
-        md += `|---------|----------|--------|\n`;
-        for (const p of PROJECTS) {
-            const total = p.milestones.length;
-            const done = p.milestones.filter(m => m.done).length;
-            const pct = total > 0 ? Math.round((done / total) * 100) : 0;
-            md += `| ${p.name} | ${pct}% (${done}/${total}) | ${p.status} |\n`;
-        }
-        md += `\n`;
-
+        // In progress
         const inProgress = [];
         for (const p of PROJECTS) {
             for (const m of p.milestones) {
                 if (m.current) inProgress.push({ project: p.name, text: m.text });
             }
         }
-        if (inProgress.length > 0) {
-            md += `## In Progress\n`;
-            for (const item of inProgress) {
-                md += `- **${item.project}** \u2014 ${item.text}\n`;
-            }
-            md += `\n`;
-        }
 
-        if (recentTimeline.length > 0) {
-            md += `## Timeline Events This Week\n`;
-            const projectNames = { 'job-costing': 'Job Costing', 'estimator': 'Estimator', 'pm': 'PM Dashboard' };
-            for (const t of recentTimeline) {
-                const pName = projectNames[t.project] || t.project;
-                md += `- **${t.date}** \u2014 ${pName}: ${t.title}\n`;
-                md += `  ${t.desc}\n`;
-            }
-            md += `\n`;
-        }
-
-        if (ACTIVITY.length > 0) {
-            md += `## Recent Activity\n`;
-            for (const a of ACTIVITY) {
-                md += `- ${stripHTML(a.text)} _(${a.time})_\n`;
-            }
-            md += `\n`;
-        }
-
-        const upcoming = [];
+        // Project rows
+        const statusColors = { production:'#22c55e', beta:'#f59e0b', active:'#22c55e', planning:'#f59e0b', review:'#a78bfa', paused:'#ef4444', pipeline:'#64748b' };
+        let projectRows = '';
         for (const p of PROJECTS) {
-            for (const m of p.milestones) {
-                if (!m.done && !m.current) upcoming.push({ project: p.name, text: m.text, date: m.date });
-            }
-        }
-        if (upcoming.length > 0) {
-            md += `## Upcoming Milestones\n`;
-            for (const item of upcoming.slice(0, 10)) {
-                md += `- **${item.project}** \u2014 ${item.text} _(${item.date})_\n`;
-            }
-            if (upcoming.length > 10) {
-                md += `- _...and ${upcoming.length - 10} more_\n`;
-            }
-            md += `\n`;
+            const total = p.milestones.length;
+            const done = p.milestones.filter(m => m.done).length;
+            const pct = total > 0 ? Math.round((done / total) * 100) : 0;
+            const sc = statusColors[p.status] || '#64748b';
+            const bc = pct >= 60 ? '#22c55e' : pct >= 30 ? '#3b82f6' : '#f59e0b';
+            const currentTasks = p.milestones.filter(m => m.current).map(m => m.text);
+            const currentHtml = currentTasks.length > 0 ? `<div style="font-size:12px;color:#94a3b8;margin-top:4px;">Current: ${currentTasks.join(', ')}</div>` : '';
+            const r = parseInt(sc.slice(1,3),16), g = parseInt(sc.slice(3,5),16), b = parseInt(sc.slice(5,7),16);
+            projectRows += `
+            <tr>
+                <td style="padding:12px 16px;">
+                    <div style="font-weight:600;color:#f1f5f9;">${p.name}</div>
+                    <div style="font-size:12px;color:#64748b;">${p.version || ''}</div>
+                    ${currentHtml}
+                </td>
+                <td style="padding:12px 16px;text-align:center;">
+                    <span style="display:inline-block;padding:2px 10px;border-radius:12px;font-size:11px;font-weight:700;text-transform:uppercase;color:${sc};background:rgba(${r},${g},${b},0.15);">${p.status}</span>
+                </td>
+                <td style="padding:12px 16px;text-align:center;color:#94a3b8;font-size:13px;">${done}/${total}</td>
+                <td style="padding:12px 16px;width:200px;">
+                    <div style="display:flex;align-items:center;gap:10px;">
+                        <div style="flex:1;height:8px;background:#1e293b;border-radius:4px;overflow:hidden;">
+                            <div style="width:${pct}%;height:100%;background:${bc};border-radius:4px;"></div>
+                        </div>
+                        <span style="font-size:13px;font-weight:600;color:${bc};min-width:36px;text-align:right;">${pct}%</span>
+                    </div>
+                </td>
+            </tr>`;
         }
 
-        md += `---\n`;
-        md += `_Generated from PE PM Dashboard \u2014 ${fmtDate(now)}_\n`;
+        // Timeline HTML
+        const dotColors = { green:'#22c55e', blue:'#3b82f6', amber:'#f59e0b', purple:'#a78bfa' };
+        let timelineHtml = '';
+        if (recentTimeline.length > 0) {
+            for (const t of recentTimeline.slice(0, 8)) {
+                const dot = dotColors[t.color] || '#3b82f6';
+                timelineHtml += `
+                <div style="display:flex;gap:12px;padding:10px 0;border-bottom:1px solid #1e293b;">
+                    <div style="width:8px;height:8px;border-radius:50%;background:${dot};margin-top:6px;flex-shrink:0;"></div>
+                    <div>
+                        <div style="font-size:12px;color:#64748b;">${t.date}</div>
+                        <div style="font-size:13px;color:#f1f5f9;font-weight:600;">${t.title}</div>
+                        <div style="font-size:12px;color:#94a3b8;margin-top:2px;">${t.desc}</div>
+                    </div>
+                </div>`;
+            }
+        } else {
+            timelineHtml = '<div style="padding:16px;color:#64748b;font-size:13px;">No timeline events this week.</div>';
+        }
 
-        return { md, weekStart, weekEnd, generatedAt: now.toISOString() };
+        // Activity HTML
+        let activityHtml = '';
+        for (const a of recentActivity) {
+            activityHtml += `
+            <div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid #1e293b;">
+                <span style="font-size:16px;">${a.icon}</span>
+                <span style="flex:1;font-size:13px;color:#94a3b8;">${a.text}</span>
+                <span style="font-size:11px;color:#64748b;white-space:nowrap;">${a.time}</span>
+            </div>`;
+        }
+
+        // In progress section
+        let inProgressSection = '';
+        if (inProgress.length > 0) {
+            let ipItems = '';
+            for (const item of inProgress) {
+                ipItems += `<div style="padding:6px 0;font-size:13px;color:#94a3b8;border-bottom:1px solid #1e293b;">\u26a1 <strong style="color:#f1f5f9;">${item.project}</strong> \u2014 ${item.text}</div>`;
+            }
+            inProgressSection = `
+            <div style="background:#1e293b;border-radius:12px;border:1px solid #334155;overflow:hidden;margin-bottom:24px;">
+                <div style="padding:16px 16px 12px;border-bottom:1px solid #334155;">
+                    <div style="font-size:16px;font-weight:700;color:#f1f5f9;">\ud83d\udd25 In Progress</div>
+                </div>
+                <div style="padding:12px 16px;">${ipItems}</div>
+            </div>`;
+        }
+
+        return `<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"><title>PE Weekly Report \u2014 ${weekEnd}</title></head>
+<body style="margin:0;padding:0;background:#0f172a;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+<div style="max-width:700px;margin:0 auto;padding:24px;">
+    <div style="text-align:center;padding:32px 0 24px;">
+        <div style="font-size:24px;font-weight:800;color:#f1f5f9;">Pacific Enclosures</div>
+        <div style="font-size:14px;color:#64748b;margin-top:4px;">Weekly Project Report</div>
+        <div style="font-size:13px;color:#3b82f6;margin-top:8px;">${weekStart} \u2013 ${weekEnd}</div>
+    </div>
+    <div style="display:flex;gap:12px;margin-bottom:24px;">
+        <div style="flex:1;background:#1e293b;border-radius:12px;padding:20px;text-align:center;border:1px solid #334155;">
+            <div style="font-size:28px;font-weight:800;color:${donutColor};">${overallPct}%</div>
+            <div style="font-size:11px;color:#64748b;margin-top:4px;">Overall Progress</div>
+        </div>
+        <div style="flex:1;background:#1e293b;border-radius:12px;padding:20px;text-align:center;border:1px solid #334155;">
+            <div style="font-size:28px;font-weight:800;color:#22c55e;">${doneMilestones}</div>
+            <div style="font-size:11px;color:#64748b;margin-top:4px;">Tasks Done</div>
+        </div>
+        <div style="flex:1;background:#1e293b;border-radius:12px;padding:20px;text-align:center;border:1px solid #334155;">
+            <div style="font-size:28px;font-weight:800;color:#f59e0b;">${remaining}</div>
+            <div style="font-size:11px;color:#64748b;margin-top:4px;">Remaining</div>
+        </div>
+        <div style="flex:1;background:#1e293b;border-radius:12px;padding:20px;text-align:center;border:1px solid #334155;">
+            <div style="font-size:28px;font-weight:800;color:#a78bfa;">${PROJECTS.length}</div>
+            <div style="font-size:11px;color:#64748b;margin-top:4px;">Projects</div>
+        </div>
+    </div>
+    <div style="background:#1e293b;border-radius:12px;border:1px solid #334155;overflow:hidden;margin-bottom:24px;">
+        <div style="padding:16px 16px 12px;border-bottom:1px solid #334155;">
+            <div style="font-size:16px;font-weight:700;color:#f1f5f9;">Project Progress</div>
+        </div>
+        <table style="width:100%;border-collapse:collapse;">
+            <thead>
+                <tr style="border-bottom:1px solid #334155;">
+                    <th style="padding:10px 16px;text-align:left;font-size:11px;font-weight:600;color:#64748b;text-transform:uppercase;">Project</th>
+                    <th style="padding:10px 16px;text-align:center;font-size:11px;font-weight:600;color:#64748b;text-transform:uppercase;">Status</th>
+                    <th style="padding:10px 16px;text-align:center;font-size:11px;font-weight:600;color:#64748b;text-transform:uppercase;">Done</th>
+                    <th style="padding:10px 16px;text-align:left;font-size:11px;font-weight:600;color:#64748b;text-transform:uppercase;">Progress</th>
+                </tr>
+            </thead>
+            <tbody>${projectRows}</tbody>
+        </table>
+    </div>
+    ${inProgressSection}
+    <div style="background:#1e293b;border-radius:12px;border:1px solid #334155;overflow:hidden;margin-bottom:24px;">
+        <div style="padding:16px 16px 12px;border-bottom:1px solid #334155;">
+            <div style="font-size:16px;font-weight:700;color:#f1f5f9;">\ud83d\udcc5 This Week</div>
+        </div>
+        <div style="padding:12px 16px;">${timelineHtml}</div>
+    </div>
+    <div style="background:#1e293b;border-radius:12px;border:1px solid #334155;overflow:hidden;margin-bottom:24px;">
+        <div style="padding:16px 16px 12px;border-bottom:1px solid #334155;">
+            <div style="font-size:16px;font-weight:700;color:#f1f5f9;">\u26a1 Recent Activity</div>
+        </div>
+        <div style="padding:12px 16px;">${activityHtml}</div>
+    </div>
+    <div style="text-align:center;padding:24px 0;color:#64748b;font-size:12px;">
+        Generated from PE PM Dashboard \u2014 ${dateStr}<br>
+        <a href="https://claytonjamescreed-sudo.github.io/pe-pm-dashboard/" style="color:#3b82f6;text-decoration:none;">View Dashboard \u2192</a>
+    </div>
+</div>
+</body>
+</html>`;
     }
 
-    function downloadWeeklySummary() {
-        const { md, weekStart, weekEnd, generatedAt } = generateWeeklyMarkdown();
-
-        // Save to archive
-        saveToArchive(weekStart, weekEnd, generatedAt, md);
-        renderArchive();
-
-        // Download file
-        const dateSlug = generatedAt.slice(0, 10);
-        const blob = new Blob([md], { type: 'text/markdown' });
+    function downloadWeeklyReport() {
+        const html = generateWeeklyReportHTML();
+        const now = new Date();
+        const dateSlug = now.toISOString().slice(0, 10);
+        const blob = new Blob([html], { type: 'text/html' });
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
-        a.download = `PE-Weekly-Summary-${dateSlug}.md`;
+        a.download = `PE-Weekly-Report-${dateSlug}.html`;
         a.click();
         URL.revokeObjectURL(url);
     }

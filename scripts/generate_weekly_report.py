@@ -275,6 +275,68 @@ def send_email(html, to_email):
         sys.exit(1)
 
 
+def save_to_archive(data):
+    """Save a weekly summary entry into data.json's weeklySummaries array."""
+    now = datetime.now()
+    week_ago = now - timedelta(days=7)
+    fmt = lambda d: d.strftime("%b %d, %Y")
+    date_slug = now.strftime("%Y-%m-%d")
+
+    # Build a markdown summary for the archive
+    strip_html = lambda s: __import__('re').sub(r'<[^>]*>', '', s)
+    projects = data.get("projects", [])
+    md = f"# Pacific Enclosures — Weekly Report\n"
+    md += f"**{fmt(week_ago)} – {fmt(now)}**\n\n"
+    md += "## Progress\n"
+    md += "| Project | Progress | Status |\n|---------|----------|--------|\n"
+    for p in projects:
+        total = len(p["milestones"])
+        done = sum(1 for m in p["milestones"] if m.get("done"))
+        pct = round((done / total) * 100) if total > 0 else 0
+        md += f"| {p['name']} | {pct}% ({done}/{total}) | {p.get('status', '—')} |\n"
+    md += "\n"
+
+    in_prog = [(p["name"], m["text"]) for p in projects for m in p["milestones"] if m.get("current")]
+    if in_prog:
+        md += "## In Progress\n"
+        for pname, text in in_prog:
+            md += f"- **{pname}** — {text}\n"
+        md += "\n"
+
+    activity = data.get("activity", [])[:10]
+    if activity:
+        md += "## Recent Activity\n"
+        for a in activity:
+            md += f"- {strip_html(a.get('text', ''))} _({a.get('time', '')})_\n"
+        md += "\n"
+
+    md += f"---\n_Generated from PE PM Dashboard — {fmt(now)}_\n"
+
+    entry = {
+        "dateSlug": date_slug,
+        "weekStart": fmt(week_ago),
+        "weekEnd": fmt(now),
+        "generatedAt": now.isoformat(),
+        "markdown": md,
+    }
+
+    summaries = data.get("weeklySummaries", [])
+    # Replace if same date exists
+    existing = next((i for i, s in enumerate(summaries) if s.get("dateSlug") == date_slug), None)
+    if existing is not None:
+        summaries[existing] = entry
+    else:
+        summaries.insert(0, entry)
+    data["weeklySummaries"] = summaries
+
+    data_path = os.path.join(os.path.dirname(__file__), "..", "data.json")
+    data_path = os.path.abspath(data_path)
+    with open(data_path, "w") as f:
+        json.dump(data, f, indent=2, ensure_ascii=False)
+        f.write("\n")
+    print(f"Weekly summary archived to data.json ({date_slug})")
+
+
 def main():
     data = load_data()
     html = generate_report(data)
@@ -285,6 +347,10 @@ def main():
     with open(out_path, "w") as f:
         f.write(html)
     print(f"Report saved to {out_path}")
+
+    # Save to weekly archive in data.json
+    if os.environ.get("SAVE_ARCHIVE", "").lower() in ("1", "true", "yes"):
+        save_to_archive(data)
 
     # Send email if recipient provided
     to_email = os.environ.get("REPORT_EMAIL", "")
