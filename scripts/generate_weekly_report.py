@@ -3,6 +3,7 @@
 
 import json
 import os
+import subprocess
 import sys
 from datetime import datetime, timedelta
 
@@ -12,7 +13,7 @@ def load_data():
         return json.load(f)
 
 def get_recent_items(items, date_key="date", days=7):
-    cutoff = datetime.utcnow() - timedelta(days=days)
+    cutoff = datetime.now() - timedelta(days=days)
     recent = []
     for item in items:
         try:
@@ -32,7 +33,7 @@ def generate_report(data):
     timeline = data.get("timeline", [])
     activity = data.get("activity", [])
 
-    now = datetime.utcnow()
+    now = datetime.now()
     week_ago = now - timedelta(days=7)
     date_str = now.strftime("%B %d, %Y")
     week_start = week_ago.strftime("%b %d")
@@ -238,15 +239,13 @@ def generate_report(data):
 
 
 def send_email(html, to_email):
-    """Send the report via Resend API."""
-    import urllib.request
-
+    """Send the report via Resend API using subprocess curl (avoids Cloudflare blocks on urllib)."""
     api_key = os.environ.get("RESEND_API_KEY")
     if not api_key:
         print("ERROR: RESEND_API_KEY not set")
         sys.exit(1)
 
-    now = datetime.utcnow()
+    now = datetime.now()
     subject = f"PE Weekly Report — {now.strftime('%b %d, %Y')}"
 
     payload = json.dumps({
@@ -254,24 +253,25 @@ def send_email(html, to_email):
         "to": [to_email],
         "subject": subject,
         "html": html,
-    }).encode()
+    })
 
-    req = urllib.request.Request(
-        "https://api.resend.com/emails",
-        data=payload,
-        headers={
-            "Authorization": f"Bearer {api_key}",
-            "Content-Type": "application/json",
-        },
+    result = subprocess.run(
+        ["curl", "-s", "-w", "\n%{http_code}",
+         "https://api.resend.com/emails",
+         "-H", f"Authorization: Bearer {api_key}",
+         "-H", "Content-Type: application/json",
+         "-d", payload],
+        capture_output=True, text=True
     )
 
-    try:
-        with urllib.request.urlopen(req) as resp:
-            result = json.loads(resp.read())
-            print(f"Email sent: {result.get('id', 'OK')}")
-    except urllib.error.HTTPError as e:
-        body = e.read().decode()
-        print(f"Email failed ({e.code}): {body}")
+    lines = result.stdout.strip().split("\n")
+    status_code = lines[-1] if lines else "0"
+    body = "\n".join(lines[:-1])
+
+    if status_code.startswith("2"):
+        print(f"Email sent successfully: {body}")
+    else:
+        print(f"Email failed (HTTP {status_code}): {body}")
         sys.exit(1)
 
 
