@@ -62,8 +62,8 @@
         },
         {
           "text": "PDF export / reporting",
-          "done": false,
-          "date": "Backlog"
+          "done": true,
+          "date": "Mar 2026"
         }
       ]
     },
@@ -444,6 +444,13 @@
   "timeline": [
     {
       "date": "Mar 13, 2026",
+      "title": "Job Costing — PDF Export Shipped",
+      "desc": "PDF download functionality added to Job Costing Dashboard. Users can now export job reports as PDF files.",
+      "project": "job-costing",
+      "color": "green"
+    },
+    {
+      "date": "Mar 13, 2026",
       "title": "Project Management — Scope Interviews Started",
       "desc": "Began conducting scope and requirements interviews with stakeholders for the Project Management App. Project moved from pipeline to active planning.",
       "project": "project-management",
@@ -682,6 +689,12 @@
     }
   ],
   "activity": [
+    {
+      "icon": "📄",
+      "text": "<strong>Job Costing</strong> — PDF export / reporting shipped",
+      "time": "Mar 13",
+      "color": "var(--green-bg)"
+    },
     {
       "icon": "📋",
       "text": "<strong>Project Management</strong> — Scope & requirements interviews started with stakeholders",
