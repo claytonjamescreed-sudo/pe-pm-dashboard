@@ -230,6 +230,12 @@
         .badge-pipeline { background: rgba(100,116,139,0.1); color: #94a3b8; border: 1px solid rgba(100,116,139,0.2); }
         .badge-production { background: rgba(59,130,246,0.1); color: #3b82f6; border: 1px solid rgba(59,130,246,0.2); }
         .badge-beta { background: rgba(245,158,11,0.1); color: #f59e0b; border: 1px solid rgba(245,158,11,0.2); }
+        .badge-completed { background: rgba(34,197,94,0.15); color: #22c55e; border: 1px solid rgba(34,197,94,0.3); }
+
+        /* Completed project card */
+        .project-card.completed-card {
+            border-left: 3px solid var(--green);
+        }
 
         /* Progress bar */
         .project-progress {
@@ -922,6 +928,10 @@
         <div class="section-title">Projects</div>
         <div class="projects-grid" id="projectsGrid"></div>
 
+        <!-- Completed Projects -->
+        <div class="section-title" id="completedTitle" style="display:none;">Completed</div>
+        <div class="projects-grid" id="completedGrid"></div>
+
         <!-- Timeline -->
         <div class="section-title">Timeline</div>
         <div class="timeline" id="timeline"></div>
@@ -998,8 +1008,7 @@
         `).join('');
     }
 
-    function renderProjects() {
-        document.getElementById('projectsGrid').innerHTML = PROJECTS.map(p => {
+    function renderProjectCard(p) {
             const statusClass = {
                 active: 'badge-active', planning: 'badge-planning',
                 review: 'badge-review', paused: 'badge-paused',
@@ -1011,6 +1020,7 @@
             const totalMs = p.milestones.length;
             const doneMs = p.milestones.filter(m => m.done).length;
             const progress = totalMs > 0 ? Math.round((doneMs / totalMs) * 100) : 0;
+            const isCompleted = totalMs > 0 && doneMs === totalMs;
 
             function renderMilestoneItem(m, idx) {
                 const localBadge = m._local ? '<span class="milestone-local-badge">Local</span>' : '';
@@ -1047,14 +1057,19 @@
                     <button class="milestone-add-btn" onclick="addMilestone('${p.id}')">+ Add</button>
                 </div>`;
 
+            const completedBadge = isCompleted ? '<span class="project-status-badge badge-completed">completed</span>' : '';
+
             return `
-                <div class="project-card">
+                <div class="project-card${isCompleted ? ' completed-card' : ''}">
                     <div class="project-card-header">
                         <div>
                             <div class="project-name">${p.name}</div>
                             <div class="project-desc">${p.description}</div>
                         </div>
-                        <span class="project-status-badge ${statusClass}">${p.status}</span>
+                        <div style="display:flex;gap:6px;align-items:flex-start;flex-shrink:0;">
+                            <span class="project-status-badge ${statusClass}">${p.status}</span>
+                            ${completedBadge}
+                        </div>
                     </div>
                     <div class="project-progress">
                         <div class="progress-header">
@@ -1089,7 +1104,31 @@
                     </div>
                 </div>
             `;
-        }).join('');
+    }
+
+    function renderProjects() {
+        const active = PROJECTS.filter(p => {
+            const totalMs = p.milestones.length;
+            const doneMs = p.milestones.filter(m => m.done).length;
+            return totalMs === 0 || doneMs < totalMs;
+        });
+        const completed = PROJECTS.filter(p => {
+            const totalMs = p.milestones.length;
+            const doneMs = p.milestones.filter(m => m.done).length;
+            return totalMs > 0 && doneMs === totalMs;
+        });
+
+        document.getElementById('projectsGrid').innerHTML = active.map(p => renderProjectCard(p)).join('');
+
+        const completedTitle = document.getElementById('completedTitle');
+        const completedGrid = document.getElementById('completedGrid');
+        if (completed.length > 0) {
+            completedTitle.style.display = '';
+            completedGrid.innerHTML = completed.map(p => renderProjectCard(p)).join('');
+        } else {
+            completedTitle.style.display = 'none';
+            completedGrid.innerHTML = '';
+        }
     }
 
     function renderTimeline() {
@@ -1288,6 +1327,37 @@
             </div>`;
         }
 
+        // Completed projects section
+        let completedSection = '';
+        const completedProjects = PROJECTS.filter(p => {
+            const t = p.milestones.length;
+            const d = p.milestones.filter(m => m.done).length;
+            return t > 0 && d === t;
+        });
+        if (completedProjects.length > 0) {
+            let cpItems = '';
+            for (const p of completedProjects) {
+                const total = p.milestones.length;
+                const techStr = p.tech.join(', ');
+                cpItems += `
+                <div style="display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid #1e293b;">
+                    <span style="font-size:20px;">\ud83c\udfc6</span>
+                    <div style="flex:1;">
+                        <div style="font-weight:600;color:#f1f5f9;">${p.name}</div>
+                        <div style="font-size:12px;color:#94a3b8;">${total}/${total} milestones \u2022 ${techStr} \u2022 ${p.deployment}</div>
+                    </div>
+                    <span style="display:inline-block;padding:2px 10px;border-radius:12px;font-size:11px;font-weight:700;color:#22c55e;background:rgba(34,197,94,0.15);">100%</span>
+                </div>`;
+            }
+            completedSection = `
+            <div style="background:#1e293b;border-radius:12px;border:1px solid rgba(34,197,94,0.3);overflow:hidden;margin-bottom:24px;">
+                <div style="padding:16px 16px 12px;border-bottom:1px solid #334155;">
+                    <div style="font-size:16px;font-weight:700;color:#22c55e;">\ud83c\udfc6 Completed Projects</div>
+                </div>
+                <div style="padding:12px 16px;">${cpItems}</div>
+            </div>`;
+        }
+
         return `<!DOCTYPE html>
 <html>
 <head><meta charset="UTF-8"><title>PE Weekly Report \u2014 ${weekEnd}</title></head>
@@ -1332,6 +1402,7 @@
             <tbody>${projectRows}</tbody>
         </table>
     </div>
+    ${completedSection}
     ${inProgressSection}
     <div style="background:#1e293b;border-radius:12px;border:1px solid #334155;overflow:hidden;margin-bottom:24px;">
         <div style="padding:16px 16px 12px;border-bottom:1px solid #334155;">

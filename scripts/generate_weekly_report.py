@@ -148,6 +148,40 @@ def generate_report(data):
         </div>
     </div>'''
 
+    # Build completed projects section
+    completed_section = ""
+    completed_projects = []
+    for p in projects:
+        total = len(p["milestones"])
+        done = sum(1 for m in p["milestones"] if m.get("done"))
+        if total > 0 and done == total:
+            completed_projects.append(p)
+
+    if completed_projects:
+        cp_items = ""
+        for p in completed_projects:
+            total = len(p["milestones"])
+            tech_str = ", ".join(p.get("tech", []))
+            deploy = p.get("deployment", "")
+            cp_items += f'''
+            <div style="display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid #1e293b;">
+                <span style="font-size:20px;">🏆</span>
+                <div style="flex:1;">
+                    <div style="font-weight:600;color:#f1f5f9;">{p["name"]}</div>
+                    <div style="font-size:12px;color:#94a3b8;">{total}/{total} milestones • {tech_str} • {deploy}</div>
+                </div>
+                <span style="display:inline-block;padding:2px 10px;border-radius:12px;font-size:11px;font-weight:700;color:#22c55e;background:rgba(34,197,94,0.15);">100%</span>
+            </div>'''
+        completed_section = f'''
+    <div style="background:#1e293b;border-radius:12px;border:1px solid rgba(34,197,94,0.3);overflow:hidden;margin-bottom:24px;">
+        <div style="padding:16px 16px 12px;border-bottom:1px solid #334155;">
+            <div style="font-size:16px;font-weight:700;color:#22c55e;">🏆 Completed Projects</div>
+        </div>
+        <div style="padding:12px 16px;">
+            {cp_items}
+        </div>
+    </div>'''
+
     remaining = total_milestones - done_milestones
 
     html = f'''<!DOCTYPE html>
@@ -202,6 +236,8 @@ def generate_report(data):
             </tbody>
         </table>
     </div>
+
+    {completed_section}
 
     {in_progress_section}
 
@@ -295,6 +331,16 @@ def save_to_archive(data):
         pct = round((done / total) * 100) if total > 0 else 0
         md += f"| {p['name']} | {pct}% ({done}/{total}) | {p.get('status', '—')} |\n"
     md += "\n"
+
+    # Completed projects
+    completed = [p for p in projects if len(p["milestones"]) > 0 and all(m.get("done") for m in p["milestones"])]
+    if completed:
+        md += "## Completed Projects\n"
+        for p in completed:
+            total = len(p["milestones"])
+            tech_str = ", ".join(p.get("tech", []))
+            md += f"- **{p['name']}** — {total}/{total} milestones | {tech_str} | {p.get('deployment', '')}\n"
+        md += "\n"
 
     in_prog = [(p["name"], m["text"]) for p in projects for m in p["milestones"] if m.get("current")]
     if in_prog:
