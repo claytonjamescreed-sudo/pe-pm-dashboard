@@ -379,23 +379,58 @@
       "repo": "TBD",
       "milestones": [
         {
-          "text": "Scope & requirements interviews with stakeholders",
+          "text": "Identify key stakeholders & schedule interviews",
+          "done": true,
+          "date": "Mar 2026"
+        },
+        {
+          "text": "Define interview framework & key questions",
+          "done": true,
+          "date": "Mar 2026"
+        },
+        {
+          "text": "Map existing workflows & current pain points",
+          "done": true,
+          "date": "Mar 2026"
+        },
+        {
+          "text": "Conduct remaining stakeholder interviews",
           "done": false,
           "current": true,
           "date": "In Progress"
         },
         {
-          "text": "Design & architecture",
+          "text": "Compile findings & document requirements",
+          "done": false,
+          "date": "Upcoming"
+        },
+        {
+          "text": "Prioritize features & define MVP scope",
+          "done": false,
+          "date": "Upcoming"
+        },
+        {
+          "text": "Define tech stack & architecture",
           "done": false,
           "date": "TBD"
         },
         {
-          "text": "Development",
+          "text": "UI/UX design & wireframes",
           "done": false,
           "date": "TBD"
         },
         {
-          "text": "Testing & deployment",
+          "text": "Core development — MVP build",
+          "done": false,
+          "date": "TBD"
+        },
+        {
+          "text": "Testing & iteration",
+          "done": false,
+          "date": "TBD"
+        },
+        {
+          "text": "Deployment & rollout",
           "done": false,
           "date": "TBD"
         }
