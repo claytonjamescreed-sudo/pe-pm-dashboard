@@ -75,9 +75,9 @@
     {
       "id": "estimator",
       "name": "Estimator App",
-      "description": "Generator enclosure quoting tool — reimplements PE's master Excel estimating logic into a web app. 212/212 accuracy tests passing across 6 reference estimates (500kW DFEK, 300kW Princeton, 150kW BC Hydro, 150kW Treaty Creek, 1750kW Kootenay WWTP, 550kW Palmer HQ MEA). Steel fabrication calibrated across 4 projects. RFP parser with UI form pre-fill. Security hardened, deployment-ready.",
+      "description": "Generator enclosure quoting tool — reimplements PE's master Excel estimating logic into a web app. 227/227 accuracy tests passing across 7 reference estimates. 122 configurable UI options (80 dropdowns + 42 toggles) matching Excel's 120+ flag system. Steel fabrication calibrated across 4 projects. PDF quote generation. Wizard UI with 3-step flow. Multi-manufacturer genset specs. RFP parser with UI form pre-fill. Security hardened, deployment-ready.",
       "status": "beta",
-      "version": "v0.6-dev",
+      "version": "v0.7-dev",
       "tech": [
         "Python",
         "Flask",
@@ -195,6 +195,46 @@
         },
         {
           "text": "RFP parser UI — expanded fields for parsed data + form pre-fill wired up",
+          "done": true,
+          "date": "Mar 2026"
+        },
+        {
+          "text": "Steel fabrication, PDF generator, client auto-cascade, gunicorn compatibility",
+          "done": true,
+          "date": "Mar 2026"
+        },
+        {
+          "text": "122 configurable UI options (80 dropdowns + 42 toggles) — matching Excel's 120+ flag system",
+          "done": true,
+          "date": "Mar 2026"
+        },
+        {
+          "text": "Wizard UI — 3-step flow with progress bar, next/back navigation, step validation",
+          "done": true,
+          "date": "Mar 2026"
+        },
+        {
+          "text": "7th reference estimate — 250kW Golden Test Bible added",
+          "done": true,
+          "date": "Mar 2026"
+        },
+        {
+          "text": "227/227 accuracy checks across 7 reference projects — 0 failures",
+          "done": true,
+          "date": "Mar 2026"
+        },
+        {
+          "text": "Multi-manufacturer genset specs (ONAN/KOHLER/CAT/MITS/SIMMAX with brand aliases)",
+          "done": true,
+          "date": "Mar 2026"
+        },
+        {
+          "text": "Environment-dependent ventilation & silencer type overrides",
+          "done": true,
+          "date": "Mar 2026"
+        },
+        {
+          "text": "Split connectors — gen-side and load-side independent selection",
           "done": true,
           "date": "Mar 2026"
         },
@@ -329,8 +369,8 @@
     {
       "id": "project-management",
       "name": "Project Management App",
-      "description": "Internal project management tool for Pacific Enclosures. Scope and requirements to be defined.",
-      "status": "pipeline",
+      "description": "Internal project management tool for Pacific Enclosures. Scope and requirements interviews underway with stakeholders.",
+      "status": "planning",
       "version": "—",
       "tech": [
         "TBD"
@@ -339,9 +379,10 @@
       "repo": "TBD",
       "milestones": [
         {
-          "text": "Define scope & requirements",
+          "text": "Scope & requirements interviews with stakeholders",
           "done": false,
-          "date": "TBD"
+          "current": true,
+          "date": "In Progress"
         },
         {
           "text": "Design & architecture",
@@ -396,6 +437,27 @@
     }
   ],
   "timeline": [
+    {
+      "date": "Mar 13, 2026",
+      "title": "Project Management — Scope Interviews Started",
+      "desc": "Began conducting scope and requirements interviews with stakeholders for the Project Management App. Project moved from pipeline to active planning.",
+      "project": "project-management",
+      "color": "amber"
+    },
+    {
+      "date": "Mar 12, 2026",
+      "title": "Estimator — 122 UI Options, Full Excel Parity",
+      "desc": "Expanded from 47 to 122 configurable UI controls (80 dropdowns + 42 toggles) with 117 unique parameters. Now matches Excel's 120+ boolean flag system. Includes silencer type overrides, split connectors, louver type, drain config, exhaust position, lighting type, engineering cert, and fuel adapter.",
+      "project": "estimator",
+      "color": "green"
+    },
+    {
+      "date": "Mar 11, 2026",
+      "title": "Estimator — Major Feature Push",
+      "desc": "Steel fabrication wired into web app, PDF quote generation via reportlab, wizard UI with 3-step flow, client auto-cascade with datalist, multi-manufacturer genset specs (ONAN/KOHLER/CAT/MITS/SIMMAX), environment-dependent ventilation, 7th reference estimate (250kW Golden Test Bible), gunicorn compatibility. 227/227 checks passing across all 7 projects.",
+      "project": "estimator",
+      "color": "green"
+    },
     {
       "date": "Mar 10, 2026",
       "title": "Job Costing v2.0 — Complete & Live",
@@ -615,6 +677,42 @@
     }
   ],
   "activity": [
+    {
+      "icon": "📋",
+      "text": "<strong>Project Management</strong> — Scope & requirements interviews started with stakeholders",
+      "time": "Mar 13",
+      "color": "var(--amber-bg)"
+    },
+    {
+      "icon": "🎛️",
+      "text": "<strong>Estimator</strong> — 122 UI options (80 dropdowns + 42 toggles) — full Excel flag parity",
+      "time": "Mar 12",
+      "color": "var(--green-bg)"
+    },
+    {
+      "icon": "🏆",
+      "text": "<strong>Estimator</strong> — 227/227 accuracy checks across 7 reference projects, zero failures",
+      "time": "Mar 11",
+      "color": "var(--green-bg)"
+    },
+    {
+      "icon": "📄",
+      "text": "<strong>Estimator</strong> — PDF quote generation with reportlab + wizard UI (3-step flow)",
+      "time": "Mar 11",
+      "color": "var(--green-bg)"
+    },
+    {
+      "icon": "🔧",
+      "text": "<strong>Estimator</strong> — Multi-manufacturer genset specs, client auto-cascade, environment-dependent ventilation",
+      "time": "Mar 11",
+      "color": "var(--green-bg)"
+    },
+    {
+      "icon": "🏗️",
+      "text": "<strong>Estimator</strong> — 7th reference: 250kW Golden Test Bible added",
+      "time": "Mar 11",
+      "color": "var(--green-bg)"
+    },
     {
       "icon": "💬",
       "text": "<strong>Job Costing</strong> — Make dashboard mobile-responsive",
