@@ -690,6 +690,120 @@
   ],
   "activity": [
     {
+      "icon": "✨",
+      "text": "<strong>Job Costing</strong> — Add PDF report download button to nav bar",
+      "time": "Mar 13",
+      "color": "var(--green-bg)"
+    },
+    {
+      "icon": "💬",
+      "text": "<strong>Estimator</strong> — Expand option flags from 47 to 122 UI controls (117 unique params), matching Excel's 120+ flag system",
+      "time": "Mar 12",
+      "color": "var(--blue-glow)"
+    },
+    {
+      "icon": "✨",
+      "text": "<strong>Estimator</strong> — Add steel fabrication, PDF generator, 47 configurable options, 3 new reference projects, and gunicorn compatibility",
+      "time": "Mar 11",
+      "color": "var(--green-bg)"
+    },
+    {
+      "icon": "💬",
+      "text": "<strong>PM Dashboard</strong> — Differentiate badge colors — planning is purple, review is cyan",
+      "time": "Mar 13",
+      "color": "var(--blue-glow)"
+    },
+    {
+      "icon": "✨",
+      "text": "<strong>PM Dashboard</strong> — Add completed projects section and weekly report highlights",
+      "time": "Mar 13",
+      "color": "var(--green-bg)"
+    },
+    {
+      "icon": "🚀",
+      "text": "<strong>PM Dashboard</strong> — Update Job Costing — PDF export shipped, milestone complete",
+      "time": "Mar 13",
+      "color": "var(--green-bg)"
+    },
+    {
+      "icon": "💬",
+      "text": "<strong>PM Dashboard</strong> — Remove historical trend tracking from Job Costing backlog",
+      "time": "Mar 13",
+      "color": "var(--blue-glow)"
+    },
+    {
+      "icon": "🔧",
+      "text": "<strong>PM Dashboard</strong> — Fix PM app milestones — scope interviews are 30% done, project is 0% overall",
+      "time": "Mar 13",
+      "color": "var(--green-bg)"
+    },
+    {
+      "icon": "📦",
+      "text": "<strong>PM Dashboard</strong> — Update PM app milestones to reflect ~30% scope & requirements progress",
+      "time": "Mar 13",
+      "color": "var(--blue-glow)"
+    },
+    {
+      "icon": "📦",
+      "text": "<strong>PM Dashboard</strong> — Update dashboard — Mar 11-13 estimator progress, PM app scope interviews started",
+      "time": "Mar 13",
+      "color": "var(--blue-glow)"
+    },
+    {
+      "icon": "🔧",
+      "text": "<strong>PM Dashboard</strong> — Fix archive dedup — match by week range, not just dateSlug",
+      "time": "Mar 11",
+      "color": "var(--green-bg)"
+    },
+    {
+      "icon": "💬",
+      "text": "<strong>PM Dashboard</strong> — Auto-clean stale localStorage — remove duplicates and outdated overrides",
+      "time": "Mar 11",
+      "color": "var(--blue-glow)"
+    },
+    {
+      "icon": "💬",
+      "text": "<strong>PM Dashboard</strong> — Commit all three weekly summaries to data.json (Feb 20, Mar 3, Mar 10)",
+      "time": "Mar 11",
+      "color": "var(--blue-glow)"
+    },
+    {
+      "icon": "💬",
+      "text": "<strong>PM Dashboard</strong> — Archive backfill weekly report for Feb 20 – Mar 3",
+      "time": "Mar 11",
+      "color": "var(--blue-glow)"
+    },
+    {
+      "icon": "💬",
+      "text": "<strong>PM Dashboard</strong> — Replace Weekly Summary with Weekly Report — HTML with charts, auto-archive",
+      "time": "Mar 11",
+      "color": "var(--blue-glow)"
+    },
+    {
+      "icon": "🔧",
+      "text": "<strong>PM Dashboard</strong> — Fix email send — use curl instead of urllib to avoid Cloudflare blocks",
+      "time": "Mar 11",
+      "color": "var(--green-bg)"
+    },
+    {
+      "icon": "✨",
+      "text": "<strong>PM Dashboard</strong> — Add weekly PM report with progress charts, emailed Friday 3:30pm PST",
+      "time": "Mar 11",
+      "color": "var(--green-bg)"
+    },
+    {
+      "icon": "✨",
+      "text": "<strong>PM Dashboard</strong> — Add Friday 3pm PST schedule to auto-update workflow",
+      "time": "Mar 11",
+      "color": "var(--green-bg)"
+    },
+    {
+      "icon": "📦",
+      "text": "<strong>PM Dashboard</strong> — Auto-update activity from recent commits",
+      "time": "Mar 11",
+      "color": "var(--blue-glow)"
+    },
+    {
       "icon": "📄",
       "text": "<strong>Job Costing</strong> — PDF export / reporting shipped",
       "time": "Mar 13",
@@ -1015,14 +1129,14 @@
       "weekStart": "Feb 20, 2026",
       "weekEnd": "Mar 3, 2026",
       "generatedAt": "2026-03-03T17:00:00.000Z",
-      "markdown": "# Pacific Enclosures — Weekly Report\n**Feb 20, 2026 \u2013 Mar 3, 2026**\n\n## Progress\n| Project | Progress | Status |\n|---------|----------|--------|\n| Job Costing Dashboard | 82% (9/11) | production |\n| Estimator App | 47% (22/47) | beta |\n| Project Management App | 0% (0/4) | pipeline |\n| Purchasing App | 0% (0/4) | pipeline |\n\n## In Progress\n- **Estimator App** — RFP UI testing — paste text + PDF upload validation\n\n## Activity (Feb 20 – Mar 3)\n- Estimator — 118/118 accuracy tests passing across all 4 reference estimates (0 failures) _(Feb 25)_\n- Estimator — 10 finishing toggle hours recalibrated against Excel rows (BC Hydro 305→358, Treaty Creek 553→577) _(Feb 25)_\n- Estimator — Finishing material costs fixed: checkplate for no-tank walkin, enhanced PM items (all refs within 1%) _(Feb 25)_\n- Estimator — Expected values corrected from actual Excel extraction (BC Hydro & Treaty Creek were using app output) _(Feb 25)_\n- Job Costing v1.1 — Labour Cost tracking added across full stack + budget export CSV endpoint _(Feb 24)_\n- Estimator — Major quote totals fix: detailed line-item calculations replacing simplified formula ($83K → $401K) _(Feb 24)_\n- Estimator — RFP sound parsing fixed (meters-to-feet conversion), 7 missing toggle checkboxes added _(Feb 24)_\n- Estimator — Project infrastructure: reference estimates (BC Hydro 150kW, Treaty Creek 150kW), data configs, tests, docs _(Feb 24)_\n- Estimator — UI readability: label contrast, Advanced Overrides toggle fix, Project Options styling _(Feb 24)_\n- Estimator — Security hardened: SQL injection fixes, error sanitization, security headers, database hardening _(Feb 22)_\n- Estimator — Deployment-ready: Procfile, runtime.txt, requirements.txt, /health endpoint, singleton caching _(Feb 22)_\n- Estimator — Structured logging + input validation (kW, enclosure type, construction, tank) _(Feb 22)_\n- Estimator — 300kW Princeton RCMP test baseline created, 500kW DFEK Seattle fixes _(Feb 22)_\n\n---\n_Generated from PE PM Dashboard — Mar 3, 2026_\n"
+      "markdown": "# Pacific Enclosures — Weekly Report\n**Feb 20, 2026 – Mar 3, 2026**\n\n## Progress\n| Project | Progress | Status |\n|---------|----------|--------|\n| Job Costing Dashboard | 82% (9/11) | production |\n| Estimator App | 47% (22/47) | beta |\n| Project Management App | 0% (0/4) | pipeline |\n| Purchasing App | 0% (0/4) | pipeline |\n\n## In Progress\n- **Estimator App** — RFP UI testing — paste text + PDF upload validation\n\n## Activity (Feb 20 – Mar 3)\n- Estimator — 118/118 accuracy tests passing across all 4 reference estimates (0 failures) _(Feb 25)_\n- Estimator — 10 finishing toggle hours recalibrated against Excel rows (BC Hydro 305→358, Treaty Creek 553→577) _(Feb 25)_\n- Estimator — Finishing material costs fixed: checkplate for no-tank walkin, enhanced PM items (all refs within 1%) _(Feb 25)_\n- Estimator — Expected values corrected from actual Excel extraction (BC Hydro & Treaty Creek were using app output) _(Feb 25)_\n- Job Costing v1.1 — Labour Cost tracking added across full stack + budget export CSV endpoint _(Feb 24)_\n- Estimator — Major quote totals fix: detailed line-item calculations replacing simplified formula ($83K → $401K) _(Feb 24)_\n- Estimator — RFP sound parsing fixed (meters-to-feet conversion), 7 missing toggle checkboxes added _(Feb 24)_\n- Estimator — Project infrastructure: reference estimates (BC Hydro 150kW, Treaty Creek 150kW), data configs, tests, docs _(Feb 24)_\n- Estimator — UI readability: label contrast, Advanced Overrides toggle fix, Project Options styling _(Feb 24)_\n- Estimator — Security hardened: SQL injection fixes, error sanitization, security headers, database hardening _(Feb 22)_\n- Estimator — Deployment-ready: Procfile, runtime.txt, requirements.txt, /health endpoint, singleton caching _(Feb 22)_\n- Estimator — Structured logging + input validation (kW, enclosure type, construction, tank) _(Feb 22)_\n- Estimator — 300kW Princeton RCMP test baseline created, 500kW DFEK Seattle fixes _(Feb 22)_\n\n---\n_Generated from PE PM Dashboard — Mar 3, 2026_\n"
     },
     {
       "dateSlug": "2026-02-20",
       "weekStart": "Feb 13, 2026",
       "weekEnd": "Feb 20, 2026",
       "generatedAt": "2026-02-20T16:18:00.000Z",
-      "markdown": "# Pacific Enclosures \u2014 Weekly Report\n**Feb 13, 2026 \u2013 Feb 20, 2026**\n\n## Progress\n| Project | Progress | Status |\n|---------|----------|--------|\n| Job Costing Dashboard | 55% (6/11) | active |\n| Estimator App | 19% (9/47) | beta |\n| Project Management App | 0% (0/4) | pipeline |\n| Purchasing App | 0% (0/4) | pipeline |\n\n## Key Highlights\n- **Job Costing** \u2014 30% of current project data uploaded\n- **Estimator** \u2014 500kW DFEK Seattle fully calibrated (design specs exact, finishing materials -0.00%, labour hours exact match)\n- **Estimator** \u2014 13 JSON data lookup tables built (clearances, labor rates, materials, sizing, sound levels)\n- **Estimator** \u2014 Automated accuracy test suite + 3 reference benchmarks (150kW, 300kW, 500kW)\n- **Estimator** \u2014 RFP parser with batch processing built\n- **Estimator** \u2014 Repo restructured with CLAUDE.md docs\n- **PM Dashboard** \u2014 Created for tracking all PE development projects\n\n## Activity\n- Job Costing \u2014 30% of current project data uploaded _(Feb 19)_\n- Estimator \u2014 500kW DFEK Seattle calibrated _(Feb 19)_\n- Estimator \u2014 13 JSON data lookup tables built _(Feb 19)_\n- Estimator \u2014 Automated accuracy test suite + 3 reference benchmarks _(Feb 19)_\n- Estimator \u2014 RFP parser with batch processing built _(Feb 19)_\n- Estimator \u2014 Repo restructured, CLAUDE.md docs _(Feb 19)_\n- PM Dashboard created _(Feb 12)_\n\n---\n_Generated from PE PM Dashboard \u2014 Feb 20, 2026_\n"
+      "markdown": "# Pacific Enclosures — Weekly Report\n**Feb 13, 2026 – Feb 20, 2026**\n\n## Progress\n| Project | Progress | Status |\n|---------|----------|--------|\n| Job Costing Dashboard | 55% (6/11) | active |\n| Estimator App | 19% (9/47) | beta |\n| Project Management App | 0% (0/4) | pipeline |\n| Purchasing App | 0% (0/4) | pipeline |\n\n## Key Highlights\n- **Job Costing** — 30% of current project data uploaded\n- **Estimator** — 500kW DFEK Seattle fully calibrated (design specs exact, finishing materials -0.00%, labour hours exact match)\n- **Estimator** — 13 JSON data lookup tables built (clearances, labor rates, materials, sizing, sound levels)\n- **Estimator** — Automated accuracy test suite + 3 reference benchmarks (150kW, 300kW, 500kW)\n- **Estimator** — RFP parser with batch processing built\n- **Estimator** — Repo restructured with CLAUDE.md docs\n- **PM Dashboard** — Created for tracking all PE development projects\n\n## Activity\n- Job Costing — 30% of current project data uploaded _(Feb 19)_\n- Estimator — 500kW DFEK Seattle calibrated _(Feb 19)_\n- Estimator — 13 JSON data lookup tables built _(Feb 19)_\n- Estimator — Automated accuracy test suite + 3 reference benchmarks _(Feb 19)_\n- Estimator — RFP parser with batch processing built _(Feb 19)_\n- Estimator — Repo restructured, CLAUDE.md docs _(Feb 19)_\n- PM Dashboard created _(Feb 12)_\n\n---\n_Generated from PE PM Dashboard — Feb 20, 2026_\n"
     }
   ]
 }
