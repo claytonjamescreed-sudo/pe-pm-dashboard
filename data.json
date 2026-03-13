@@ -1118,6 +1118,13 @@
   ],
   "weeklySummaries": [
     {
+      "dateSlug": "2026-03-13",
+      "weekStart": "Mar 06, 2026",
+      "weekEnd": "Mar 13, 2026",
+      "generatedAt": "2026-03-13T23:50:25.468104",
+      "markdown": "# Pacific Enclosures — Weekly Report\n**Mar 06, 2026 – Mar 13, 2026**\n\n## Progress\n| Project | Progress | Status |\n|---------|----------|--------|\n| Job Costing Dashboard | 100% (10/10) | production |\n| Estimator App | 55% (30/55) | beta |\n| Project Management App | 0% (0/6) | planning |\n| Purchasing App | 0% (0/4) | pipeline |\n\n## Completed Projects\n- **Job Costing Dashboard** — 10/10 milestones | Python, Flask, SQLite, Chart.js | Heroku\n\n## In Progress\n- **Estimator App** — RFP UI testing — paste text + PDF upload validation\n- **Project Management App** — Scope & requirements — interviews ~30% complete\n\n## Recent Activity\n- Job Costing — Add PDF report download button to nav bar _(Mar 13)_\n- Estimator — Expand option flags from 47 to 122 UI controls (117 unique params), matching Excel's 120+ flag system _(Mar 12)_\n- Estimator — Add steel fabrication, PDF generator, 47 configurable options, 3 new reference projects, and gunicorn compatibility _(Mar 11)_\n- PM Dashboard — Differentiate badge colors — planning is purple, review is cyan _(Mar 13)_\n- PM Dashboard — Add completed projects section and weekly report highlights _(Mar 13)_\n- PM Dashboard — Update Job Costing — PDF export shipped, milestone complete _(Mar 13)_\n- PM Dashboard — Remove historical trend tracking from Job Costing backlog _(Mar 13)_\n- PM Dashboard — Fix PM app milestones — scope interviews are 30% done, project is 0% overall _(Mar 13)_\n- PM Dashboard — Update PM app milestones to reflect ~30% scope & requirements progress _(Mar 13)_\n- PM Dashboard — Update dashboard — Mar 11-13 estimator progress, PM app scope interviews started _(Mar 13)_\n\n---\n_Generated from PE PM Dashboard — Mar 13, 2026_\n"
+    },
+    {
       "dateSlug": "2026-03-10",
       "weekStart": "Mar 3, 2026",
       "weekEnd": "Mar 10, 2026",
