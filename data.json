@@ -379,35 +379,10 @@
       "repo": "TBD",
       "milestones": [
         {
-          "text": "Identify key stakeholders & schedule interviews",
-          "done": true,
-          "date": "Mar 2026"
-        },
-        {
-          "text": "Define interview framework & key questions",
-          "done": true,
-          "date": "Mar 2026"
-        },
-        {
-          "text": "Map existing workflows & current pain points",
-          "done": true,
-          "date": "Mar 2026"
-        },
-        {
-          "text": "Conduct remaining stakeholder interviews",
+          "text": "Scope & requirements — interviews ~30% complete",
           "done": false,
           "current": true,
           "date": "In Progress"
-        },
-        {
-          "text": "Compile findings & document requirements",
-          "done": false,
-          "date": "Upcoming"
-        },
-        {
-          "text": "Prioritize features & define MVP scope",
-          "done": false,
-          "date": "Upcoming"
         },
         {
           "text": "Define tech stack & architecture",
