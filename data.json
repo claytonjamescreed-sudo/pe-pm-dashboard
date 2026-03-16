@@ -690,6 +690,18 @@
   ],
   "activity": [
     {
+      "icon": "🔧",
+      "text": "<strong>Estimator</strong> — Fix Princeton RCMP calibration: power_by_others flag + skintight enclosure support",
+      "time": "Mar 14",
+      "color": "var(--green-bg)"
+    },
+    {
+      "icon": "💬",
+      "text": "<strong>PM Dashboard</strong> — Archive weekly report summary",
+      "time": "Mar 13",
+      "color": "var(--blue-glow)"
+    },
+    {
       "icon": "✨",
       "text": "<strong>Job Costing</strong> — Add PDF report download button to nav bar",
       "time": "Mar 13",
