@@ -690,6 +690,60 @@
   ],
   "activity": [
     {
+      "icon": "✨",
+      "text": "<strong>Job Costing</strong> — Add Estimated GP and Realized GP rows to detail tables",
+      "time": "Mar 16",
+      "color": "var(--green-bg)"
+    },
+    {
+      "icon": "💬",
+      "text": "<strong>Job Costing</strong> — Move Invoiced to Date into the detail table as a row",
+      "time": "Mar 16",
+      "color": "var(--blue-glow)"
+    },
+    {
+      "icon": "✨",
+      "text": "<strong>Job Costing</strong> — Add delete job button to dashboard",
+      "time": "Mar 16",
+      "color": "var(--green-bg)"
+    },
+    {
+      "icon": "⚙️",
+      "text": "<strong>Job Costing</strong> — Clean up orphan jobs after SAGE import",
+      "time": "Mar 16",
+      "color": "var(--blue-glow)"
+    },
+    {
+      "icon": "💬",
+      "text": "<strong>Estimator</strong> — Move Advanced Overrides card to Step 2 (Options) for discoverability",
+      "time": "Mar 18",
+      "color": "var(--blue-glow)"
+    },
+    {
+      "icon": "🔧",
+      "text": "<strong>Estimator</strong> — Fix /estimate route to use accurate detailed-tab totals and add missing UI fields",
+      "time": "Mar 18",
+      "color": "var(--green-bg)"
+    },
+    {
+      "icon": "✨",
+      "text": "<strong>Estimator</strong> — Add toggle persistence in saved quotes and client management system",
+      "time": "Mar 18",
+      "color": "var(--green-bg)"
+    },
+    {
+      "icon": "✨",
+      "text": "<strong>Estimator</strong> — Add delete, duplicate, and revision history to quote management UI",
+      "time": "Mar 18",
+      "color": "var(--green-bg)"
+    },
+    {
+      "icon": "💬",
+      "text": "<strong>Estimator</strong> — Wire power_by_others toggle through to FM and GI calculation calls",
+      "time": "Mar 18",
+      "color": "var(--blue-glow)"
+    },
+    {
       "icon": "🔧",
       "text": "<strong>Estimator</strong> — Fix Princeton RCMP calibration: power_by_others flag + skintight enclosure support",
       "time": "Mar 14",
