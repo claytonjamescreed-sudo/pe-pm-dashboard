@@ -443,6 +443,27 @@
   ],
   "timeline": [
     {
+      "date": "Mar 18, 2026",
+      "title": "Estimator — Auto-Calculate Labor Hours & Real GP Rates",
+      "desc": "8 of 9 labor categories now auto-calculate (fab, drafting, overhead, consulting). GP% uses actual cost rates ($45 fab, $35 finishing, $40 elec/mech/install, $100 eng, $50 drafting, $42 overhead, $250 consulting) instead of flat 45%. Quote accuracy improved from 2.6% to 0.8% vs Excel.",
+      "project": "estimator",
+      "color": "green"
+    },
+    {
+      "date": "Mar 18, 2026",
+      "title": "Estimator — Genset DB Fix & Fab Rate Wiring",
+      "desc": "Fixed C150D6D genset width (156\" skid \u2192 40\" engine), which was inflating discharge damper sizing by 17x. Weight-based fabrication rate fully wired from steel fab module through UI (~$117/hr vs old flat $125/hr).",
+      "project": "estimator",
+      "color": "green"
+    },
+    {
+      "date": "Mar 18, 2026",
+      "title": "Estimator — New UI Toggles & Fabrication Config",
+      "desc": "Added Jacket Water Piping, NGR, Oil Tanks, Glycol Tanks, Removable Wall Weight, and Engineering Complexity dropdown. Fabrication config JS wiring for structural items (monorail, columns, removable walls, lip on tank).",
+      "project": "estimator",
+      "color": "blue"
+    },
+    {
       "date": "Mar 13, 2026",
       "title": "Job Costing — PDF Export Shipped",
       "desc": "PDF download functionality added to Job Costing Dashboard. Users can now export job reports as PDF files.",
@@ -642,27 +663,6 @@
       "date": "Feb 19, 2026",
       "title": "RFP Parser & Repo Restructure",
       "desc": "RFP parser with batch processing built. Full repo restructured with clean organization, CLAUDE.md documentation, and archived old analysis files.",
-      "project": "estimator",
-      "color": "blue"
-    },
-    {
-      "date": "Feb 18, 2026",
-      "title": "Estimator — Auto-Calculate Labor Hours & Real GP Rates",
-      "desc": "8 of 9 labor categories now auto-calculate (fab, drafting, overhead, consulting). GP% uses actual cost rates ($45 fab, $35 finishing, $40 elec/mech/install, $100 eng, $50 drafting, $42 overhead, $250 consulting) instead of flat 45%. Quote accuracy improved from 2.6% to 0.8% vs Excel.",
-      "project": "estimator",
-      "color": "green"
-    },
-    {
-      "date": "Feb 18, 2026",
-      "title": "Estimator — Genset DB Fix & Fab Rate Wiring",
-      "desc": "Fixed C150D6D genset width (156\" skid → 40\" engine), which was inflating discharge damper sizing by 17x. Weight-based fabrication rate fully wired from steel fab module through UI (~$117/hr vs old flat $125/hr).",
-      "project": "estimator",
-      "color": "green"
-    },
-    {
-      "date": "Feb 18, 2026",
-      "title": "Estimator — New UI Toggles & Fabrication Config",
-      "desc": "Added Jacket Water Piping, NGR, Oil Tanks, Glycol Tanks, Removable Wall Weight, and Engineering Complexity dropdown. Fabrication config JS wiring for structural items (monorail, columns, removable walls, lip on tank).",
       "project": "estimator",
       "color": "blue"
     },
@@ -1163,19 +1163,19 @@
     {
       "icon": "⚙️",
       "text": "<strong>Estimator</strong> — Auto-calculate 8/9 labor categories, real GP cost rates ($45-$250/hr), quote accuracy 2.6% → 0.8%",
-      "time": "Feb 18",
+      "time": "Mar 18",
       "color": "var(--green-bg)"
     },
     {
       "icon": "🔧",
       "text": "<strong>Estimator</strong> — Fixed C150D6D genset width (17x damper oversizing), weight-based fab rate wired (~$117/hr)",
-      "time": "Feb 18",
+      "time": "Mar 18",
       "color": "var(--green-bg)"
     },
     {
       "icon": "🎛️",
       "text": "<strong>Estimator</strong> — New toggles (jacket water, NGR, oil/glycol tanks, removable wall) + fabrication config JS wiring",
-      "time": "Feb 18",
+      "time": "Mar 18",
       "color": "var(--blue-glow)"
     },
     {
