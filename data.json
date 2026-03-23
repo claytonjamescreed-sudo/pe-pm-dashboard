@@ -711,6 +711,18 @@
   ],
   "activity": [
     {
+      "icon": "🔧",
+      "text": "<strong>PM Dashboard</strong> — Fix dates — Feb 18 entries should be Mar 18, move to correct timeline position",
+      "time": "Mar 20",
+      "color": "var(--green-bg)"
+    },
+    {
+      "icon": "🔧",
+      "text": "<strong>PM Dashboard</strong> — Add Feb 18 estimator work — auto labor hours, real GP rates, genset DB fix",
+      "time": "Mar 20",
+      "color": "var(--green-bg)"
+    },
+    {
       "icon": "✨",
       "text": "<strong>Job Costing</strong> — Add Estimated GP and Realized GP rows to detail tables",
       "time": "Mar 16",
