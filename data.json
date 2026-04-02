@@ -64,15 +64,20 @@
           "text": "PDF export / reporting",
           "done": true,
           "date": "Mar 2026"
+        },
+        {
+          "text": "Labour hours tracking — timesheet sync from Box, actual vs estimated hours per job, employee breakdown",
+          "done": true,
+          "date": "Apr 2026"
         }
       ]
     },
     {
       "id": "estimator",
       "name": "Estimator App",
-      "description": "Generator enclosure quoting tool — reimplements PE's master Excel estimating logic into a web app. 227/227 accuracy tests passing across 7 reference estimates. 122 configurable UI options (80 dropdowns + 42 toggles) matching Excel's 120+ flag system. Steel fabrication calibrated across 4 projects. PDF quote generation. Wizard UI with 3-step flow. Multi-manufacturer genset specs. RFP parser with UI form pre-fill. Security hardened, deployment-ready.",
+      "description": "Generator enclosure quoting tool — reimplements PE's master Excel estimating logic into a web app. 301/323 accuracy tests passing across 10 reference estimates (93.2%), all total quotes within 2% of Excel. Covers 150kW–2750kW, skintight/walk-in, UL/ULC tanks, day tanks, fire suppression, 65–95 dBA, multiple manufacturers (ONAN/CAT/GENERAC/KOHLER/MITS). 122 configurable UI options (80 dropdowns + 42 toggles). Steel fabrication calibrated. PDF quote generation. Wizard UI. Multi-manufacturer genset specs. RFP parser with UI form pre-fill.",
       "status": "beta",
-      "version": "v0.7-dev",
+      "version": "v0.8-dev",
       "tech": [
         "Python",
         "Flask",
@@ -219,6 +224,31 @@
           "date": "Mar 2026"
         },
         {
+          "text": "8th reference — 150kW Centre Mountain PS (skintight, subbase tank, ULC, GENERAC) — 32/32 passing",
+          "done": true,
+          "date": "Apr 2026"
+        },
+        {
+          "text": "9th reference — 1000kW FedEx ANCA PPG (walk-in, day tank, 95 dBA, CAT, Inergen) — 21/32",
+          "done": true,
+          "date": "Apr 2026"
+        },
+        {
+          "text": "10th reference — 2750kW Bull Run Filtration (walk-in, subbase tank, UL, ONAN) — 21/32",
+          "done": true,
+          "date": "Apr 2026"
+        },
+        {
+          "text": "14 formula fixes — tank engine rebuild, day tank scaling, muffler/blanket for all dBA, output wiring >600kW, GI silencer for large walk-ins, weight-based mount labor, hood fabrication, Inergen fire suppression tier",
+          "done": true,
+          "date": "Apr 2026"
+        },
+        {
+          "text": "301/323 accuracy checks across 10 reference projects (93.2%) — all total quotes within 2% of Excel",
+          "done": true,
+          "date": "Apr 2026"
+        },
+        {
           "text": "Multi-manufacturer genset specs (ONAN/KOHLER/CAT/MITS/SIMMAX with brand aliases)",
           "done": true,
           "date": "Mar 2026"
@@ -234,10 +264,26 @@
           "date": "Mar 2026"
         },
         {
-          "text": "RFP UI testing — paste text + PDF upload validation",
+          "text": "Fine-tune section labor hours for FedEx and Bull Run (totals accurate, section breakdowns need tightening)",
           "done": false,
           "current": true,
           "date": "In Progress"
+        },
+        {
+          "text": "Improve FM weight calculations for large enclosures",
+          "done": false,
+          "current": true,
+          "date": "In Progress"
+        },
+        {
+          "text": "Add more reference estimates — reduce per-project overrides for new estimates without manual calibration",
+          "done": false,
+          "date": "Upcoming"
+        },
+        {
+          "text": "RFP UI testing — paste text + PDF upload validation",
+          "done": false,
+          "date": "Upcoming"
         },
         {
           "text": "Genset database verification & cleanup",
@@ -245,27 +291,7 @@
           "date": "Upcoming"
         },
         {
-          "text": "Labour hour calibration across all enclosure types",
-          "done": false,
-          "date": "Upcoming"
-        },
-        {
-          "text": "Material cost calibration & markup validation",
-          "done": false,
-          "date": "Upcoming"
-        },
-        {
           "text": "Rate escalation logic testing",
-          "done": false,
-          "date": "Upcoming"
-        },
-        {
-          "text": "Sound level & clearance calculations validation",
-          "done": false,
-          "date": "Upcoming"
-        },
-        {
-          "text": "Tank configuration testing (UL/ULC/2085)",
           "done": false,
           "date": "Upcoming"
         },
@@ -362,47 +388,89 @@
       ]
     },
     {
-      "id": "project-management",
-      "name": "Project Management App",
-      "description": "Internal project management tool for Pacific Enclosures. Scope and requirements interviews underway with stakeholders.",
+      "id": "operations-platform",
+      "name": "Operations & Communication Platform",
+      "description": "Internal operations and communication platform for Pacific Enclosures. Discovery complete: 3 sessions with Craig Perkins (PM) and Darren Rogers (Owner), requirements doc v1 drafted. Craig is primary user. Key pain points: no purchasing visibility, drawing revision tracking, change order gaps, USB-based file access, status chasing. 12-month rollout (1 day/week). Phase 1 go-live Month 5, Phase 2 Month 9, Phase 3 Month 12. M365 migration, Teams adoption (gradual/opt-in), company communication as Workstream 1. Project plan sent to Darren for review.",
       "status": "planning",
       "version": "—",
       "tech": [
-        "TBD"
+        "M365",
+        "Teams",
+        "SAGE 50"
       ],
       "deployment": "TBD",
       "repo": "TBD",
       "milestones": [
         {
-          "text": "Scope & requirements — interviews ~30% complete",
+          "text": "Discovery Session 1 — Craig Perkins: current state, pain points, zero shared digital tools, USB-based file access",
+          "done": true,
+          "date": "Mar 2026"
+        },
+        {
+          "text": "Discovery Session 2 — Darren Rogers: vision, rollout strategy, team dynamics, success criteria",
+          "done": true,
+          "date": "Mar 2026"
+        },
+        {
+          "text": "Discovery Session 3 — Craig Perkins: detailed requirements, gap filling, MoSCoW prioritization",
+          "done": true,
+          "date": "Mar 2026"
+        },
+        {
+          "text": "Discovery deliverables — facilitation guide, 41-question framework, discovery deck, requirements doc v1",
+          "done": true,
+          "date": "Mar 2026"
+        },
+        {
+          "text": "Project plan document produced — sent to Darren for review",
+          "done": true,
+          "date": "Apr 2026"
+        },
+        {
+          "text": "AskAlex audits — croc brain, perspectives, balance checks on plan & email",
+          "done": true,
+          "date": "Apr 2026"
+        },
+        {
+          "text": "Calendar events scheduled — interviews, milestones, quarterly reviews through Mar 2027",
+          "done": true,
+          "date": "Apr 2026"
+        },
+        {
+          "text": "Walk through plan with Darren (Apr 9) — incorporate feedback into v2",
           "done": false,
           "current": true,
           "date": "In Progress"
         },
         {
-          "text": "Define tech stack & architecture",
+          "text": "Darren vision communication to team (Apr 8)",
           "done": false,
-          "date": "TBD"
+          "date": "Upcoming"
         },
         {
-          "text": "UI/UX design & wireframes",
+          "text": "Pre-build Month 1 — stakeholder interviews (Paul Tiwana, Heather Peters, Kyle, Craig Bannon)",
           "done": false,
-          "date": "TBD"
+          "date": "Upcoming"
         },
         {
-          "text": "Core development — MVP build",
+          "text": "Pre-build — SAGE 50 ODBC test, Box folder setup, M365 migration",
           "done": false,
-          "date": "TBD"
+          "date": "Upcoming"
         },
         {
-          "text": "Testing & iteration",
+          "text": "Phase 1 go-live — Month 5 (Aug 2026)",
           "done": false,
-          "date": "TBD"
+          "date": "Aug 2026"
         },
         {
-          "text": "Deployment & rollout",
+          "text": "Phase 2 complete — Month 9 (Dec 2026)",
           "done": false,
-          "date": "TBD"
+          "date": "Dec 2026"
+        },
+        {
+          "text": "Phase 3 complete — Month 12 (Mar 2027)",
+          "done": false,
+          "date": "Mar 2027"
         }
       ]
     },
@@ -443,6 +511,48 @@
   ],
   "timeline": [
     {
+      "date": "Apr 2, 2026",
+      "title": "Operations Platform — Project Plan Produced",
+      "desc": "Renamed from 'Project Management App' to 'Operations & Communication Platform'. Complete project plan document produced for Darren's review. 12-month timeline: Phase 1 go-live Month 5, Phase 2 Month 9, Phase 3 Month 12. People-first approach, M365 migration, Teams adoption (gradual/opt-in), company communication as Workstream 1. Calendar events scheduled through Mar 2027. AskAlex audits run on all key sections.",
+      "project": "operations-platform",
+      "color": "green"
+    },
+    {
+      "date": "Apr 2, 2026",
+      "title": "Job Costing — Labour Hours Tracking Shipped",
+      "desc": "Added timesheet sync from Box: actual hours vs estimated hours per job with employee breakdown. Sync Hours button processes all .xlsx timesheets in one click. Re-sync safe (replaces, never duplicates). Budgeted hours via CSV export/re-upload. New labour_hours DB table + budgeted_hours field with auto-migration.",
+      "project": "job-costing",
+      "color": "green"
+    },
+    {
+      "date": "Apr 2, 2026",
+      "title": "Estimator — 3 New References, 14 Formula Fixes",
+      "desc": "Added Centre Mountain PS (150kW, skintight, ULC, GENERAC), FedEx ANCA PPG (1000kW, walk-in, day tank, 95 dBA, CAT), Bull Run Filtration (2750kW, walk-in, UL, ONAN). 14 formula fixes: tank engine rebuilt with stepped interpolation, day tank scaling, muffler/blanket for all dBA, output wiring >600kW, GI silencer for large walk-ins, weight-based mount labor, hood fabrication, Inergen fire suppression tier, fire suppression toggle bug fix.",
+      "project": "estimator",
+      "color": "green"
+    },
+    {
+      "date": "Apr 2, 2026",
+      "title": "Estimator — 301/323 Checks, 10 Projects, All Within 2%",
+      "desc": "93.2% of checks passing across 10 reference projects covering 150kW–2750kW. All 10 total quotes within 2% of Excel. Configs tested: skintight/walk-in, UL/ULC tanks, day tanks, fire suppression, stairs, 65–95 dBA, ONAN/CAT/GENERAC manufacturers, Canadian/USA projects.",
+      "project": "estimator",
+      "color": "green"
+    },
+    {
+      "date": "Mar 27, 2026",
+      "title": "Operations Platform — Discovery Phase Complete",
+      "desc": "3 sessions completed: Craig Perkins (PM) x2 and Darren Rogers (Owner). Current state mapped — zero shared digital tools, USB-based files, verbal communication. Top pain points: no purchasing visibility, drawing revision cycles, change order gaps, status chasing. Three-layer estimation process identified (Eric/Craig/Kyle). Craig confirmed as primary user. Deliverables: facilitation guide, 41-question discovery framework, discovery deck, requirements doc v1 with MoSCoW prioritization.",
+      "project": "operations-platform",
+      "color": "green"
+    },
+    {
+      "date": "Mar 27, 2026",
+      "title": "Operations Platform — Rollout Strategy & Decisions",
+      "desc": "Key decisions: Craig is primary dashboard user and data maintainer. Paul gets Excel template for PO tracking. Heather changes nothing (system adapts to SAGE). Kyle's milestones handled by Craig. Drawing revision threshold: 2 rounds before billing clients. Box for shared files — Craig's USB migration is first trust-building win. Darren's rollout: vision communication first → 1-on-1s → group demo → phased launch.",
+      "project": "operations-platform",
+      "color": "blue"
+    },
+    {
       "date": "Mar 18, 2026",
       "title": "Estimator — Auto-Calculate Labor Hours & Real GP Rates",
       "desc": "8 of 9 labor categories now auto-calculate (fab, drafting, overhead, consulting). GP% uses actual cost rates ($45 fab, $35 finishing, $40 elec/mech/install, $100 eng, $50 drafting, $42 overhead, $250 consulting) instead of flat 45%. Quote accuracy improved from 2.6% to 0.8% vs Excel.",
@@ -474,7 +584,7 @@
       "date": "Mar 13, 2026",
       "title": "Project Management — Scope Interviews Started",
       "desc": "Began conducting scope and requirements interviews with stakeholders for the Project Management App. Project moved from pipeline to active planning.",
-      "project": "project-management",
+      "project": "operations-platform",
       "color": "amber"
     },
     {
@@ -711,15 +821,57 @@
   ],
   "activity": [
     {
-      "icon": "🔧",
-      "text": "<strong>PM Dashboard</strong> — Fix dates — Feb 18 entries should be Mar 18, move to correct timeline position",
-      "time": "Mar 20",
+      "icon": "🔍",
+      "text": "<strong>Operations Platform</strong> — 3 discovery sessions completed (Craig x2, Darren x1) — current state mapped, pain points prioritized",
+      "time": "Mar 27",
+      "color": "var(--blue-glow)"
+    },
+    {
+      "icon": "📄",
+      "text": "<strong>Operations Platform</strong> — Deliverables: facilitation guide, 41-question framework, discovery deck, requirements doc v1",
+      "time": "Mar 27",
+      "color": "var(--blue-glow)"
+    },
+    {
+      "icon": "📋",
+      "text": "<strong>Operations Platform</strong> — Project plan document produced and sent to Darren — 12-month rollout, 3 phases",
+      "time": "Apr 2",
+      "color": "var(--green-bg)"
+    },
+    {
+      "icon": "💬",
+      "text": "<strong>Operations Platform</strong> — Renamed from Project Management App → Operations & Communication Platform",
+      "time": "Apr 2",
+      "color": "var(--blue-glow)"
+    },
+    {
+      "icon": "📅",
+      "text": "<strong>Operations Platform</strong> — Calendar events scheduled: interviews, demos, quarterly reviews through Mar 2027",
+      "time": "Apr 2",
+      "color": "var(--blue-glow)"
+    },
+    {
+      "icon": "🚀",
+      "text": "<strong>Job Costing</strong> — Labour hours tracking shipped — timesheet sync from Box, actual vs estimated hours, employee breakdown",
+      "time": "Apr 2",
+      "color": "var(--green-bg)"
+    },
+    {
+      "icon": "✨",
+      "text": "<strong>Estimator</strong> — 3 new reference estimates added: Centre Mountain 150kW, FedEx 1000kW, Bull Run 2750kW",
+      "time": "Apr 2",
       "color": "var(--green-bg)"
     },
     {
       "icon": "🔧",
-      "text": "<strong>PM Dashboard</strong> — Add Feb 18 estimator work — auto labor hours, real GP rates, genset DB fix",
-      "time": "Mar 20",
+      "text": "<strong>Estimator</strong> — 14 formula fixes: tank engine rebuild, day tank scaling, muffler/blanket all dBA, output wiring >600kW, fire suppression bug fix",
+      "time": "Apr 2",
+      "color": "var(--green-bg)"
+    },
+    {
+      "icon": "📊",
+      "text": "<strong>Estimator</strong> — 301/323 checks passing (93.2%) across 10 projects, all total quotes within 2% of Excel",
+      "time": "Apr 2",
       "color": "var(--green-bg)"
     },
     {
