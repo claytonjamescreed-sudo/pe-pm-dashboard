@@ -1411,6 +1411,13 @@
   ],
   "weeklySummaries": [
     {
+      "dateSlug": "2026-04-03",
+      "weekStart": "Mar 27, 2026",
+      "weekEnd": "Apr 03, 2026",
+      "generatedAt": "2026-04-03T23:55:31.266639",
+      "markdown": "# Pacific Enclosures — Weekly Report\n**Mar 27, 2026 – Apr 03, 2026**\n\n## Progress\n| Project | Progress | Status |\n|---------|----------|--------|\n| Job Costing Dashboard | 100% (11/11) | production |\n| Estimator App | 59% (35/59) | beta |\n| Operations & Communication Platform | 50% (7/14) | planning |\n| Purchasing App | 0% (0/4) | pipeline |\n\n## Completed Projects\n- **Job Costing Dashboard** — 11/11 milestones | Python, Flask, SQLite, Chart.js | Heroku\n\n## In Progress\n- **Estimator App** — Fine-tune section labor hours for FedEx and Bull Run (totals accurate, section breakdowns need tightening)\n- **Estimator App** — Improve FM weight calculations for large enclosures\n- **Operations & Communication Platform** — Walk through plan with Darren (Apr 9) — incorporate feedback into v2\n\n## Recent Activity\n- Job Costing — Split Hours into separate Est. Hours and Actual Hours columns _(Apr 02)_\n- Job Costing — Skip hours for job numbers not already in the dashboard _(Apr 02)_\n- Job Costing — Add labour hours tracking from Box timesheet Excel files _(Apr 02)_\n- PM Dashboard — Update dashboard — Apr 2 progress across all 3 active projects _(Apr 02)_\n- Operations Platform — 3 discovery sessions completed (Craig x2, Darren x1) — current state mapped, pain points prioritized _(Mar 27)_\n- Operations Platform — Deliverables: facilitation guide, 41-question framework, discovery deck, requirements doc v1 _(Mar 27)_\n- Operations Platform — Project plan document produced and sent to Darren — 12-month rollout, 3 phases _(Apr 2)_\n- Operations Platform — Renamed from Project Management App → Operations & Communication Platform _(Apr 2)_\n- Operations Platform — Calendar events scheduled: interviews, demos, quarterly reviews through Mar 2027 _(Apr 2)_\n- Job Costing — Labour hours tracking shipped — timesheet sync from Box, actual vs estimated hours, employee breakdown _(Apr 2)_\n\n---\n_Generated from PE PM Dashboard — Apr 03, 2026_\n"
+    },
+    {
       "dateSlug": "2026-03-27",
       "weekStart": "Mar 20, 2026",
       "weekEnd": "Mar 27, 2026",
