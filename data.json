@@ -821,6 +821,30 @@
   ],
   "activity": [
     {
+      "icon": "💬",
+      "text": "<strong>Job Costing</strong> — Split Hours into separate Est. Hours and Actual Hours columns",
+      "time": "Apr 02",
+      "color": "var(--blue-glow)"
+    },
+    {
+      "icon": "💬",
+      "text": "<strong>Job Costing</strong> — Skip hours for job numbers not already in the dashboard",
+      "time": "Apr 02",
+      "color": "var(--blue-glow)"
+    },
+    {
+      "icon": "✨",
+      "text": "<strong>Job Costing</strong> — Add labour hours tracking from Box timesheet Excel files",
+      "time": "Apr 02",
+      "color": "var(--green-bg)"
+    },
+    {
+      "icon": "📦",
+      "text": "<strong>PM Dashboard</strong> — Update dashboard — Apr 2 progress across all 3 active projects",
+      "time": "Apr 02",
+      "color": "var(--blue-glow)"
+    },
+    {
       "icon": "🔍",
       "text": "<strong>Operations Platform</strong> — 3 discovery sessions completed (Craig x2, Darren x1) — current state mapped, pain points prioritized",
       "time": "Mar 27",
