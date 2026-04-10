@@ -822,6 +822,24 @@
   "activity": [
     {
       "icon": "💬",
+      "text": "<strong>Job Costing</strong> — Show estimated hours breakdown even when no actual hours exist yet",
+      "time": "Apr 09",
+      "color": "var(--blue-glow)"
+    },
+    {
+      "icon": "💬",
+      "text": "<strong>Job Costing</strong> — Show Sync Estimates card whenever Box is configured",
+      "time": "Apr 09",
+      "color": "var(--blue-glow)"
+    },
+    {
+      "icon": "✨",
+      "text": "<strong>Job Costing</strong> — Add cost-code tracking (FAB/GA/ELEC) and estimate parser for budgeted hours",
+      "time": "Apr 09",
+      "color": "var(--green-bg)"
+    },
+    {
+      "icon": "💬",
       "text": "<strong>Job Costing</strong> — Split Hours into separate Est. Hours and Actual Hours columns",
       "time": "Apr 02",
       "color": "var(--blue-glow)"
