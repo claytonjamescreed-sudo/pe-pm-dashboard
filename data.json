@@ -822,6 +822,72 @@
   "activity": [
     {
       "icon": "💬",
+      "text": "<strong>Estimator</strong> — Rename misleading toggle and remove unused labor_rates.json",
+      "time": "Apr 15",
+      "color": "var(--blue-glow)"
+    },
+    {
+      "icon": "📄",
+      "text": "<strong>Estimator</strong> — Professionalize CLAUDE.md docs following CHIPP best practices",
+      "time": "Apr 15",
+      "color": "var(--purple-bg)"
+    },
+    {
+      "icon": "💬",
+      "text": "<strong>Estimator</strong> — Extend high-kW exhaust tables with Bull Run 2750kW anchors",
+      "time": "Apr 15",
+      "color": "var(--blue-glow)"
+    },
+    {
+      "icon": "✨",
+      "text": "<strong>Estimator</strong> — Add high-kW scaling for day_tank and fire suppression GI items",
+      "time": "Apr 14",
+      "color": "var(--green-bg)"
+    },
+    {
+      "icon": "💬",
+      "text": "<strong>Estimator</strong> — Extend silencer face area table above 2500kW",
+      "time": "Apr 14",
+      "color": "var(--blue-glow)"
+    },
+    {
+      "icon": "🔧",
+      "text": "<strong>Estimator</strong> — Fix UL tank weight formula over-scaling at high kW",
+      "time": "Apr 14",
+      "color": "var(--green-bg)"
+    },
+    {
+      "icon": "🔧",
+      "text": "<strong>Estimator</strong> — Fix UL tank cost formula over-scaling at high kW",
+      "time": "Apr 14",
+      "color": "var(--green-bg)"
+    },
+    {
+      "icon": "🧪",
+      "text": "<strong>Estimator</strong> — Expand PDF quote with 8 build-spec sections",
+      "time": "Apr 14",
+      "color": "var(--blue-glow)"
+    },
+    {
+      "icon": "✨",
+      "text": "<strong>Estimator</strong> — Add CI workflow and Woodfibre LNG 2500kW regression baseline",
+      "time": "Apr 14",
+      "color": "var(--green-bg)"
+    },
+    {
+      "icon": "💬",
+      "text": "<strong>Estimator</strong> — Organize scratch extraction scripts and ignore backups",
+      "time": "Apr 14",
+      "color": "var(--blue-glow)"
+    },
+    {
+      "icon": "🧪",
+      "text": "<strong>Estimator</strong> — Achieve 323/323 test coverage across all 10 reference projects",
+      "time": "Apr 14",
+      "color": "var(--blue-glow)"
+    },
+    {
+      "icon": "💬",
       "text": "<strong>Job Costing</strong> — Show estimated hours breakdown even when no actual hours exist yet",
       "time": "Apr 09",
       "color": "var(--blue-glow)"
