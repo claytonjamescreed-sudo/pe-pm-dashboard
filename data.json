@@ -822,6 +822,12 @@
   "activity": [
     {
       "icon": "💬",
+      "text": "<strong>Job Costing</strong> — Classify US accounts and convert USD→CAD in Sage parser",
+      "time": "Apr 30",
+      "color": "var(--blue-glow)"
+    },
+    {
+      "icon": "💬",
       "text": "<strong>Estimator</strong> — Rename misleading toggle and remove unused labor_rates.json",
       "time": "Apr 15",
       "color": "var(--blue-glow)"
