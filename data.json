@@ -1501,6 +1501,13 @@
   ],
   "weeklySummaries": [
     {
+      "dateSlug": "2026-05-02",
+      "weekStart": "Apr 25, 2026",
+      "weekEnd": "May 02, 2026",
+      "generatedAt": "2026-05-02T00:10:46.255248",
+      "markdown": "# Pacific Enclosures — Weekly Report\n**Apr 25, 2026 – May 02, 2026**\n\n## Progress\n| Project | Progress | Status |\n|---------|----------|--------|\n| Job Costing Dashboard | 100% (11/11) | production |\n| Estimator App | 59% (35/59) | beta |\n| Operations & Communication Platform | 50% (7/14) | planning |\n| Purchasing App | 0% (0/4) | pipeline |\n\n## Completed Projects\n- **Job Costing Dashboard** — 11/11 milestones | Python, Flask, SQLite, Chart.js | Heroku\n\n## In Progress\n- **Estimator App** — Fine-tune section labor hours for FedEx and Bull Run (totals accurate, section breakdowns need tightening)\n- **Estimator App** — Improve FM weight calculations for large enclosures\n- **Operations & Communication Platform** — Walk through plan with Darren (Apr 9) — incorporate feedback into v2\n\n## Recent Activity\n- Job Costing — Classify US accounts and convert USD→CAD in Sage parser _(Apr 30)_\n- Estimator — Rename misleading toggle and remove unused labor_rates.json _(Apr 15)_\n- Estimator — Professionalize CLAUDE.md docs following CHIPP best practices _(Apr 15)_\n- Estimator — Extend high-kW exhaust tables with Bull Run 2750kW anchors _(Apr 15)_\n- Estimator — Add high-kW scaling for day_tank and fire suppression GI items _(Apr 14)_\n- Estimator — Extend silencer face area table above 2500kW _(Apr 14)_\n- Estimator — Fix UL tank weight formula over-scaling at high kW _(Apr 14)_\n- Estimator — Fix UL tank cost formula over-scaling at high kW _(Apr 14)_\n- Estimator — Expand PDF quote with 8 build-spec sections _(Apr 14)_\n- Estimator — Add CI workflow and Woodfibre LNG 2500kW regression baseline _(Apr 14)_\n\n---\n_Generated from PE PM Dashboard — May 02, 2026_\n"
+    },
+    {
       "dateSlug": "2026-04-25",
       "weekStart": "Apr 18, 2026",
       "weekEnd": "Apr 25, 2026",
