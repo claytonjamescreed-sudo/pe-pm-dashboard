@@ -822,6 +822,156 @@
   "activity": [
     {
       "icon": "💬",
+      "text": "<strong>Job Costing</strong> — Rename to 'Project Performance Dashboard' (Rev 1.0.1)",
+      "time": "May 07",
+      "color": "var(--blue-glow)"
+    },
+    {
+      "icon": "💬",
+      "text": "<strong>Job Costing</strong> — Show app version + git SHA in dashboard footer (Rev 1.0.0)",
+      "time": "May 07",
+      "color": "var(--blue-glow)"
+    },
+    {
+      "icon": "💬",
+      "text": "<strong>Job Costing</strong> — Stack Actual under Quoted Cost, reorder cost-table columns",
+      "time": "May 07",
+      "color": "var(--blue-glow)"
+    },
+    {
+      "icon": "💬",
+      "text": "<strong>Job Costing</strong> — Promote 'Remaining to Invoice' to the headline of the quoted-sell card",
+      "time": "May 07",
+      "color": "var(--blue-glow)"
+    },
+    {
+      "icon": "💬",
+      "text": "<strong>Job Costing</strong> — Default the dashboard to 'Group by project' = on",
+      "time": "May 07",
+      "color": "var(--blue-glow)"
+    },
+    {
+      "icon": "💬",
+      "text": "<strong>Job Costing</strong> — Place groups at their first-member position in the sort order",
+      "time": "May 07",
+      "color": "var(--blue-glow)"
+    },
+    {
+      "icon": "💬",
+      "text": "<strong>Job Costing</strong> — Replace group prompt with a clickable picker modal",
+      "time": "May 07",
+      "color": "var(--blue-glow)"
+    },
+    {
+      "icon": "💬",
+      "text": "<strong>Job Costing</strong> — Compare schedule against labour hours, not budget $",
+      "time": "May 07",
+      "color": "var(--blue-glow)"
+    },
+    {
+      "icon": "💬",
+      "text": "<strong>Job Costing</strong> — Aggregate group detail view + auto-prefix job numbers in label",
+      "time": "May 07",
+      "color": "var(--blue-glow)"
+    },
+    {
+      "icon": "💬",
+      "text": "<strong>Job Costing</strong> — Group jobs under a parent project label",
+      "time": "May 07",
+      "color": "var(--blue-glow)"
+    },
+    {
+      "icon": "✨",
+      "text": "<strong>Job Costing</strong> — Add 'Last updated' strip to the dashboard",
+      "time": "May 06",
+      "color": "var(--green-bg)"
+    },
+    {
+      "icon": "💬",
+      "text": "<strong>Job Costing</strong> — Show first-labour-logged date in schedule notes",
+      "time": "May 06",
+      "color": "var(--blue-glow)"
+    },
+    {
+      "icon": "💬",
+      "text": "<strong>Job Costing</strong> — Anchor schedule % on production_start, not project issue date",
+      "time": "May 06",
+      "color": "var(--blue-glow)"
+    },
+    {
+      "icon": "💬",
+      "text": "<strong>Job Costing</strong> — Auto-parse project dates from Gantt PDF in Box",
+      "time": "May 06",
+      "color": "var(--blue-glow)"
+    },
+    {
+      "icon": "✨",
+      "text": "<strong>Job Costing</strong> — Add Schedule vs Budget panel to job detail",
+      "time": "May 06",
+      "color": "var(--green-bg)"
+    },
+    {
+      "icon": "✨",
+      "text": "<strong>Job Costing</strong> — Add per-job 'Schedule (Box)' link to dashboard",
+      "time": "May 06",
+      "color": "var(--green-bg)"
+    },
+    {
+      "icon": "💬",
+      "text": "<strong>Job Costing</strong> — Stop wiping per-category estimate hours on Budget CSV sync",
+      "time": "May 06",
+      "color": "var(--blue-glow)"
+    },
+    {
+      "icon": "💬",
+      "text": "<strong>Job Costing</strong> — Read the active worksheet, not always the first sheet",
+      "time": "May 06",
+      "color": "var(--blue-glow)"
+    },
+    {
+      "icon": "💬",
+      "text": "<strong>Job Costing</strong> — Return clean JSON error when parser raises non-ValueError",
+      "time": "May 06",
+      "color": "var(--blue-glow)"
+    },
+    {
+      "icon": "💬",
+      "text": "<strong>Job Costing</strong> — Detect Excel format by magic bytes; tolerate xlrd asserts on .xls",
+      "time": "May 06",
+      "color": "var(--blue-glow)"
+    },
+    {
+      "icon": "💬",
+      "text": "<strong>Job Costing</strong> — Include exception type in Box estimate-sync skip messages",
+      "time": "May 06",
+      "color": "var(--blue-glow)"
+    },
+    {
+      "icon": "💬",
+      "text": "<strong>Job Costing</strong> — Surface parser error in Box estimate-sync skip messages",
+      "time": "May 06",
+      "color": "var(--blue-glow)"
+    },
+    {
+      "icon": "💬",
+      "text": "<strong>Job Costing</strong> — Box sync: include .xls files alongside .xlsx",
+      "time": "May 06",
+      "color": "var(--blue-glow)"
+    },
+    {
+      "icon": "💬",
+      "text": "<strong>Job Costing</strong> — Allow .xls in upload form file pickers",
+      "time": "May 06",
+      "color": "var(--blue-glow)"
+    },
+    {
+      "icon": "🔧",
+      "text": "<strong>Job Costing</strong> — Fix estimate parser false matches and accept .xls uploads",
+      "time": "May 06",
+      "color": "var(--green-bg)"
+    },
+    {
+      "icon": "💬",
       "text": "<strong>Job Costing</strong> — Classify US accounts and convert USD→CAD in Sage parser",
       "time": "Apr 30",
       "color": "var(--blue-glow)"
