@@ -1651,6 +1651,13 @@
   ],
   "weeklySummaries": [
     {
+      "dateSlug": "2026-05-09",
+      "weekStart": "May 02, 2026",
+      "weekEnd": "May 09, 2026",
+      "generatedAt": "2026-05-09T01:14:18.860594",
+      "markdown": "# Pacific Enclosures — Weekly Report\n**May 02, 2026 – May 09, 2026**\n\n## Progress\n| Project | Progress | Status |\n|---------|----------|--------|\n| Job Costing Dashboard | 100% (11/11) | production |\n| Estimator App | 59% (35/59) | beta |\n| Operations & Communication Platform | 50% (7/14) | planning |\n| Purchasing App | 0% (0/4) | pipeline |\n\n## Completed Projects\n- **Job Costing Dashboard** — 11/11 milestones | Python, Flask, SQLite, Chart.js | Heroku\n\n## In Progress\n- **Estimator App** — Fine-tune section labor hours for FedEx and Bull Run (totals accurate, section breakdowns need tightening)\n- **Estimator App** — Improve FM weight calculations for large enclosures\n- **Operations & Communication Platform** — Walk through plan with Darren (Apr 9) — incorporate feedback into v2\n\n## Recent Activity\n- Job Costing — Rename to 'Project Performance Dashboard' (Rev 1.0.1) _(May 07)_\n- Job Costing — Show app version + git SHA in dashboard footer (Rev 1.0.0) _(May 07)_\n- Job Costing — Stack Actual under Quoted Cost, reorder cost-table columns _(May 07)_\n- Job Costing — Promote 'Remaining to Invoice' to the headline of the quoted-sell card _(May 07)_\n- Job Costing — Default the dashboard to 'Group by project' = on _(May 07)_\n- Job Costing — Place groups at their first-member position in the sort order _(May 07)_\n- Job Costing — Replace group prompt with a clickable picker modal _(May 07)_\n- Job Costing — Compare schedule against labour hours, not budget $ _(May 07)_\n- Job Costing — Aggregate group detail view + auto-prefix job numbers in label _(May 07)_\n- Job Costing — Group jobs under a parent project label _(May 07)_\n\n---\n_Generated from PE PM Dashboard — May 09, 2026_\n"
+    },
+    {
       "dateSlug": "2026-05-02",
       "weekStart": "Apr 25, 2026",
       "weekEnd": "May 02, 2026",
