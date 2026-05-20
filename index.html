@@ -1237,7 +1237,7 @@
                 </div>`;
 
             const completedBadge = isCompleted ? '<span class="project-status-badge badge-completed">completed</span>' : '';
-            const collapsed = getCollapseState()[p.id];
+            const collapsed = isCollapsed(p.id);
 
             return `
                 <div class="project-card${isCompleted ? ' completed-card' : ''}${collapsed ? ' collapsed' : ''}" id="project-card-${p.id}">
@@ -1289,45 +1289,51 @@
             `;
     }
 
-    /* ===== Collapse/Expand state ===== */
+    /* ===== Collapse/Expand state =====
+       Storage semantics: saved state tracks EXPANSIONS (explicit false values).
+       Default for any project is collapsed. This means new projects added after
+       the user's first visit also default to collapsed. */
     const COLLAPSE_KEY = 'pe-project-collapse';
     function getCollapseState() {
         const raw = localStorage.getItem(COLLAPSE_KEY);
-        if (raw === null) {
-            // First visit: default to all collapsed
-            const s = {};
-            PROJECTS.forEach(p => { s[p.id] = true; });
-            return s;
-        }
+        if (raw === null) return {};
         try { return JSON.parse(raw) || {}; } catch { return {}; }
     }
     function saveCollapseState(s) {
         localStorage.setItem(COLLAPSE_KEY, JSON.stringify(s));
     }
+    function isCollapsed(projectId) {
+        // Collapsed unless the user has explicitly expanded this card (false sentinel).
+        return getCollapseState()[projectId] !== false;
+    }
     function toggleCollapseProject(projectId) {
         const s = getCollapseState();
-        s[projectId] = !s[projectId];
-        if (!s[projectId]) delete s[projectId];
+        if (isCollapsed(projectId)) {
+            s[projectId] = false; // explicitly expanded
+        } else {
+            delete s[projectId];  // back to default (collapsed)
+        }
         saveCollapseState(s);
         const card = document.getElementById(`project-card-${projectId}`);
-        if (card) card.classList.toggle('collapsed', !!s[projectId]);
+        if (card) card.classList.toggle('collapsed', isCollapsed(projectId));
     }
     function collapseAllProjects() {
-        const s = {};
-        PROJECTS.forEach(p => { s[p.id] = true; });
-        saveCollapseState(s);
+        // Clear all overrides → every project falls back to default (collapsed).
+        saveCollapseState({});
         document.querySelectorAll('.project-card').forEach(c => c.classList.add('collapsed'));
     }
     function expandAllProjects() {
-        saveCollapseState({});
+        const s = {};
+        PROJECTS.forEach(p => { s[p.id] = false; });
+        saveCollapseState(s);
         document.querySelectorAll('.project-card').forEach(c => c.classList.remove('collapsed'));
     }
     function scrollToProject(projectId) {
         const el = document.getElementById(`project-card-${projectId}`);
         if (!el) return;
-        const s = getCollapseState();
-        if (s[projectId]) {
-            delete s[projectId];
+        if (isCollapsed(projectId)) {
+            const s = getCollapseState();
+            s[projectId] = false;
             saveCollapseState(s);
             el.classList.remove('collapsed');
         }
