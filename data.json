@@ -136,8 +136,8 @@
     },
     {
       "id": "estimator",
-      "name": "Margin — Estimating App",
-      "description": "Engineered-design estimating. Two efforts running on the same toolset to tighten quotes, protect margin, and reduce reliance on Eric — every point recovered flows into EBITDA. (A) Web app that replicates the Excel master template — challenging but progressing: 301/323 checks across 10 reference estimates, all totals within 2% of Excel. (B) Excel template direct — every new estimate replicates closely and gives us another data point to sharpen the outdated Data Tables, each iteration further from Eric-dependence. Plan: run an RFP together with Cveten + Darren + Clayton. Parallel track for fast directional pricing without full engineering lives in [[quick-pricing]].",
+      "name": "Margin — AI Powered Estimating App",
+      "description": "Web-based estimating engine that replicates Pacific's master Excel template, then layers AI on top for RFP parsing and historical-pattern matching. Today: 301/323 accuracy checks across 10 reference estimates, all total quotes within 2% of Excel. Roadmap: RFP intake → auto-fill → AI matches the RFP against historical quotes to suggest a starting estimate, then engineering finalises. Goal is one production system that anyone (not just Eric) can drive from RFP to quote. Companion cards: [[excel-template]] keeps Pacific's institutional knowledge sharp while this is being built; [[quick-pricing]] runs fast directional quotes from historical data alone.",
       "status": "beta",
       "version": "v0.8-dev",
       "tech": [
@@ -332,23 +332,6 @@
           "date": "In Progress"
         },
         {
-          "text": "Excel template direct — each new estimate sharpens outdated Data Tables, reducing Eric-dependence",
-          "done": false,
-          "current": true,
-          "date": "In Progress"
-        },
-        {
-          "text": "RFP estimating session — Cveten + Darren + Clayton run an RFP together using the template",
-          "done": false,
-          "current": true,
-          "date": "Upcoming"
-        },
-        {
-          "text": "Use sharpened estimates to justify raising labour rates and material markup",
-          "done": false,
-          "date": "Planned"
-        },
-        {
           "text": "Fine-tune section labor hours for FedEx and Bull Run (totals accurate, section breakdowns need tightening)",
           "done": false,
           "current": true,
@@ -473,9 +456,66 @@
       ]
     },
     {
+      "id": "excel-template",
+      "name": "Margin — Excel Template Replication & Knowledge Update",
+      "description": "Get Cveten, Darren, and Clayton estimating directly out of Pacific's master Excel workbook — independent of Eric. Every new RFP we run through the template does two jobs: (1) produces a real quote, and (2) sharpens the workbook's Data Tables (rates, materials, sizing, escalations) which are currently outdated. Each iteration pulls another piece of estimating knowledge out of Eric's head and into the workbook. This is the bridge until [[estimator]] is production-ready. Outputs feed everything downstream: sharper margins, justified labour-rate and markup increases, and a documented estimating process anyone can run.",
+      "status": "active",
+      "version": "—",
+      "tech": [
+        "Excel master template",
+        "Cveten + Darren + Clayton"
+      ],
+      "deployment": "Internal use",
+      "repo": "Master estimating workbook",
+      "milestones": [
+        {
+          "text": "RFP estimating session — Cveten + Darren + Clayton sit down and run an RFP together using the template",
+          "done": false,
+          "current": true,
+          "date": "This Week"
+        },
+        {
+          "text": "Document current Excel template workflow — step-by-step process Eric uses today",
+          "done": false,
+          "current": true,
+          "date": "In Progress"
+        },
+        {
+          "text": "Identify outdated Data Tables in the workbook (rates, materials, sizing, escalation)",
+          "done": false,
+          "date": "Upcoming"
+        },
+        {
+          "text": "Update Data Tables against recent calibrated estimates (DFEK, Palmer, FedEx, Bull Run, etc.)",
+          "done": false,
+          "date": "Upcoming"
+        },
+        {
+          "text": "Knowledge-transfer sessions with Eric — extract estimating heuristics and rules-of-thumb",
+          "done": false,
+          "date": "Planned"
+        },
+        {
+          "text": "Cveten + Darren run a full estimate independently (Eric reviews, doesn't drive)",
+          "done": false,
+          "date": "Planned"
+        },
+        {
+          "text": "Use sharpened estimates to justify raising labour rates and material markup",
+          "done": false,
+          "date": "Planned"
+        },
+        {
+          "text": "Document final 'Pacific Estimating Standard' — the playbook anyone in the company can follow",
+          "done": false,
+          "date": "Future"
+        }
+      ]
+    },
+    {
       "id": "quick-pricing",
       "name": "Margin — Quick Pricing Tool",
-      "description": "Higher-level estimating built from historical estimates and quotes — not engineered design. Prices by cubic foot, genset size, enclosure size, tank size, and key add-ons. Goal: fast, directional pricing without running the full engineering pass for every RFP. Same outcome as [[estimator]] (protect margin, less Eric-dependence) but a fundamentally different approach — pattern-match against history instead of recomputing from first principles. Lets us respond to early RFPs faster and screen jobs before sinking engineering hours.",
+      "description": "Higher-level estimating built from historical estimates and quotes — not engineered design. Prices by cubic foot, genset size, enclosure size, tank size, and key add-ons. Goal: fast, directional pricing without running the full engineering pass for every RFP. Same outcome as [[estimator]] and [[excel-template]] (protect margin, less Eric-dependence) but a fundamentally different approach — pattern-match against history instead of recomputing from first principles. Lets us respond to early RFPs faster and screen jobs before sinking engineering hours.",
       "status": "pipeline",
       "version": "—",
       "tech": [
@@ -697,8 +737,8 @@
   "timeline": [
     {
       "date": "May 20, 2026",
-      "title": "Margin — Split Estimating Into Two Projects",
-      "desc": "Estimating now lives as two distinct cards because the approaches are genuinely different. (1) Margin — Estimating App: engineered-design replication of the Excel master template + Excel template iteration. (2) Margin — Quick Pricing Tool: historical-data pattern-matching — prices by cubic foot, genset size, enclosure size, tank size, key add-ons. Same outcome (tighter quotes, less Eric-dependence), different method (first-principles vs pattern-match). Lets us track progress and decisions on each independently.",
+      "title": "Margin — Split Into 3 Distinct Tracks",
+      "desc": "Estimating is genuinely three different efforts that need to be tracked independently. (1) AI Powered Estimating App: engineered-design web app replicating the Excel master template, with AI layered on top for RFP parsing and historical pattern-match. (2) Excel Template Replication & Knowledge Update: Cveten + Darren + Clayton estimate directly from the Excel workbook, sharpening Data Tables and pulling estimating knowledge out of Eric's head as we go — the bridge until the app is production-ready. (3) Quick Pricing Tool: historical-data pattern-match for fast directional quotes (cubic ft, genset/enclosure/tank size, key add-ons). All three feed the same outcome — tighter quotes, less Eric-dependence, justification to raise labour rates and markup.",
       "project": "pm",
       "color": "purple"
     },
@@ -1035,7 +1075,7 @@
   "activity": [
     {
       "icon": "✂️",
-      "text": "<strong>Margin</strong> — Split Estimating into 2 cards: <strong>Estimating App</strong> (engineered Excel-replication) and <strong>Quick Pricing Tool</strong> (historical-data pattern-match)",
+      "text": "<strong>Margin</strong> — Split Estimating into 3 cards: <strong>AI Powered Estimating App</strong>, <strong>Excel Template Replication & Knowledge Update</strong> (Cveten + Darren + Clayton internally driving the workbook), and <strong>Quick Pricing Tool</strong>",
       "time": "May 20",
       "color": "var(--amber-bg)"
     },
