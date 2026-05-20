@@ -1313,39 +1313,51 @@
 
     /* ===== Kanban Overview ===== */
     function renderKanban() {
-        const STATUS_ORDER = ['production', 'beta', 'active', 'planning', 'review', 'paused', 'pipeline'];
+        // Order: earliest stage (left) → most mature (right)
+        const STATUS_ORDER = ['pipeline', 'planning', 'review', 'active', 'beta', 'paused', 'production'];
         const STATUS_LABEL = {
-            production: 'Production',
-            beta: 'In Build',
-            active: 'Active',
+            pipeline: 'Pipeline',
             planning: 'Planning',
             review: 'In Review',
+            active: 'Active',
+            beta: 'In Build',
             paused: 'Paused',
-            pipeline: 'Pipeline'
+            production: 'Production'
+        };
+        // Color accents per status (label text, count badge, column accent, progress fill)
+        const STATUS_COLORS = {
+            pipeline:   { accent: '#94a3b8', tint: 'rgba(148,163,184,0.10)' },
+            planning:   { accent: '#a78bfa', tint: 'rgba(167,139,250,0.12)' },
+            review:     { accent: '#22d3ee', tint: 'rgba(34,211,238,0.12)' },
+            active:     { accent: '#22c55e', tint: 'rgba(34,197,94,0.12)' },
+            beta:       { accent: '#f59e0b', tint: 'rgba(245,158,11,0.12)' },
+            paused:     { accent: '#ef4444', tint: 'rgba(239,68,68,0.12)' },
+            production: { accent: '#3b82f6', tint: 'rgba(59,130,246,0.14)' }
         };
         const grouped = {};
         PROJECTS.forEach(p => {
             (grouped[p.status] = grouped[p.status] || []).push(p);
         });
         const cols = STATUS_ORDER.filter(s => grouped[s]).map(s => {
+            const c = STATUS_COLORS[s] || { accent: '#94a3b8', tint: 'rgba(148,163,184,0.10)' };
             const items = grouped[s].map(p => {
                 const t = p.milestones.length;
                 const d = p.milestones.filter(m => m.done).length;
                 const pct = t > 0 ? Math.round(100*d/t) : 0;
                 return `
-                    <div class="kanban-card" onclick="scrollToProject('${p.id}')">
+                    <div class="kanban-card" onclick="scrollToProject('${p.id}')" style="border-left:3px solid ${c.accent};">
                         <div class="kanban-card-name">${p.name}</div>
                         <div class="kanban-card-progress-row">
-                            <div class="kanban-card-bar"><div class="kanban-card-bar-fill" style="width:${pct}%"></div></div>
+                            <div class="kanban-card-bar"><div class="kanban-card-bar-fill" style="width:${pct}%;background:${c.accent};"></div></div>
                             <div class="kanban-card-pct">${pct}%</div>
                         </div>
                     </div>`;
             }).join('');
             return `
-                <div class="kanban-column">
+                <div class="kanban-column" style="border-top:3px solid ${c.accent};background:${c.tint};">
                     <div class="kanban-col-header">
-                        <span>${STATUS_LABEL[s] || s}</span>
-                        <span class="kanban-col-count">${grouped[s].length}</span>
+                        <span style="color:${c.accent};">${STATUS_LABEL[s] || s}</span>
+                        <span class="kanban-col-count" style="background:${c.accent}25;color:${c.accent};">${grouped[s].length}</span>
                     </div>
                     ${items}
                 </div>`;
