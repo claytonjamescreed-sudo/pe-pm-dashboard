@@ -324,6 +324,26 @@
             border-bottom: none;
             padding-bottom: 18px;
         }
+        /* Uniform collapsed card sizing — same height across the grid */
+        .project-card.collapsed {
+            display: flex;
+            flex-direction: column;
+            min-height: 340px;
+        }
+        .project-card.collapsed .project-desc {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            height: 4.5em;
+            min-height: 4.5em;
+        }
+        .project-card.collapsed .project-meta {
+            min-height: 32px;
+        }
+        .project-card.collapsed .project-milestones {
+            margin-top: auto;
+        }
         .project-card.highlight-flash {
             box-shadow: 0 0 0 2px var(--blue);
         }
