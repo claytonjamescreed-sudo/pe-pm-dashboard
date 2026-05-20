@@ -1272,7 +1272,14 @@
     /* ===== Collapse/Expand state ===== */
     const COLLAPSE_KEY = 'pe-project-collapse';
     function getCollapseState() {
-        try { return JSON.parse(localStorage.getItem(COLLAPSE_KEY) || '{}'); } catch { return {}; }
+        const raw = localStorage.getItem(COLLAPSE_KEY);
+        if (raw === null) {
+            // First visit: default to all collapsed
+            const s = {};
+            PROJECTS.forEach(p => { s[p.id] = true; });
+            return s;
+        }
+        try { return JSON.parse(raw) || {}; } catch { return {}; }
     }
     function saveCollapseState(s) {
         localStorage.setItem(COLLAPSE_KEY, JSON.stringify(s));
