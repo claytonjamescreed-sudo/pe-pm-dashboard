@@ -71,6 +71,41 @@
           "date": "Apr 2026"
         },
         {
+          "text": "Cost-code tracking (FAB / GA / ELEC) + Box estimate parser for budgeted hours",
+          "done": true,
+          "date": "Apr 2026"
+        },
+        {
+          "text": "Sage parser — US account classification + USD→CAD conversion",
+          "done": true,
+          "date": "Apr 2026"
+        },
+        {
+          "text": "Schedule vs Budget panel — Gantt PDF auto-parse from Box, per-job Schedule link, production_start anchor",
+          "done": true,
+          "date": "May 2026"
+        },
+        {
+          "text": "Excel parser hardening — .xls support, magic-byte detection, clean error messages, active-worksheet detection",
+          "done": true,
+          "date": "May 2026"
+        },
+        {
+          "text": "Project grouping — group jobs under parent project label, clickable picker modal, default Group-by on, schedule vs labour hours",
+          "done": true,
+          "date": "May 2026"
+        },
+        {
+          "text": "Cost-table redesign — Quoted Sell card with 'Remaining to Invoice' headline, stacked Actual / Quoted Cost columns",
+          "done": true,
+          "date": "May 2026"
+        },
+        {
+          "text": "Rebrand to 'Project Performance Dashboard' (Rev 1.0.1) + footer version / git SHA",
+          "done": true,
+          "date": "May 2026"
+        },
+        {
           "text": "Load remaining jobs — final estimates, client quotes, customer POs, budgets",
           "done": false,
           "current": true,
@@ -626,6 +661,13 @@
       "desc": "Reorganized the project portfolio around 5 strategic outcomes: Visibility (Revenue & Job Tracking — Job Costing dashboard, dev complete, now loading remaining jobs and standing up Box workflow), Independence (Internal Comms & Knowledge Storage — first draft plan with Darren, walkthrough this week), Margin (Estimating — three workstreams: app build, Excel template iteration, higher-level pricing tool), Valuation (EBITDA Tracking — new project, baseline when Darren opens access, then quarterly), Procurement (Unified Procurement Process — renamed from Purchasing App).",
       "project": "pm",
       "color": "purple"
+    },
+    {
+      "date": "May 20, 2026",
+      "title": "Visibility — Apr/May Job Costing Shipped Backlog",
+      "desc": "Catching milestone history up to reality. Shipped Apr–May: cost-code tracking (FAB/GA/ELEC) + Box estimate parser; Sage US-account + USD→CAD; Schedule vs Budget panel with Gantt PDF auto-parse and per-job Schedule link; Excel parser hardening (.xls, magic-byte detection, active-worksheet); project grouping (parent project label, picker modal, schedule vs labour hours); cost-table redesign (Quoted Sell card with Remaining-to-Invoice headline, stacked Actual/Quoted); rebrand to 'Project Performance Dashboard' Rev 1.0.1 with footer version/SHA.",
+      "project": "job-costing",
+      "color": "green"
     },
     {
       "date": "May 20, 2026",
