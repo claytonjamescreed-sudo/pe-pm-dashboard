@@ -2,8 +2,8 @@
   "projects": [
     {
       "id": "job-costing",
-      "name": "Job Costing Dashboard",
-      "description": "Labour & materials tracking with SAGE 50 integration. Compares budgeted vs actual costs, tracks GP margins, and monitors budget consumption across all active jobs. Live in production with full project data, Box sync, and multi-user auth.",
+      "name": "Visibility — Revenue & Job Tracking",
+      "description": "Dashboard is live and development is complete. Focus now: load every job with full information (final estimates, client quotes, customer POs, budgets) so the picture is complete. Going forward, each new job + PO gets captured in Box with full info so the dashboard stays current. Outputs we unlock once everything is in: Booked Revenue Forecast, live job data, real-time margin by job each payroll period, pipeline trends, and the dataset we mine for EBITDA growth levers.",
       "status": "production",
       "version": "v2.0",
       "tech": [
@@ -69,13 +69,40 @@
           "text": "Labour hours tracking — timesheet sync from Box, actual vs estimated hours per job, employee breakdown",
           "done": true,
           "date": "Apr 2026"
+        },
+        {
+          "text": "Load remaining jobs — final estimates, client quotes, customer POs, budgets",
+          "done": false,
+          "current": true,
+          "date": "In Progress"
+        },
+        {
+          "text": "Box workflow — every new job + PO captured with full info, dashboard stays current",
+          "done": false,
+          "current": true,
+          "date": "In Progress"
+        },
+        {
+          "text": "Booked Revenue Forecast view",
+          "done": false,
+          "date": "Upcoming"
+        },
+        {
+          "text": "Margin-by-job + pipeline trend reports refreshed each payroll period",
+          "done": false,
+          "date": "Upcoming"
+        },
+        {
+          "text": "EBITDA growth lever analysis — mine job dataset for margin recovery opportunities",
+          "done": false,
+          "date": "Planned"
         }
       ]
     },
     {
       "id": "estimator",
-      "name": "Estimator App",
-      "description": "Generator enclosure quoting tool — reimplements PE's master Excel estimating logic into a web app. 301/323 accuracy tests passing across 10 reference estimates (93.2%), all total quotes within 2% of Excel. Covers 150kW–2750kW, skintight/walk-in, UL/ULC tanks, day tanks, fire suppression, 65–95 dBA, multiple manufacturers (ONAN/CAT/GENERAC/KOHLER/MITS). 122 configurable UI options (80 dropdowns + 42 toggles). Steel fabrication calibrated. PDF quote generation. Wizard UI. Multi-manufacturer genset specs. RFP parser with UI form pre-fill.",
+      "name": "Margin — Estimating",
+      "description": "Hardest of the strategic priorities. Three parallel efforts, same outcome: tighter quotes, protected margin, less reliance on any one person (Eric), and the data to justify raising labour rates and material markup — every point recovered flows into EBITDA. (A) Estimating app that replicates the Excel template — challenging but progressing: 301/323 checks across 10 reference estimates, all totals within 2% of Excel. (B) Excel template direct — every new estimate replicates closely and gives us another data point to sharpen the outdated Data Tables, each iteration further from Eric-dependence. Plan to run an RFP together with Cveten + Darren + Clayton. (C) Higher-level estimating tool built from historical estimates and quotes — prices by cubic foot, genset size, enclosure size, tank size, and key add-ons for fast directional pricing without full engineering.",
       "status": "beta",
       "version": "v0.8-dev",
       "tech": [
@@ -264,6 +291,34 @@
           "date": "Mar 2026"
         },
         {
+          "text": "Workstream A — Estimating app: continue Excel-replication build",
+          "done": false,
+          "current": true,
+          "date": "In Progress"
+        },
+        {
+          "text": "Workstream B — Excel template direct: each new estimate sharpens outdated Data Tables, reducing Eric-dependence",
+          "done": false,
+          "current": true,
+          "date": "In Progress"
+        },
+        {
+          "text": "RFP estimating session — Cveten + Darren + Clayton run an RFP together using the template",
+          "done": false,
+          "current": true,
+          "date": "Upcoming"
+        },
+        {
+          "text": "Workstream C — Higher-level estimating tool: price by cubic foot, genset size, enclosure size, tank size, key add-ons (historical data, not engineered design)",
+          "done": false,
+          "date": "Planned"
+        },
+        {
+          "text": "Use sharpened estimates to justify raising labour rates and material markup",
+          "done": false,
+          "date": "Planned"
+        },
+        {
           "text": "Fine-tune section labor hours for FedEx and Bull Run (totals accurate, section breakdowns need tightening)",
           "done": false,
           "current": true,
@@ -389,8 +444,8 @@
     },
     {
       "id": "operations-platform",
-      "name": "Operations & Communication Platform",
-      "description": "Internal operations and communication platform for Pacific Enclosures. Discovery complete: 3 sessions with Craig Perkins (PM) and Darren Rogers (Owner), requirements doc v1 drafted. Craig is primary user. Key pain points: no purchasing visibility, drawing revision tracking, change order gaps, USB-based file access, status chasing. 12-month rollout (1 day/week). Phase 1 go-live Month 5, Phase 2 Month 9, Phase 3 Month 12. M365 migration, Teams adoption (gradual/opt-in), company communication as Workstream 1. Project plan sent to Darren for review.",
+      "name": "Independence — Internal Comms & Knowledge Storage",
+      "description": "Internal communications and knowledge storage platform — the path to operational independence (less institutional knowledge trapped in individuals, files, and USB sticks). First draft of the plan is ready for review. Next step: get time on the calendar this week to walk through it together, align, and lock a start plan. Discovery is complete (3 sessions with Craig Perkins and Darren Rogers), requirements doc v1 drafted, 12-month rollout designed: Phase 1 go-live Month 5, Phase 2 Month 9, Phase 3 Month 12. People-first M365 migration, Teams adoption (gradual/opt-in), company communication as Workstream 1.",
       "status": "planning",
       "version": "—",
       "tech": [
@@ -437,13 +492,23 @@
           "date": "Apr 2026"
         },
         {
-          "text": "Walk through plan with Darren (Apr 9) — incorporate feedback into v2",
-          "done": false,
-          "current": true,
-          "date": "In Progress"
+          "text": "First draft plan ready for review — sent to Darren",
+          "done": true,
+          "date": "Apr 2026"
         },
         {
-          "text": "Darren vision communication to team (Apr 8)",
+          "text": "Get time on calendar this week — walk through plan with Darren, align, lock start plan",
+          "done": false,
+          "current": true,
+          "date": "This Week"
+        },
+        {
+          "text": "Incorporate Darren feedback into plan v2",
+          "done": false,
+          "date": "Upcoming"
+        },
+        {
+          "text": "Darren vision communication to team",
           "done": false,
           "date": "Upcoming"
         },
@@ -475,9 +540,54 @@
       ]
     },
     {
+      "id": "ebitda-tracking",
+      "name": "Valuation — EBITDA Tracking",
+      "description": "The scoreboard. EBITDA is the headline number a buyer underwrites against — a clean trend line strengthens our position when the sale conversation comes. When Darren is ready to open access, we baseline and start tracking quarterly. The longer the clean trend, the stronger the valuation case. The job dataset from Visibility (Revenue & Job Tracking) and the margin gains from Margin (Estimating) are what feed this number.",
+      "status": "pipeline",
+      "version": "—",
+      "tech": [
+        "SAGE 50",
+        "Job Costing data"
+      ],
+      "deployment": "TBD",
+      "repo": "TBD",
+      "milestones": [
+        {
+          "text": "Darren opens access to financials",
+          "done": false,
+          "date": "TBD"
+        },
+        {
+          "text": "Baseline EBITDA calculation",
+          "done": false,
+          "date": "Planned"
+        },
+        {
+          "text": "Quarterly tracking cadence established",
+          "done": false,
+          "date": "Planned"
+        },
+        {
+          "text": "EBITDA scoreboard view — quarterly trend chart",
+          "done": false,
+          "date": "Planned"
+        },
+        {
+          "text": "Tie EBITDA movement back to Visibility + Margin levers",
+          "done": false,
+          "date": "Planned"
+        },
+        {
+          "text": "Sale-readiness data package — clean multi-quarter trend",
+          "done": false,
+          "date": "Future"
+        }
+      ]
+    },
+    {
       "id": "purchasing",
-      "name": "Purchasing App",
-      "description": "Purchasing and procurement tool for Pacific Enclosures. Scope and requirements to be defined.",
+      "name": "Procurement — Unified Procurement Process",
+      "description": "Centralized, unified procurement process for Pacific Enclosures. Today purchasing has no shared visibility — POs, vendor pricing, and material lead times live in individual heads and inboxes. Goal: one process and one source of truth for every PO, vendor, and material across all jobs. Scope and requirements to be defined; ties into Visibility (PO data feeds the dashboard) and Independence (removes another piece of single-person knowledge).",
       "status": "pipeline",
       "version": "—",
       "tech": [
@@ -487,12 +597,12 @@
       "repo": "TBD",
       "milestones": [
         {
-          "text": "Define scope & requirements",
+          "text": "Define scope & requirements — current-state PO mapping",
           "done": false,
           "date": "TBD"
         },
         {
-          "text": "Design & architecture",
+          "text": "Design unified procurement workflow",
           "done": false,
           "date": "TBD"
         },
@@ -502,7 +612,7 @@
           "date": "TBD"
         },
         {
-          "text": "Testing & deployment",
+          "text": "Pilot & rollout",
           "done": false,
           "date": "TBD"
         }
@@ -510,6 +620,20 @@
     }
   ],
   "timeline": [
+    {
+      "date": "May 20, 2026",
+      "title": "PM Dashboard — Strategic Reframe to 5 Outcomes",
+      "desc": "Reorganized the project portfolio around 5 strategic outcomes: Visibility (Revenue & Job Tracking — Job Costing dashboard, dev complete, now loading remaining jobs and standing up Box workflow), Independence (Internal Comms & Knowledge Storage — first draft plan with Darren, walkthrough this week), Margin (Estimating — three workstreams: app build, Excel template iteration, higher-level pricing tool), Valuation (EBITDA Tracking — new project, baseline when Darren opens access, then quarterly), Procurement (Unified Procurement Process — renamed from Purchasing App).",
+      "project": "pm",
+      "color": "purple"
+    },
+    {
+      "date": "May 20, 2026",
+      "title": "Valuation — EBITDA Tracking Added",
+      "desc": "New scoreboard project added to the portfolio. The headline number a buyer underwrites against. Baseline once Darren opens access, then track quarterly. Clean trend line strengthens the sale conversation. Fed by the Visibility job dataset and Margin gains from Estimating.",
+      "project": "ebitda-tracking",
+      "color": "purple"
+    },
     {
       "date": "Apr 2, 2026",
       "title": "Operations Platform — Project Plan Produced",
@@ -820,6 +944,42 @@
     }
   ],
   "activity": [
+    {
+      "icon": "🎯",
+      "text": "<strong>PM Dashboard</strong> — Portfolio reframed around 5 strategic outcomes: Visibility, Independence, Margin, Valuation, Procurement",
+      "time": "May 20",
+      "color": "var(--purple-bg)"
+    },
+    {
+      "icon": "📈",
+      "text": "<strong>Valuation</strong> — EBITDA Tracking added as the scoreboard project — baseline when access opens, then quarterly trend",
+      "time": "May 20",
+      "color": "var(--purple-bg)"
+    },
+    {
+      "icon": "💰",
+      "text": "<strong>Visibility</strong> — Job Costing dev complete; next push is loading remaining jobs (estimates, quotes, POs, budgets) + Box workflow for every new PO",
+      "time": "May 20",
+      "color": "var(--green-bg)"
+    },
+    {
+      "icon": "🧮",
+      "text": "<strong>Margin</strong> — Estimating reframed as 3 workstreams: app build, Excel template iteration, higher-level pricing tool; RFP session with Cveten + Darren planned",
+      "time": "May 20",
+      "color": "var(--amber-bg)"
+    },
+    {
+      "icon": "📅",
+      "text": "<strong>Independence</strong> — Plan v1 with Darren; need calendar time this week to walk through and lock the start plan",
+      "time": "May 20",
+      "color": "var(--blue-glow)"
+    },
+    {
+      "icon": "📦",
+      "text": "<strong>Procurement</strong> — Purchasing App renamed to Unified Procurement Process — feeds Visibility (PO data) and Independence (single source of truth)",
+      "time": "May 20",
+      "color": "var(--blue-glow)"
+    },
     {
       "icon": "💬",
       "text": "<strong>Job Costing</strong> — Rename to 'Project Performance Dashboard' (Rev 1.0.1)",
