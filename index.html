@@ -171,12 +171,163 @@
             font-weight: 500;
         }
 
+        /* ===== Kanban Overview ===== */
+        .kanban-overview {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 14px;
+            margin-bottom: 32px;
+        }
+        .kanban-column {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 14px;
+            min-height: 80px;
+        }
+        .kanban-col-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            color: var(--text-muted);
+        }
+        .kanban-col-count {
+            background: rgba(255,255,255,0.05);
+            color: var(--text-muted);
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+        .kanban-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 10px 12px;
+            margin-bottom: 8px;
+            cursor: pointer;
+            transition: border-color 0.15s, transform 0.15s;
+        }
+        .kanban-card:hover {
+            border-color: var(--blue);
+            transform: translateY(-1px);
+        }
+        .kanban-card-name {
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+        .kanban-card-progress-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .kanban-card-bar {
+            flex: 1;
+            height: 4px;
+            background: var(--bg);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        .kanban-card-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--blue), #60a5fa);
+            border-radius: 2px;
+        }
+        .kanban-card-pct {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--text-muted);
+            min-width: 32px;
+            text-align: right;
+        }
+
+        /* ===== Projects toolbar (collapse/expand) ===== */
+        .projects-toolbar-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 32px;
+            margin-bottom: 16px;
+        }
+        .projects-toolbar-row .section-title {
+            margin: 0;
+        }
+        .projects-toolbar {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .projects-toolbar button {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: border-color 0.15s, color 0.15s;
+        }
+        .projects-toolbar button:hover {
+            border-color: var(--blue);
+            color: var(--blue);
+        }
+
         /* ===== Project Cards ===== */
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
             gap: 20px;
             margin-bottom: 32px;
+        }
+
+        /* Collapsed project card */
+        .project-card-collapse-btn {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s, border-color 0.15s, color 0.15s;
+            flex-shrink: 0;
+            padding: 0;
+        }
+        .project-card-collapse-btn:hover {
+            border-color: var(--blue);
+            color: var(--blue);
+        }
+        .project-card-collapse-btn svg {
+            transition: transform 0.2s;
+        }
+        .project-card.collapsed .project-card-collapse-btn svg {
+            transform: rotate(-90deg);
+        }
+        .project-card.collapsed .project-desc,
+        .project-card.collapsed .project-meta,
+        .project-card.collapsed .project-milestones {
+            display: none;
+        }
+        .project-card.collapsed .project-card-header {
+            padding-bottom: 12px;
+        }
+        .project-card.collapsed .project-progress {
+            padding-bottom: 18px;
+            margin-bottom: 0;
+        }
+        .project-card.highlight-flash {
+            box-shadow: 0 0 0 2px var(--blue);
         }
 
         .project-card {
@@ -924,8 +1075,18 @@
         <!-- Summary Stats -->
         <div class="stats-row" id="statsRow"></div>
 
+        <!-- Kanban Overview -->
+        <div class="section-title">Status Overview</div>
+        <div class="kanban-overview" id="kanbanOverview"></div>
+
         <!-- Project Cards -->
-        <div class="section-title">Projects</div>
+        <div class="projects-toolbar-row">
+            <div class="section-title">Projects</div>
+            <div class="projects-toolbar">
+                <button onclick="collapseAllProjects()" title="Collapse all to summary view">Collapse all</button>
+                <button onclick="expandAllProjects()" title="Expand all to full detail">Expand all</button>
+            </div>
+        </div>
         <div class="projects-grid" id="projectsGrid"></div>
 
         <!-- Completed Projects -->
@@ -1058,9 +1219,10 @@
                 </div>`;
 
             const completedBadge = isCompleted ? '<span class="project-status-badge badge-completed">completed</span>' : '';
+            const collapsed = getCollapseState()[p.id];
 
             return `
-                <div class="project-card${isCompleted ? ' completed-card' : ''}">
+                <div class="project-card${isCompleted ? ' completed-card' : ''}${collapsed ? ' collapsed' : ''}" id="project-card-${p.id}">
                     <div class="project-card-header">
                         <div>
                             <div class="project-name">${p.name}</div>
@@ -1069,6 +1231,9 @@
                         <div style="display:flex;gap:6px;align-items:flex-start;flex-shrink:0;">
                             <span class="project-status-badge ${statusClass}">${p.status}</span>
                             ${completedBadge}
+                            <button class="project-card-collapse-btn" onclick="toggleCollapseProject('${p.id}')" title="Collapse/expand">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                            </button>
                         </div>
                     </div>
                     <div class="project-progress">
@@ -1104,6 +1269,88 @@
                     </div>
                 </div>
             `;
+    }
+
+    /* ===== Collapse/Expand state ===== */
+    const COLLAPSE_KEY = 'pe-project-collapse';
+    function getCollapseState() {
+        try { return JSON.parse(localStorage.getItem(COLLAPSE_KEY) || '{}'); } catch { return {}; }
+    }
+    function saveCollapseState(s) {
+        localStorage.setItem(COLLAPSE_KEY, JSON.stringify(s));
+    }
+    function toggleCollapseProject(projectId) {
+        const s = getCollapseState();
+        s[projectId] = !s[projectId];
+        if (!s[projectId]) delete s[projectId];
+        saveCollapseState(s);
+        const card = document.getElementById(`project-card-${projectId}`);
+        if (card) card.classList.toggle('collapsed', !!s[projectId]);
+    }
+    function collapseAllProjects() {
+        const s = {};
+        PROJECTS.forEach(p => { s[p.id] = true; });
+        saveCollapseState(s);
+        document.querySelectorAll('.project-card').forEach(c => c.classList.add('collapsed'));
+    }
+    function expandAllProjects() {
+        saveCollapseState({});
+        document.querySelectorAll('.project-card').forEach(c => c.classList.remove('collapsed'));
+    }
+    function scrollToProject(projectId) {
+        const el = document.getElementById(`project-card-${projectId}`);
+        if (!el) return;
+        const s = getCollapseState();
+        if (s[projectId]) {
+            delete s[projectId];
+            saveCollapseState(s);
+            el.classList.remove('collapsed');
+        }
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        el.classList.add('highlight-flash');
+        setTimeout(() => el.classList.remove('highlight-flash'), 1400);
+    }
+
+    /* ===== Kanban Overview ===== */
+    function renderKanban() {
+        const STATUS_ORDER = ['production', 'beta', 'active', 'planning', 'review', 'paused', 'pipeline'];
+        const STATUS_LABEL = {
+            production: 'Production',
+            beta: 'In Build',
+            active: 'Active',
+            planning: 'Planning',
+            review: 'In Review',
+            paused: 'Paused',
+            pipeline: 'Pipeline'
+        };
+        const grouped = {};
+        PROJECTS.forEach(p => {
+            (grouped[p.status] = grouped[p.status] || []).push(p);
+        });
+        const cols = STATUS_ORDER.filter(s => grouped[s]).map(s => {
+            const items = grouped[s].map(p => {
+                const t = p.milestones.length;
+                const d = p.milestones.filter(m => m.done).length;
+                const pct = t > 0 ? Math.round(100*d/t) : 0;
+                return `
+                    <div class="kanban-card" onclick="scrollToProject('${p.id}')">
+                        <div class="kanban-card-name">${p.name}</div>
+                        <div class="kanban-card-progress-row">
+                            <div class="kanban-card-bar"><div class="kanban-card-bar-fill" style="width:${pct}%"></div></div>
+                            <div class="kanban-card-pct">${pct}%</div>
+                        </div>
+                    </div>`;
+            }).join('');
+            return `
+                <div class="kanban-column">
+                    <div class="kanban-col-header">
+                        <span>${STATUS_LABEL[s] || s}</span>
+                        <span class="kanban-col-count">${grouped[s].length}</span>
+                    </div>
+                    ${items}
+                </div>`;
+        }).join('');
+        document.getElementById('kanbanOverview').innerHTML = cols;
     }
 
     function renderProjects() {
@@ -1594,6 +1841,7 @@
         saveMilestoneOverrides(overrides);
         applyMilestoneOverrides();
         renderStats();
+        renderKanban();
         renderProjects();
     }
 
@@ -1609,6 +1857,7 @@
         input.value = '';
         applyMilestoneOverrides();
         renderStats();
+        renderKanban();
         renderProjects();
     }
 
@@ -1670,6 +1919,7 @@
 
         applyMilestoneOverrides();
         renderStats();
+        renderKanban();
         renderProjects();
         renderTimeline();
         renderActivity();
