@@ -1056,16 +1056,73 @@
         }
 
         /* ===== Responsive ===== */
+        /* Tablet landscape / small laptop (≤1100px) */
         @media (max-width: 1100px) {
+            .main { padding: 24px; }
             .stats-row { grid-template-columns: repeat(2, 1fr); }
             .projects-grid { grid-template-columns: 1fr; }
+            .kanban-overview { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
         }
 
+        /* Tablet portrait (≤820px) */
+        @media (max-width: 820px) {
+            .main { padding: 20px; }
+            .header { padding: 0 20px; }
+            .header-right { gap: 8px; }
+            .header-date { display: none; }
+            .btn-download { padding: 6px 10px; font-size: 12px; }
+            .btn-download svg { width: 14px; height: 14px; }
+            .kanban-overview { grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 10px; }
+            .kanban-column { padding: 12px; }
+            .projects-toolbar-row { flex-wrap: wrap; gap: 12px; }
+            .timeline { padding-left: 0; }
+        }
+
+        /* Mobile (≤640px) — portrait + most landscape */
         @media (max-width: 640px) {
-            .main { padding: 16px; }
-            .header { padding: 0 16px; }
-            .stats-row { grid-template-columns: 1fr; }
-            .header-subtitle, .header-divider { display: none; }
+            .main { padding: 14px; }
+            .header { padding: 0 14px; height: 56px; }
+            .header-inner { gap: 8px; }
+            .header-title { font-size: 15px; letter-spacing: 0.3px; }
+            .header-subtitle, .header-divider, .header-date { display: none; }
+            .header-logo { height: 32px; }
+            .btn-download { padding: 6px 8px; font-size: 11px; gap: 4px; }
+            .stats-row { grid-template-columns: 1fr; gap: 10px; }
+            .stat-card { padding: 14px; gap: 12px; }
+            .stat-icon { width: 36px; height: 36px; }
+            .stat-value { font-size: 22px; }
+            .section-title { font-size: 13px; margin-top: 24px; }
+            .kanban-overview { grid-template-columns: 1fr; gap: 8px; }
+            .kanban-column { padding: 12px; }
+            .projects-toolbar-row { flex-direction: column; align-items: flex-start; gap: 8px; }
+            .projects-toolbar button { padding: 5px 10px; font-size: 11px; }
+            .project-card-header { padding: 16px 18px; }
+            .project-progress { padding: 0 18px; }
+            .project-meta { padding: 0 18px 14px; }
+            .project-milestones { padding: 14px 18px; }
+            .project-name { font-size: 16px; }
+            .project-desc { font-size: 12px; }
+            /* Collapsed cards: let height be content-driven on mobile */
+            .project-card.collapsed { min-height: 0; }
+            .project-card.collapsed .project-desc {
+                -webkit-line-clamp: 4;
+                height: auto;
+                min-height: 0;
+                max-height: none;
+            }
+            .archive-modal { width: 94vw; max-width: 94vw; max-height: 88vh; }
+            .archive-modal-body { padding: 16px; }
+        }
+
+        /* Tiny phones (≤400px) */
+        @media (max-width: 400px) {
+            .main { padding: 12px; }
+            .header-title { font-size: 14px; }
+            .btn-download span { display: none; }
+            .btn-download { padding: 6px; }
+            .btn-download svg { margin: 0; }
+            .project-card-header { padding: 14px; }
+            .project-progress, .project-meta, .project-milestones { padding-left: 14px; padding-right: 14px; }
         }
     </style>
 </head>
