@@ -1072,8 +1072,25 @@
             .header-date { display: none; }
             .btn-download { padding: 6px 10px; font-size: 12px; }
             .btn-download svg { width: 14px; height: 14px; }
-            .kanban-overview { grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 10px; }
-            .kanban-column { padding: 12px; }
+            /* Kanban becomes a horizontal-scroll strip so all status lanes
+               stay one row at a readable width regardless of count */
+            .kanban-overview {
+                display: flex;
+                grid-template-columns: none;
+                gap: 12px;
+                overflow-x: auto;
+                padding-bottom: 10px;
+                margin-right: -20px;
+                padding-right: 20px;
+                -webkit-overflow-scrolling: touch;
+                scroll-snap-type: x proximity;
+            }
+            .kanban-column {
+                flex: 0 0 220px;
+                min-width: 220px;
+                padding: 12px;
+                scroll-snap-align: start;
+            }
             .projects-toolbar-row { flex-wrap: wrap; gap: 12px; }
             .timeline { padding-left: 0; }
         }
