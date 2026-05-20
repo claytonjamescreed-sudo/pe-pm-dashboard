@@ -286,6 +286,7 @@
             grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
             gap: 20px;
             margin-bottom: 32px;
+            align-items: start;
         }
 
         /* Collapsed project card */
@@ -314,17 +315,14 @@
         .project-card.collapsed .project-card-collapse-btn svg {
             transform: rotate(-90deg);
         }
-        .project-card.collapsed .project-desc,
-        .project-card.collapsed .project-meta,
-        .project-card.collapsed .project-milestones {
+        .project-card.collapsed .milestones-summary,
+        .project-card.collapsed .milestones-expand,
+        .project-card.collapsed .milestones-full {
             display: none;
         }
-        .project-card.collapsed .project-card-header {
-            padding-bottom: 12px;
-        }
-        .project-card.collapsed .project-progress {
+        .project-card.collapsed .milestones-header {
+            border-bottom: none;
             padding-bottom: 18px;
-            margin-bottom: 0;
         }
         .project-card.highlight-flash {
             box-shadow: 0 0 0 2px var(--blue);
