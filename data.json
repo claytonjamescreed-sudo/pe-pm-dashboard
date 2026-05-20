@@ -136,8 +136,8 @@
     },
     {
       "id": "estimator",
-      "name": "Margin — Estimating",
-      "description": "Hardest of the strategic priorities. Three parallel efforts, same outcome: tighter quotes, protected margin, less reliance on any one person (Eric), and the data to justify raising labour rates and material markup — every point recovered flows into EBITDA. (A) Estimating app that replicates the Excel template — challenging but progressing: 301/323 checks across 10 reference estimates, all totals within 2% of Excel. (B) Excel template direct — every new estimate replicates closely and gives us another data point to sharpen the outdated Data Tables, each iteration further from Eric-dependence. Plan to run an RFP together with Cveten + Darren + Clayton. (C) Higher-level estimating tool built from historical estimates and quotes — prices by cubic foot, genset size, enclosure size, tank size, and key add-ons for fast directional pricing without full engineering.",
+      "name": "Margin — Estimating App",
+      "description": "Engineered-design estimating. Two efforts running on the same toolset to tighten quotes, protect margin, and reduce reliance on Eric — every point recovered flows into EBITDA. (A) Web app that replicates the Excel master template — challenging but progressing: 301/323 checks across 10 reference estimates, all totals within 2% of Excel. (B) Excel template direct — every new estimate replicates closely and gives us another data point to sharpen the outdated Data Tables, each iteration further from Eric-dependence. Plan: run an RFP together with Cveten + Darren + Clayton. Parallel track for fast directional pricing without full engineering lives in [[quick-pricing]].",
       "status": "beta",
       "version": "v0.8-dev",
       "tech": [
@@ -326,13 +326,13 @@
           "date": "Mar 2026"
         },
         {
-          "text": "Workstream A — Estimating app: continue Excel-replication build",
+          "text": "App build — continue Excel-replication, push 323/323 checks across all 10 reference estimates",
           "done": false,
           "current": true,
           "date": "In Progress"
         },
         {
-          "text": "Workstream B — Excel template direct: each new estimate sharpens outdated Data Tables, reducing Eric-dependence",
+          "text": "Excel template direct — each new estimate sharpens outdated Data Tables, reducing Eric-dependence",
           "done": false,
           "current": true,
           "date": "In Progress"
@@ -342,11 +342,6 @@
           "done": false,
           "current": true,
           "date": "Upcoming"
-        },
-        {
-          "text": "Workstream C — Higher-level estimating tool: price by cubic foot, genset size, enclosure size, tank size, key add-ons (historical data, not engineered design)",
-          "done": false,
-          "date": "Planned"
         },
         {
           "text": "Use sharpened estimates to justify raising labour rates and material markup",
@@ -474,6 +469,51 @@
           "text": "Post-launch monitoring & fixes",
           "done": false,
           "date": "Planned"
+        }
+      ]
+    },
+    {
+      "id": "quick-pricing",
+      "name": "Margin — Quick Pricing Tool",
+      "description": "Higher-level estimating built from historical estimates and quotes — not engineered design. Prices by cubic foot, genset size, enclosure size, tank size, and key add-ons. Goal: fast, directional pricing without running the full engineering pass for every RFP. Same outcome as [[estimator]] (protect margin, less Eric-dependence) but a fundamentally different approach — pattern-match against history instead of recomputing from first principles. Lets us respond to early RFPs faster and screen jobs before sinking engineering hours.",
+      "status": "pipeline",
+      "version": "—",
+      "tech": [
+        "Historical quote data",
+        "TBD"
+      ],
+      "deployment": "TBD",
+      "repo": "TBD",
+      "milestones": [
+        {
+          "text": "Assemble historical estimate + quote dataset (cubic ft, genset kW, enclosure size, tank size, key add-ons, final price)",
+          "done": false,
+          "date": "Planned"
+        },
+        {
+          "text": "Identify price drivers + define the pricing dimensions",
+          "done": false,
+          "date": "Planned"
+        },
+        {
+          "text": "First-cut pricing model — cubic-foot rate + genset/enclosure/tank size adjustments + add-on premiums",
+          "done": false,
+          "date": "Planned"
+        },
+        {
+          "text": "Backtest against recent quotes to measure directional accuracy",
+          "done": false,
+          "date": "Planned"
+        },
+        {
+          "text": "Lightweight UI — quote in seconds without opening the Excel template",
+          "done": false,
+          "date": "Planned"
+        },
+        {
+          "text": "Wire into RFP intake — instant directional quote before engineering review",
+          "done": false,
+          "date": "Future"
         }
       ]
     },
@@ -655,6 +695,13 @@
     }
   ],
   "timeline": [
+    {
+      "date": "May 20, 2026",
+      "title": "Margin — Split Estimating Into Two Projects",
+      "desc": "Estimating now lives as two distinct cards because the approaches are genuinely different. (1) Margin — Estimating App: engineered-design replication of the Excel master template + Excel template iteration. (2) Margin — Quick Pricing Tool: historical-data pattern-matching — prices by cubic foot, genset size, enclosure size, tank size, key add-ons. Same outcome (tighter quotes, less Eric-dependence), different method (first-principles vs pattern-match). Lets us track progress and decisions on each independently.",
+      "project": "pm",
+      "color": "purple"
+    },
     {
       "date": "May 20, 2026",
       "title": "PM Dashboard — Strategic Reframe to 5 Outcomes",
@@ -986,6 +1033,12 @@
     }
   ],
   "activity": [
+    {
+      "icon": "✂️",
+      "text": "<strong>Margin</strong> — Split Estimating into 2 cards: <strong>Estimating App</strong> (engineered Excel-replication) and <strong>Quick Pricing Tool</strong> (historical-data pattern-match)",
+      "time": "May 20",
+      "color": "var(--amber-bg)"
+    },
     {
       "icon": "🎯",
       "text": "<strong>PM Dashboard</strong> — Portfolio reframed around 5 strategic outcomes: Visibility, Independence, Margin, Valuation, Procurement",
