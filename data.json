@@ -1074,6 +1074,84 @@
   ],
   "activity": [
     {
+      "icon": "🔧",
+      "text": "<strong>PM Dashboard</strong> — Fix kanban responsive breakpoints for actual iPad portrait widths",
+      "time": "May 20",
+      "color": "var(--green-bg)"
+    },
+    {
+      "icon": "💬",
+      "text": "<strong>PM Dashboard</strong> — Kanban: horizontal-scroll strip on tablet portrait",
+      "time": "May 20",
+      "color": "var(--blue-glow)"
+    },
+    {
+      "icon": "💬",
+      "text": "<strong>PM Dashboard</strong> — Make dashboard responsive across phone + tablet (portrait & landscape)",
+      "time": "May 20",
+      "color": "var(--blue-glow)"
+    },
+    {
+      "icon": "🔧",
+      "text": "<strong>PM Dashboard</strong> — Fix: new projects always default to collapsed",
+      "time": "May 20",
+      "color": "var(--green-bg)"
+    },
+    {
+      "icon": "💬",
+      "text": "<strong>PM Dashboard</strong> — Split Margin into 3 distinct tracks",
+      "time": "May 20",
+      "color": "var(--blue-glow)"
+    },
+    {
+      "icon": "💬",
+      "text": "<strong>PM Dashboard</strong> — Split Margin — Estimating into two project cards",
+      "time": "May 20",
+      "color": "var(--blue-glow)"
+    },
+    {
+      "icon": "💬",
+      "text": "<strong>PM Dashboard</strong> — Collapsed cards: uniform height across the grid",
+      "time": "May 20",
+      "color": "var(--blue-glow)"
+    },
+    {
+      "icon": "💬",
+      "text": "<strong>PM Dashboard</strong> — Default project cards to collapsed on first visit",
+      "time": "May 20",
+      "color": "var(--blue-glow)"
+    },
+    {
+      "icon": "💬",
+      "text": "<strong>PM Dashboard</strong> — Collapse: keep summary + meta + milestone count visible; stop grid stretch",
+      "time": "May 20",
+      "color": "var(--blue-glow)"
+    },
+    {
+      "icon": "💬",
+      "text": "<strong>PM Dashboard</strong> — Kanban: order by stage (pipeline → production) + color-code lanes",
+      "time": "May 20",
+      "color": "var(--blue-glow)"
+    },
+    {
+      "icon": "✨",
+      "text": "<strong>PM Dashboard</strong> — Add Kanban overview + collapsible project cards",
+      "time": "May 20",
+      "color": "var(--green-bg)"
+    },
+    {
+      "icon": "💬",
+      "text": "<strong>PM Dashboard</strong> — Backfill Apr–May Job Costing milestones",
+      "time": "May 20",
+      "color": "var(--blue-glow)"
+    },
+    {
+      "icon": "💬",
+      "text": "<strong>PM Dashboard</strong> — Reframe portfolio around 5 strategic outcomes",
+      "time": "May 20",
+      "color": "var(--blue-glow)"
+    },
+    {
       "icon": "✂️",
       "text": "<strong>Margin</strong> — Split Estimating into 3 cards: <strong>AI Powered Estimating App</strong>, <strong>Excel Template Replication & Knowledge Update</strong> (Cveten + Darren + Clayton internally driving the workbook), and <strong>Quick Pricing Tool</strong>",
       "time": "May 20",
