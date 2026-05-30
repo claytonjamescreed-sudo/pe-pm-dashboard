@@ -1074,6 +1074,12 @@
   ],
   "activity": [
     {
+      "icon": "✨",
+      "text": "<strong>Job Costing</strong> — Add Labour Quote Accuracy panel (rate vs hours) + portfolio roll-up",
+      "time": "May 25",
+      "color": "var(--green-bg)"
+    },
+    {
       "icon": "🔧",
       "text": "<strong>PM Dashboard</strong> — Fix kanban responsive breakpoints for actual iPad portrait widths",
       "time": "May 20",
